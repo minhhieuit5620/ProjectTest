@@ -1,0 +1,178 @@
+<!-- <div [@routerTransition]> -->
+<app-page-header [heading]="'Quản lí nhóm câu hỏi'" [icon]="'fa-table'"></app-page-header>
+
+
+<div class="row">
+
+    <div class="col col-xl-12 col-lg-12">
+        <!-- Button trigger modal -->
+        <button type="button" style="margin:10px;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add">
+            Thêm nhóm câu hỏi
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog " role="document" style="margin-top:200px;">
+                <div class="modal-content modal-xl">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm nhóm câu hỏi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" name="tenNhomCauHoi" [(ngModel)]="dl.Data.tenNhomCauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Tên nhóm câu hỏi</small>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" name="maTieuChiCha" [(ngModel)]="dl.Data.maTieuChiCha" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Mã tiêu chí cha</small>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" name="trangThai" [(ngModel)]="dl.Data.trangThai" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Trạng thái hoạt động</small>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" (click)="Add()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div style="margin:10px;">
+            <a href="">
+                <input type="button" class="btn btn-lg btn-primary" value="Thêm nhóm câu hỏi">
+            </a>
+        </div> -->
+        <div class="card mb-12">
+            <div class="card-header">Thông tin nhóm câu hỏi</div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên Nhóm Câu Hỏi</th>
+                            <th>Mã Tiêu Chí Cha</th>
+                            <th>Trạng Thái</th>
+                            <th>Người Thêm</th>
+                            <th>Ngày Thêm</th>
+                            <th>Người Sửa</th>
+                            <th>Ngày Sửa</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let i=index">
+                            <td> {{i+1}} </td>
+                            <td>{{item.tenNhomCauHoi}}</td>
+                            <td *ngIf="item.maTieuChiCha==null;"> 0 </td>
+                            <td *ngIf="item.maTieuChiCha!=null;"> {{item.maTieuChiCha}} </td>
+                            <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
+                            <td *ngIf="item.trangThai==0"> Không hoạt động</td>
+                            <td *ngIf="item.trangThai==-1"> Đã xóa</td>
+                            <td> {{item.nguoiThem}} </td>
+                            <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td>
+                            <td> {{item.nguoiSua}} </td>
+                            <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td>
+                            <td>
+                                <button type="button" (click)="getOne(item.maNhomCauHoi)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
+                                    Sửa
+                                </button>
+
+                                <button type="button" (click)="getOne(item.maNhomCauHoi)" class="btn btn-danger " data-toggle="modal" data-target="#Xoa">
+                                    Xóa
+                                  </button>
+
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="text-uppercase text-muted fs-12">maxSize = 5, rotate = false</div> -->
+            <ngb-pagination [(page)]="pageIndex" [boundaryLinks]="true" [collectionSize]="130" [maxSize]="5">
+            </ngb-pagination>
+            <!-- Modal Sửa -->
+            <div class="modal fade" id="Sua" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="margin-top:200px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Sửa thông tin</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" name="tenNhomCauHoi" [(ngModel)]="data_getone.tenNhomCauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Tên nhóm câu hỏi</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+
+                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.maTieuChiCha" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Mã tiêu chí cha</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" name="trangThai" [(ngModel)]="data_getone.trangThai" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Trạng thái hoạt động</small>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="update(data_getone.maNhomCauHoi,data_getone.tenNhomCauHoi,data_getone.maTieuChiCha,data_getone.trangThai)">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Sửa  -->
+
+
+            <!-- Modal Xóa -->
+
+            <div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="margin-top:200px;">
+                    <div class="modal-content">
+                        <!-- <form method="post" (ngSubmit)="delete_NCH(item.maNhomCauHoi)" class="p-3" role="form"> -->
+                        <div class="modal-header">
+                            <h5 class="modal-title">Xóa thông tin nhóm câu hỏi {{data_getone.maNhomCauHoi}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <span>Bạn có chắc chắn muốn xóa thông tin ?</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" (click)="delete_NCH(data_getone)">Xóa</button>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- </div> -->
