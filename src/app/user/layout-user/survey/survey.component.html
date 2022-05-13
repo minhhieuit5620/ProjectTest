@@ -1,6 +1,6 @@
-<section class="single">
+<section class="single" ngDefaultControl>
     <div class="container">
-        <div class="row">
+        <div class="row" *ngIf="data_getone">
             <div class="col-md-3 sidebar" id="sidebar">
                 <aside>
                     <h3 class="aside-title">Phiếu Khảo Sát</h3>
@@ -11,11 +11,11 @@
                                 <span> 111111</span>
                             </div>
                             <div class="item-in">
-                                <b>Mã Phiếu :</b>
+                                <b>Thời gian bắt đầu :</b>
                                 <span> 111111</span>
                             </div>
                             <div class="item-in">
-                                <b>Mã Phiếu :</b>
+                                <b>Thời gian kết thúc :</b>
                                 <span> 111111</span>
                             </div>
 
@@ -30,19 +30,7 @@
                         <h1 class="aside-title">Technoware</h1>
                         <article class="article-fw">
                             <div class="inner">
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-                                <div class="btn btn-sm btn-info question"> 1</div>
-
+                                <button class="btn btn-sm btn-info question " *ngFor="let item of data; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
                         <h1 class="aside-title">Technoware</h1>
@@ -150,28 +138,14 @@
                         </article>
                     </div>
                 </aside>
-                <aside>
-                    <div class="aside-body">
-                        <form class="newsletter">
-                            <div class="icon">
-                                <i class="ion-ios-email-outline"></i>
-                                <h1>Newsletter</h1>
-                            </div>
-                            <div class="input-group">
-                                <input type="email" class="form-control email" placeholder="Your mail">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary"><i class="ion-paper-airplane"></i></button>
-                                </div>
-                            </div>
-                            <p>By subscribing you will receive new articles in your email.</p>
-                        </form>
-                    </div>
-                </aside>
             </div>
 
             <div class="col-md-3">
-                <h6> Hướng dẫn trả lời câu hỏi</h6>
+                <h3> Hướng dẫn trả lời câu hỏi</h3>
                 <hr>
+                <p>
+                    {{data_getone.goiYcauHoi}}
+                </p>
             </div>
             <div class="col-md-6">
 
@@ -181,28 +155,39 @@
                 <article class="article main-article">
                     <header>
                         <h3>Câu Hỏi: </h3>
+                        <hr>
                     </header>
-                    <div class="main">
+                    <div class="main" style="padding-top: 0px;">
+                        <h2 ngDefaultControl style="margin-top:0px;"> {{data_getone.noiDung}}</h2>
+
                         <!-- <tr *ngFor="let item of data; let i=index"> -->
-                        <div *ngFor="let item of data; let i=index">
+                        <!-- <div *ngFor="let item of data; let i=index">
                             <p> {{item.noiDung}} </p>
                             <p>Nội dung câu hỏi....................................</p>
-                        </div>
+                        </div> -->
+                        <!-- <div *ngFor="let item1 of data1; let i=index">
+                            <p> {{item1.noiDung}} </p>
+                            <p>Nội dung câu hỏi....................................2</p>
+                        </div> -->
+                        <!-- <input type="text" name="" [(ngModel)]="data1.noiDung"> {{data1.}} -->
 
                         <div class="featured">
                             <form class="checkbox-group">
-
-                                <div class="form-group">
-                                    <label><input type="radio" name="date" checked> Anytime</label>
+                                <div *ngIf="data_getone.maLoaiCauHoi==1">
+                                    <div class="form-group" *ngFor="let answer of data_Answer; let i=index">
+                                        <label><input type="radio" name="date" value="answer.noiDung" > {{answer.noiDung}} </label>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label><input type="radio" name="date"> Today</label>
+                                <div *ngIf="data_getone.maLoaiCauHoi==2">
+                                    <div class="form-group" *ngFor="let answer of data_Answer; let i=index">
+                                        <label><input type="checkbox" name="date" value="answer.noiDung" > {{answer.noiDung}} </label>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label><input type="radio" name="date"> Last Week</label>
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="radio" name="date"> Last Month</label>
+                                <div *ngIf="data_getone.maLoaiCauHoi==3">
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input type="text" name="" id="" class="form-control" placeholder="Nhập đáp án trả lời phù hợp ...." aria-describedby="helpId">
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -211,7 +196,23 @@
                     <div class="btn btn-info" style="float: right; margin-left: 5px;">Tiếp tục</div>
                     <div class="btn btn-info" style="float: right;">Nộp bài</div>
                 </article>
+                <!-- hịaahshshshshsshsh
+                <div *ngFor="let item1 of data1; let i=index">
+                    <p>{{i+1}}</p>
+                    <p> {{item1.noiDung}} </p>
+                </div> -->
 
+            </div>
+        </div>
+        <div class="row" style="min-height: 500px;text-align:center" *ngIf="data_getone==null">
+            <div class="col-md-12" style="text-align:center">
+                <h2>
+                    Bạn có muốn bắt đầu khảo sát ngay bây giờ ?
+                </h2>
+                <div>
+                    <button class="btn btn-info" style="padding:15px; margin-right: 10px;" (click)="getOne(data[0].maCauHoi)" (click)="getDapAn(data[0].maCauHoi)"> Bắt đầu</button>
+                    <button class="btn btn-warning" style="padding:15px;"> Quay lại trang chủ</button>
+                </div>
             </div>
         </div>
     </div>

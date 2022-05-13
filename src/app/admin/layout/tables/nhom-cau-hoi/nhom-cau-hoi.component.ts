@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
  import { NhomCauHoiService } from 'src/app/Sevices/NhomCauHoi/nhom-cau-hoi.service';
 import { NhomCauHoi_Data } from 'src/app/model/NhomCauHoi/nhom-cau-hoi-data.model';
@@ -15,6 +15,7 @@ const datePipe = new DatePipe('en-US');
 })
 export class NhomCauHoiComponent implements OnInit {
 
+  @Input() data_getone:NhomCauHoi_Data;
   ngayTao = datePipe.transform(Date.now(), 'yyyy-MM-dd');
 
   form = new FormGroup({
@@ -34,7 +35,7 @@ export class NhomCauHoiComponent implements OnInit {
  pageSize=20;
  pageIndex=1;
 
-  data_getone:NhomCauHoi_DTO;
+  
   data:NhomCauHoi_Data[];
   data_DTO:NhomCauHoi_DTO[]=[];
   NCH_data:NhomCauHoi_Data={maNhomCauHoi: 1,tenNhomCauHoi: '', maTieuChiCha:0,trangThai:0, nguoiThem: 'string' ,ngayThem:new Date,nguoiSua:'string',ngaySua:new Date}
@@ -95,7 +96,7 @@ export class NhomCauHoiComponent implements OnInit {
   // }
   getOne(id:number){
     
-    this.NhomCauHoiService.getOne(id,this.dl).subscribe((res:any)=>{
+    this.NhomCauHoiService.getOne(id).subscribe((res:any)=>{
      
     this.data_getone=res;
     console.log(this.data_getone);

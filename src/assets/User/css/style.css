@@ -921,8 +921,8 @@ section.search .search-result {
 
 .btn.btn-sm {
     border-radius: 0;
-    padding: 5px 10px;
-    font-size: 12px;
+    /* padding: 5px 10px; */
+    width: 35px;height: 35px;font-size: 12px;
 }
 
 .btn:focus {
@@ -2992,7 +2992,7 @@ aside .nav li.active a i {
 
 aside .tab-pane {
     border: 1px solid #ddd;
-    border-top: none;
+    /* border-top: none; */
     padding: 20px;
 }
 
@@ -3871,7 +3871,7 @@ section.single article.main-article header .details li:last-child:after {
 }
 
 section.single article.main-article .main {
-    padding-top: 30px;
+    /* padding-top: 30px; */
     margin-top: 20px;
 }
 
@@ -3912,7 +3912,7 @@ section.single article.main-article .main h4,
 section.single article.main-article .main h5,
 section.single article.main-article .main h6 {
     line-height: 32px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 section.single footer {

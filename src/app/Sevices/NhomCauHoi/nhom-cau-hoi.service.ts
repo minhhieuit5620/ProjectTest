@@ -20,8 +20,8 @@ export class NhomCauHoiService {
   Add_NCH(data:NhomCauHoi_DTO):Observable<NhomCauHoi_DTO>{
     return this.http.post<NhomCauHoi_DTO>(environment.apiUrl+'/api/Nhom/Add_Or_Update',data);
   }
-  getOne(id:Number,data:NhomCauHoi_DTO) {
-    return this.http.post<NhomCauHoi_DTO>(environment.apiUrl+'/api/Nhom/GetNhomCauHoiById/'+id,data);
+  getOne(id:Number) {
+    return this.http.get<NhomCauHoi_Data[]>(environment.apiUrl+'/api/Nhom/GetNhomCauHoiById/'+id);
   }
   Put_NCH(data:NhomCauHoi_DTO):Observable<NhomCauHoi_DTO>{
     return this.http.post<NhomCauHoi_DTO>(environment.apiUrl+'/api/Nhom/Add_Or_Update',data);

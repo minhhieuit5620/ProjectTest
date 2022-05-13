@@ -1,7 +1,7 @@
 export class CauHoi_Data {
     maCauHoi: number;
     noiDung: string;
-    goiYCauHoi: string;
+    goiYcauHoi: string;
     maLoaiCauHoi: number;
     maNhomCauHoi: number;
     trangThai: number;
