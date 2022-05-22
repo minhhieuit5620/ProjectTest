@@ -10,6 +10,8 @@ import { SurveyComponent } from './survey/survey.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutUserComponent } from './layout-user.component';
+import { DetailNewComponent } from './detail-new/detail-new.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { LayoutComponent } from './layout.component';
 
 export const Mainroutes: Routes = [
@@ -19,8 +21,9 @@ export const Mainroutes: Routes = [
     children: [
      //{path: '', component: MainsComponent }, 
       {path:'',component:HomeComponent},
-      {path:"home",component:HomeComponent},
-      {path:"KhaoSat",component:SurveyComponent},
+      {path:"Home",component:HomeComponent},
+      {path:"Survey",component:SurveyComponent},
+      {path:"Detail/:id",component:DetailNewComponent}
       // { path: 'products', component: ProductComponent }, 
       // {path:'detail/:id/:IdCategory',component:DetailProductComponent},
       // { path: 'projects', component: ProjectComponent }, 
@@ -42,6 +45,8 @@ export const Mainroutes: Routes = [
      // LayoutRoutingModule, 
       NgbDropdownModule,
       NgbModule,
+      FormsModule,
+      ReactiveFormsModule,
      RouterModule.forChild(Mainroutes)
     
     ],
@@ -49,6 +54,8 @@ export const Mainroutes: Routes = [
     LayoutUserComponent,
     SurveyComponent,
     HomeComponent,
+  
+    DetailNewComponent,
        
   ]
     // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]

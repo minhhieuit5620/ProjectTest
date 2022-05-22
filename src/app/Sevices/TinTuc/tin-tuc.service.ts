@@ -25,6 +25,9 @@ export class TinTucService {
   getOne(id:Number) {
     return this.http.get<TinTuc_Data[]>(environment.apiUrl+'/api/TinTuc/GetTinTucByID/'+id);
   }
+  getOne_(id:Number) {
+    return this.http.get<TinTuc_Data>(environment.apiUrl+'/api/TinTuc/GetTinTucByID/'+id);
+  }
   // get DL Khoa học công nghệ
   getKH_CN() {
     return this.http.get<TinTuc_DTO>(environment.apiUrl+'/api/TinTuc/GetTinTucByMaLoai/1');

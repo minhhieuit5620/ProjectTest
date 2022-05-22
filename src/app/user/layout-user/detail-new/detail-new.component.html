@@ -1,0 +1,36 @@
+<section class="single">
+    <div class="container" *ngIf="tintuc" ngDefaultControl>
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Film</li>
+                </ol> -->
+                <article class="article main-article">
+                    <header>
+                        <h1>{{tintuc.tieuDe}}</h1>
+                        <br>
+                        <ul class="details">
+                            <li> {{tintuc.ngayThem|date: 'dd/MM/yyyy'}} </li>
+                            <!-- <li><a>{{tintuc.ngayThem}}</a></li> -->
+                            <!-- <li>By <a href="#">John Doe</a></li> -->
+                        </ul>
+                    </header>
+                    <!-- {{tintuc.mota}} -->
+                    <div class="main">
+
+                        <!-- <embed src="pdfSource" width="800px" height="800px" /> -->
+
+
+
+                        <p [innerHTML]="tintuc.mota">
+                        </p>
+
+
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

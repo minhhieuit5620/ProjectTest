@@ -12,7 +12,8 @@ import { UserComponent } from './user/user.component';
  import { NgModel  } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LayoutComponent } from './admin/layout/layout.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
     imports: [
@@ -23,7 +24,9 @@ import { FormsModule } from '@angular/forms';
         AppRoutingModule,
         RouterModule,
         NgbModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
+        PdfViewerModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [AppComponent,AdminComponent, UserComponent ],

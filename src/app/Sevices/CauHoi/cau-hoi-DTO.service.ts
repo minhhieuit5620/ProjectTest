@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CauHoi_Data } from 'src/app/model/CauHoi/cau-hoi-data.model';
 import { CauHoi_DTO } from 'src/app/model/CauHoi/cau-hoi-DTO.model';
-import { LuaChon_Data } from 'src/app/model/LuaChon/lua-chon-data.model';
+import { CauHoi_LuaChon_DTO } from 'src/app/model/CauHoi/CauHoi_LuaChon_DTO.model';
 import { LuaChon_DTO } from 'src/app/model/LuaChon/lua-chon-DTO.model';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CauHoiService {
+export class CauHoi_DTOService {
 
   private itemsSubject = new BehaviorSubject<any[]>([]);
   item = this.itemsSubject.asObservable();
@@ -23,12 +23,13 @@ export class CauHoiService {
    }
 
 
+
  // Add đáp án
- addAnswer(CauHoi:CauHoi_Data,DapAn:LuaChon_Data) {
+ addAnswer(product:CauHoi_Data) {
   // product.Quantity = 1;
   let local_storage:any;
   if (localStorage.getItem('answer') == null) {
-    local_storage = [CauHoi,DapAn];
+    local_storage = [product];
   } else {
     local_storage = JSON.parse(localStorage.getItem('answer')|| '{}');
     let ok = true;
@@ -40,7 +41,7 @@ export class CauHoiService {
       // }
     }
     if(ok){
-      local_storage.push(CauHoi,DapAn);
+      local_storage.push(product);
     }
   }
   localStorage.setItem('answer', JSON.stringify(local_storage));
@@ -48,10 +49,20 @@ export class CauHoiService {
 }
 
 
-// get dữ liệu
-  getall(data:CauHoi_DTO):Observable<CauHoi_DTO> {
-    return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/GetAllCauHoi',data);
+// get dữ liệu DTO
+  getall(data:CauHoi_LuaChon_DTO):Observable<CauHoi_LuaChon_DTO> {
+    return this.http.post<CauHoi_LuaChon_DTO>(environment.apiUrl+'/api/CauHoi_LuaChon_DTO/GetAll',data);
   }
+
+//getOne DTO
+  getOne_DTO(id:Number){
+    return this.http.get<CauHoi_LuaChon_DTO[]>(environment.apiUrl+'/api/CauHoi_LuaChon_DTO/GetCauHoi_LuaChon_DTOById/'+id);
+  }
+
+  // /api/CauHoi_LuaChon_DTO/GetCauHoi_LuaChon_DTOById/9
+
+
+
   // getall():Observable<NhomCauHoi[]>{
   //   return this.http.post<NhomCauHoi[]>(environment.apiUrl+'/api/Nhom/GetAllNhomCauHoi');
   // }

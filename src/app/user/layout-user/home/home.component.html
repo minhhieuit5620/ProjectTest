@@ -89,7 +89,7 @@
                             <article class="article col-md-12">
                                 <div class="inner">
                                     <figure>
-                                        <a href="single.html">
+                                        <a routerLink="/Detail/{{news.maTinTuc}}">
                                             <img src="../../../../assets/User/image/{{news.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
@@ -98,7 +98,7 @@
                                             <div class="time"> {{news.ngayThem| date: 'dd/MM/yyyy'}} </div>
                                             <div class="category"><a href="category.html">Healthy</a></div>
                                         </div>
-                                        <h2><a href="single.html"> {{news.tieuDe}} </a></h2>
+                                        <h2><a routerLink="/Detail/{{news.maTinTuc}}"> {{news.tieuDe}} </a></h2>
                                         <p> </p>
                                         <!-- <footer>
                                             <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
@@ -138,12 +138,12 @@
                             <article class="article-mini">
                                 <div class="inner">
                                     <figure>
-                                        <a href="single.html">
+                                        <a routerLink="/Detail/{{item.maTinTuc}}">
                                             <img src="../../../../assets/User/image/{{item.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="padding">
-                                        <h1><a href="single.html"> {{item.tieuDe}} </a></h1>
+                                        <h1><a routerLink="/Detail/{{item.maTinTuc}}"> {{item.tieuDe}} </a></h1>
                                         <div class="detail">
                                             <div class="category"><a href="category.html">Lifestyle</a></div>
                                             <div class="time">December 22, 2016</div>
@@ -170,12 +170,12 @@
                             <article class="article-mini">
                                 <div class="inner">
                                     <figure>
-                                        <a href="single.html">
+                                        <a routerLink="/Detail/{{item_ATBX.maTinTuc}}">
                                             <img src="../../../../assets/User/image/{{item_ATBX.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="padding">
-                                        <h1><a href="single.html"> {{item_ATBX.tieuDe}} </a></h1>
+                                        <h1><a routerLink="/Detail/{{item_ATBX.maTinTuc}}"> {{item_ATBX.tieuDe}} </a></h1>
                                         <div class="detail">
                                             <div class="category"><a href="category.html">Lifestyle</a></div>
                                             <div class="time">December 22, 2016</div>
@@ -194,18 +194,18 @@
                     <article class="col-md-12 article-list">
                         <div class="inner">
                             <figure>
-                                <a href="single.html">
+                                <a routerLink="/Detail/{{item_SHTT.maTinTuc}}">
                                     <img src="../../../../assets/User/image/{{item_SHTT.hinhAnh}}" alt="Sample Article">
                                 </a>
                             </figure>
                             <div class="details">
                                 <div class="detail">
                                     <div class="category">
-                                        <a href="#">Film</a>
+                                        <a routerLink="/Detail/{{item_SHTT.maTinTuc}}">Film</a>
                                     </div>
                                     <div class="time">{{item_SHTT.ngayThem |date: 'dd/MM/yyyy'}}</div>
                                 </div>
-                                <h1><a href="single.html"> {{item_SHTT.tieuDe}} </a></h1>
+                                <h1><a routerLink="/Detail/{{item_SHTT.maTinTuc}}"> {{item_SHTT.tieuDe}} </a></h1>
                                 <p>
                                     Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.
                                 </p>
@@ -254,12 +254,12 @@
                         <article class="article-mini">
                             <div class="inner">
                                 <figure>
-                                    <a href="single.html">
+                                    <a routerLink="/Detail/{{item_TBCV.maTinTuc}}">
                                         <img src="../../../../assets/User/image/{{item_TBCV.hinhAnh}}" alt="Sample Article">
                                     </a>
                                 </figure>
                                 <div class="padding">
-                                    <h1><a href="single.html"> {{item_TBCV.tieuDe}} </a></h1>
+                                    <h1><a routerLink="/Detail/{{item_TBCV.maTinTuc}}"> {{item_TBCV.tieuDe}} </a></h1>
                                 </div>
                             </div>
                         </article>
@@ -303,7 +303,7 @@
                             <article class="article-fw">
                                 <div class="inner">
                                     <figure>
-                                        <a href="single.html">
+                                        <a routerLink="/Detail/{{data_TC_DL_CL[0].maTinTuc}}">
                                             <img src="../../../../assets/User/image/{{data_TC_DL_CL[0].hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
@@ -312,7 +312,7 @@
                                             <div class="time">December 31, 2016</div>
                                             <div class="category"><a href="category.html">Sport</a></div>
                                         </div>
-                                        <h1><a href="single.html"> {{data_TC_DL_CL[0].tieuDe }}</a></h1>
+                                        <h1><a routerLink="/Detail/{{data_TC_DL_CL[0].maTinTuc}}"> {{data_TC_DL_CL[0].tieuDe }}</a></h1>
                                         <p>
                                             Donec congue turpis vitae mauris condimentum luctus. Ut dictum neque at egestas convallis.
                                         </p>
@@ -323,12 +323,12 @@
                             <article class="article-mini" *ngFor="let itemTC_DL_CL of data_TC_DL_CL">
                                 <div class="inner">
                                     <figure>
-                                        <a href="single.html">
+                                        <a routerLink="/Detail/{{itemTC_DL_CL.maTinTuc}}">
                                             <img src="../../../../assets/User/image/{{itemTC_DL_CL.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="padding">
-                                        <h1><a href="single.html">{{itemTC_DL_CL.tieuDe}}</a></h1>
+                                        <h1><a routerLink="/Detail/{{itemTC_DL_CL.maTinTuc}}">{{itemTC_DL_CL.tieuDe}}</a></h1>
                                         <div class="detail">
                                             <div class="category"><a href="category.html">Lifestyle</a></div>
                                             <div class="time">December 22, 2016</div>
