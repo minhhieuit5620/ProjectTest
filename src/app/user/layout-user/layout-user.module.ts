@@ -12,6 +12,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutUserComponent } from './layout-user.component';
 import { DetailNewComponent } from './detail-new/detail-new.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginUserComponent } from './login-user/login-user.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { HeaderUserComponent } from './header-user/header-user.component';
+import { ManualComponent } from './manual/manual.component';
+import { IntroduceComponent } from './introduce/introduce.component';
+import { FooterUserComponent } from './footer-user/footer-user.component';
+import { CompanyComponent } from './company/company.component';
+
 // import { LayoutComponent } from './layout.component';
 
 export const Mainroutes: Routes = [
@@ -23,7 +31,13 @@ export const Mainroutes: Routes = [
       {path:'',component:HomeComponent},
       {path:"Home",component:HomeComponent},
       {path:"Survey",component:SurveyComponent},
+      {path:"LoginUser",component:LoginUserComponent},
+      {path:"RegisterUser",component:RegisterUserComponent},
+      {path:"Introduce",component:IntroduceComponent},
+      {path:"Manual",component:ManualComponent},
+      {path:"Company",component:CompanyComponent},
       {path:"Detail/:id",component:DetailNewComponent}
+
       // { path: 'products', component: ProductComponent }, 
       // {path:'detail/:id/:IdCategory',component:DetailProductComponent},
       // { path: 'projects', component: ProjectComponent }, 
@@ -42,6 +56,7 @@ export const Mainroutes: Routes = [
 @NgModule({
     imports: [
       CommonModule, 
+     // HeaderUserComponent,
      // LayoutRoutingModule, 
       NgbDropdownModule,
       NgbModule,
@@ -54,8 +69,15 @@ export const Mainroutes: Routes = [
     LayoutUserComponent,
     SurveyComponent,
     HomeComponent,
-  
+    HeaderUserComponent,
     DetailNewComponent,
+       LoginUserComponent,
+       RegisterUserComponent,
+       ManualComponent,
+       IntroduceComponent,
+       FooterUserComponent,
+       CompanyComponent,
+     
        
   ]
     // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]

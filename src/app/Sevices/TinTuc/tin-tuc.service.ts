@@ -48,6 +48,10 @@ export class TinTucService {
     getTBCV() {
     return this.http.get<TinTuc_DTO>(environment.apiUrl+'/api/TinTuc/GetTinTucByMaLoai/5');
   }
+//get DL giới thiệu
+  getIntro() {
+    return this.http.get<TinTuc_DTO>(environment.apiUrl+'/api/TinTuc/GetTinTucByMaLoai/7');
+  }
 
   Put_NCH(data:TinTuc_DTO):Observable<TinTuc_DTO>{
     return this.http.post<TinTuc_DTO>(environment.apiUrl+'/api/CauHoi/Add_Or_Update',data);

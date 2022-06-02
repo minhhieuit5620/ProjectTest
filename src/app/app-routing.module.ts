@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoginComponent } from './admin/login/login.component';
 import { HomeComponent } from './user/layout-user/home/home.component';
+
 import{ UserComponent} from './user/user.component';
 
 // import { FileNotFoundComponent } from './shared/file-not-found/file-not-found.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
     loadChildren: () => import('./user/layout-user/layout-user.module').then((m) => m.Layout_UserModule)
     
    },
+  //  {
+  //   path: 'loginUser',
+  //   component: UserLoginComponent,
+  // },
  
   {
     path: 'login',

@@ -1,0 +1,316 @@
+<style>
+    h4 {
+        font-size: 26px;
+        margin: 10px 0px 30px;
+    }
+    
+    .btn-primary {
+        background-color: #F73F52;
+        border-color: #F73F52;
+    }
+    
+    .btn {
+        font-size: 15px;
+        border-radius: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-color: transparent;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        letter-spacing: .5px;
+    }
+    
+    .login {
+        padding-top: 265px;
+    }
+</style>
+
+<section class="login first grey">
+    <div class="container">
+        <div class="box-wrapper">
+            <div class="box box-border">
+                <div class="box-body">
+                    <h4>Register</h4>
+                    <form (ngSubmit)="f.form.valid && Submit()" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <label>Tên doanh nghiệp</label>
+                            <input type="text" autofocus name="tenToChuc" [(ngModel)]="form.tenToChuc" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tài khoản</label>
+                            <input type="text" autofocus name="taiKhoan" [(ngModel)]="form.taiKhoan" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="text" autofocus name="matKhau" [(ngModel)]="form.matKhau" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mã số thuế</label>
+                            <input type="number" name="maDinhDanhDN" [(ngModel)]="form.maDinhDanhDN" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input type="text" name="Address" [(ngModel)]="form.diaChi" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Tỉnh thành</label>
+                            <input type="text" name="tinh" [(ngModel)]="form.tinhThanh" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Điện thoại</label>
+                            <input type="phone" name="phone" [(ngModel)]="form.dienThoai" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Email</label>
+                            <input type="email" name="email" [(ngModel)]="form.email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Website</label>
+                            <input type="text" name="website" [(ngModel)]="form.website" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Người đứng đầu</label>
+                            <input type="text" name="leader" [(ngModel)]="form.nguoiDungDau" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Ngành</label>
+                            <select name="nganh" id="Nganh" [(ngModel)]="form.maNganh" class=" styled-select">
+                                
+                                <option *ngFor="let item of dataNganh_DTO"   value="item.maNganh" > {{item.tenNganh}} </option>
+                                <!-- <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
+                                <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
+                                <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option> -->
+                            </select>
+                            <!-- <input type="text" name="nganh" [(ngModel)]="form.maNganh" class="form-control" required> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Loại hình doanh nghiệp</label>
+                            <select name="loaiHinh" id="loai" [(ngModel)]="form.maLoaiHinh" class=" styled-select">
+                                <!-- <option   value="Null" selected>Chọn loại hình</option> -->
+                                <option *ngFor="let item of dataLoaiHinh"   value="{{item.maLoaiHinh}}" > {{item.tenLoaiHinh}} </option>
+                                <!-- <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
+                                <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
+                                <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option> -->
+                            </select>
+                            <!-- <input type="text" name="loaiHinh" [(ngModel)]="form.maLoaiHinh" class="form-control" required> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label class="fw">Quy mô</label>
+                            <select name="myselect" id="quyMo" [(ngModel)]="form.quyMo" class=" styled-select">
+                                <!-- <option  style="padding: 20px 0px;" value="Null" selected>Chọn quy mô</option> -->
+                               <option    style="padding: 20px 0px;"  value="Lớn" >Lớn</option>
+                               <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
+                               <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
+                               <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option>
+                           </select>
+                        </div>
+                        <div class="form-group text-right" style="margin-top:50px;">
+                            <button type="submit" class="btn btn-primary btn-block ">Register</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <span class="text-muted">Bạn đã có tài khoản?</span> <a routerLink="/user/LoginUser">Đăng nhập</a>
+                        </div>
+                    </form>
+
+
+                    <!-- <form (ngSubmit)="f.form.valid && Submit()" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <label>Tên doanh nghiệp</label>
+                            <input type="text" autofocus name="TenDoanhNghiep" [(ngModel)]="form.Data.tenToChuc" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mã số thuế</label>
+                            <input type="number" name="MaDinhDanhDN" [(ngModel)]="form.Data.maDinhDanhDN" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input type="text" name="Address" [(ngModel)]="form.Data.diaChi" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Tỉnh thành</label>
+                            <input type="text" name="tinh" [(ngModel)]="form.Data.tinhThanh" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Điện thoại</label>
+                            <input type="phone" name="phone" [(ngModel)]="dienThoai" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Email</label>
+                            <input type="email" name="email" [(ngModel)]="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Website</label>
+                            <input type="text" name="website" [(ngModel)]="form.Data.website" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Người đứng đầu</label>
+                            <input type="text" name="leader" [(ngModel)]="form.Data.nguoiDungDau" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Ngành</label>
+                            <input type="text" name="nganh" [(ngModel)]="form.Data.maNganh" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Loại hình doanh nghiệp</label>
+                            <input type="text" name="loaiHinh" [(ngModel)]="form.Data.maLoaiHinh" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="fw">Quy mô</label>
+                            <select name="quyMo" id="" formControlName="form.Data.quyMo" [(ngModel)]="form.Data.quyMo" class=" styled-select">                            
+                               <option    style="padding: 20px 0px;" [value]="1" >Lớn</option>
+                               <option  style="padding: 20px 0px;" value="Vừa">Vừa</option>
+                               <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
+                               <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option>
+                           </select>
+                        </div>
+                        <div class="form-group text-right" style="margin-top:50px;">
+                            <button type="submit" class="btn btn-primary btn-block ">Register</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <span class="text-muted">Bạn đã có tài khoản?</span> <a routerLink="/user/LoginUser">Đăng nhập</a>
+                        </div>
+                    </form> -->
+
+                    <!-- 
+                    <form (ngSubmit)="f.form.value && registerUser()" #f="ngForm" novalidate>
+
+                        <div class="form-group">
+                            <label>Tên doanh nghiệp</label>
+                            <input type="text" autofocus name="TenDoanhNghiep" [(ngModel)]="form.Data.tenToChuc" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mã số thuế</label>
+                            <input type="number" name="MaDinhDanhDN" [(ngModel)]="form.Data.maDinhDanhDN" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input type="text" name="Address" [(ngModel)]="form.Data.diaChi" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Tỉnh thành</label>
+                            <input type="text" name="tinh" [(ngModel)]="form.Data.tinhThanh" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Điện thoại</label>
+                            <input type="phone" name="phone" [(ngModel)]="form.Data.dienThoai" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Email</label>
+                            <input type="email" name="email" [(ngModel)]="form.Data.email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Website</label>
+                            <input type="text" name="website" [(ngModel)]="form.Data.website" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Người đứng đầu</label>
+                            <input type="text" name="leader" [(ngModel)]="form.Data.nguoiDungDau" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Ngành</label>
+                            <input type="text" name="nganh" [(ngModel)]="form.Data.maNganh" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Loại hình doanh nghiệp</label>
+                            <input type="text" name="loaiHinh" [(ngModel)]="form.Data.maLoaiHinh" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="fw">Quy mô</label>
+                            <select name="quyMo" id="" formControlName="form.Data.quyMo" [(ngModel)]="form.Data.quyMo" class=" styled-select">                            
+                               <option    style="padding: 20px 0px;" value="Lớn" >Lớn</option>
+                               <option  style="padding: 20px 0px;" value="Vừa">Vừa</option>
+                               <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
+                               <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option>
+                           </select>
+                        </div>
+                        <div class="form-group text-right" style="margin-top:50px;">
+                            <button type="submit" class="btn btn-primary btn-block ">Register</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <span class="text-muted">Bạn đã có tài khoản?</span> <a routerLink="/user/LoginUser">Đăng nhập</a>
+                        </div>
+                    </form> -->
+                    <!-- <form [formGroup]="registerForm" (ngSubmit)="registerForm.value && registerUser()">
+
+                        <div class="form-group">
+                            <label>Tên doanh nghiệp</label>
+
+                            <input type="text" autofocus formControlName="tenToChuc" name="tenToChuc" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Mã số thuế</label>
+                            <input type="number" formControlName="MaDinhDanhDN" name="MaDinhDanhDN" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input type="text" name="diaChi" formControlName="diaChi" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Tỉnh thành</label>
+                            <input type="text" name="tinhThanh" formControlName="tinhThanh" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Điện thoại</label>
+                            <input type="phone" name="dienThoai" formControlName="dienThoai" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Email</label>
+                            <input type="email" name="email" formControlName="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Website</label>
+                            <input type="text" name="website" formControlName="website" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Người đứng đầu</label>
+                            <input type="text" name="nguoiDungDau" formControlName="nguoiDungDau" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Ngành</label>
+                            <input type="text" name="maNganh" formControlName="maNganh" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Loại hình doanh nghiệp</label>
+                            <input type="text" name="maLoaiHinh" formControlName="maLoaiHinh" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="fw">Quy mô</label>
+                            <select name="quyMo" id="" name="quyMo" formControlName="quyMo" class=" styled-select">                            
+                               <option    style="padding: 20px 0px;" value="Lớn" >Lớn</option>
+                               <option  style="padding: 20px 0px;" value="Vừa">Vừa</option>
+                               <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
+                               <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option>
+                           </select>
+                        </div>
+                        <div class="form-group text-right" style="margin-top:50px;">
+                            <button type="submit" class="btn btn-primary btn-block ">Register</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <span class="text-muted">Bạn đã có tài khoản?</span> <a routerLink="/user/LoginUser">Đăng nhập</a>
+                        </div>
+
+
+                    </form> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .styled-select {
+        border: 1px solid #ced4da;
+        overflow: hidden;
+        width: 335px;
+        height: 40px;
+    }
+    
+    .styled-select select {
+        width: 149px;
+        border-radius: 5px;
+    }
+</style>

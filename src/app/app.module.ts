@@ -14,6 +14,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LayoutComponent } from './admin/layout/layout.component';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { UserLoginComponent } from './user/user-login/user-login.component';
+import { HeaderUserComponent } from './user/layout-user/header-user/header-user.component';
 
 @NgModule({
     imports: [

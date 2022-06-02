@@ -1,0 +1,204 @@
+<!-- <style>
+    h4 {
+        font-size: 26px;
+        margin: 10px 0px 30px;
+    }
+    
+    .btn-primary {
+        background-color: #F73F52;
+        border-color: #F73F52;
+    }
+    
+    .btn {
+        font-size: 15px;
+        border-radius: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-color: transparent;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        letter-spacing: .5px;
+    }
+    
+    section {
+        padding-top: 265px;
+    }
+</style>
+
+<section class="login first grey">
+    <div class="container">
+        <div class="box-wrapper">
+            <div class="box box-border">
+                <div class="box-body">
+                    <h4>Login</h4>
+                    <form method="POST" (ngSubmit)="onSubmit()" [formGroup]="form" role="form" novalidate>
+
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" [(ngModel)]="form.email" required name="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="fw">Password
+                                    <a href="forgot.html" style="color: #F73F52;" class="pull-right">Forgot Password?</a>
+                                </label>
+                            <input type="password" [(ngModel)]="form.password" name="password" class="form-control">
+                        </div>
+                        <div class="form-group text-right">
+
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <span class="text-muted">Don't have an account?</span> <a href="register.html">Create one</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+
+
+<!-- 
+<style>
+    form {
+        padding-top: 265px;
+    }
+</style>
+
+<form method="POST" (ngSubmit)="form.valid && onSubmit()" [formGroup]="form" role="form" novalidate>
+    <div class="form-label-group">
+        <input type="text" id="email" name="email" formControlName="email" class="form-control" placeholder="Nhập vào email" [ngClass]="{'is-invalid':form.get('email')?.touched && form.get('email')?.invalid}" required>
+        <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="invalid-feedback">
+            <div *ngIf="form.get('email')?.errors?.required">Trường này không được để trống
+            </div>
+            <div *ngIf="form.get('email')?.errors?.pattern">Email không đúng định dạng</div> 
+        </div>
+        <label for="email">Email</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="password" name="password" formControlName="password" class="form-control" placeholder="Mật khẩu" [ngClass]="{'is-invalid':form.get('password')?.touched && form.get('password')?.invalid}" required>
+        <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="invalid-feedback">
+             <div *ngIf="form.get('password')?.errors?.required">Trường này không được để trống
+            </div>
+            <div *ngIf="form.get('password')?.errors?.minlength">Password tối thiểu 8 ký tự</div>
+            <div *ngIf="form.get('password')?.errors?.maxlength">Password tối đa 20 ký tự</div> 
+        </div>
+        <label for="password">Mật khẩu</label>
+    </div>
+
+    <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="customCheck1">
+        <label class="custom-control-label" for="customCheck1">Remember password</label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block text-uppercase mb-3" type="submit">Đăng nhập</button>
+    <hr class="my-4">
+</form> -->
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    h4 {
+        font-size: 26px;
+        margin: 10px 0px 30px;
+    }
+    
+    .btn-primary {
+        background-color: #F73F52;
+        border-color: #F73F52;
+    }
+    
+    .btn {
+        font-size: 15px;
+        border-radius: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-color: transparent;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        letter-spacing: .5px;
+    }
+    
+    .login {
+        padding-top: 265px;
+    }
+</style>
+
+<section class="login first grey">
+    <div class="container">
+        <div class="box-wrapper">
+            <div class="box box-border">
+                <div class="box-body">
+                    <h4>Đăng nhập</h4>
+                    <form class="login100-form validate-form flex-sb flex-w" *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                        <div class="p-t-31 p-b-9">
+                            <span class="txt1">
+                        Tên đăng nhập
+                    </span>
+                        </div>
+                        <div class="wrap-input100 validate-input form-group " data-validate="Username is required">
+                            <input class="input100 form-control" autofocus type="text" name="EmailCus" [(ngModel)]="form.EmailCus" required #EmailCus="ngModel">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="EmailCus.errors && f.submitted">
+                            Tên đăng nhập không được bỏ trống!
+                        </div>
+                        <div class="p-t-13 p-b-9">
+                            <span class="txt1">
+                        Mật khẩu
+                    </span>
+
+                            <!-- <a href="#" class="txt2 bo1 m-l-5">
+                        Forgot?
+                    </a> -->
+                        </div>
+                        <div class="wrap-input100 validate-input form-group" data-validate="Password is required">
+                            <input class="input100 form-control" type="password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+                            <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                                <div *ngIf="password.errors">Mật khẩu không được để trống</div>
+                                <div *ngIf="password.errors ">
+                                    Mật khẩu của bạn phải có ít nhất 6 kí tự
+                                </div>
+                            </div>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="form-group text-right" style="margin-top:50px;">
+
+                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                                Thông tin tài khoản hoặc mật khẩu của bạn không đúng {{ errorMessage }}
+                            </div>
+                        </div>
+                        <div class="w-full text-center p-t-55">
+                            <span class="txt2">
+                        Bạn chưa có tài khoản?
+                    </span>
+
+                            <a routerLink="/user/RegisterUser" class="txt2 bo1">
+                        Đăng ký ngay
+                    </a>
+
+                        </div>
+                    </form>
+                    <div class="alert alert-success" *ngIf="isLoggedIn">
+                        Đăng nhập bởi {{ roles }}.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

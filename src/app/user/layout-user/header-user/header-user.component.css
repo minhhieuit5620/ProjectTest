@@ -1,0 +1,35 @@
+.clear {
+    clear: both;
+}
+
+.firstbar {
+    display: block;
+    background-image: url(../../../../assets/Both/header.jpg);
+}
+
+.brand img {
+    height: 100px;
+    width: auto;
+}
+
+.brand-mini img {
+    height: 50px;
+}
+
+.text-right li a {
+    color: #fff;
+}
+
+.text-right>ul:hover>li {
+    color: red;
+}
+
+.icon-header {
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.clear::after {
+    clear: both;
+}

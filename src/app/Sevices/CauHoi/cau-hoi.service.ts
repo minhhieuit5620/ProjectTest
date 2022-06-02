@@ -91,4 +91,6 @@ export class CauHoiService {
   Delete_NCH(id:Number,data:CauHoi_DTO):Observable<CauHoi_DTO>{
     return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/Delete_CauHoi/'+id,data);
   }
+
+
 }

@@ -721,12 +721,12 @@ header.primary.up nav.menu .dropdown-menu .dropdown-menu {
 }
 
 section {
-    padding-top: 233px;
+    padding-top: 230px;
     padding-bottom: 40px;
 }
 
 section.first {
-    padding-top: 240px;
+    /* padding-top: 240px; */
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;

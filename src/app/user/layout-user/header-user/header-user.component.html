@@ -1,0 +1,127 @@
+<header class="primary">
+    <div class="firstbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="brand">
+                        <a href="/">
+                            <img src="../../../assets/Both/logo.png" alt="Magz Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <form class="search" autocomplete="off">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Nhập để tìm kiếm...">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary"><i class="ion-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-md-3 col-sm-12 text-right">
+                    <ul class="nav-icons">
+                        <li><a href="register.html" class="textin icon-header "><i class="fa fa-facebook " ></i><div></div></a></li>
+                        <li><a href="register.html" class="textin icon-header"><i class="fa fa-google-plus "></i><div></div></a></li>
+                        <li><a href="register.html" class="textin icon-header "><i class="fa fa-youtube-play "></i><div></div></a></li>
+
+                    </ul>
+
+
+                    <ul class="nav-icons" *ngIf="token == null">
+                        <li><a routerLink="/user/RegisterUser" class="textin"><i class="ion-person-add"></i><div>Đăng kí</div></a></li>
+                        <li><a routerLink="/user/LoginUser" class="textin"><i class="ion-person"></i><div>Đăng nhập</div></a></li>
+                    </ul>
+                    <ul class="nav-icons" *ngIf="token != null">
+                        <li><a (click)="Logout()" style="cursor: pointer" c class="textin"><i class="ion-person"></i><div>Đăng xuất</div></a></li>
+                        <!-- <li><a href="/user/LoginUser" class="textin"><i class="ion-person"></i><div>Đăng nhập</div></a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Start nav -->
+    <nav class="menu">
+        <div class="container">
+            <div class="brand brand-mini">
+                <a href="/">
+                    <img src="../../../assets/Both/logo-mini-removebg-preview.png" alt="Magz Logo">
+                </a>
+            </div>
+            <div class="mobile-toggle">
+                <a href="#" data-toggle="menu" data-target="#menu-list"><i class="ion-navicon-round"></i></a>
+            </div>
+            <div class="mobile-toggle">
+                <a href="#" data-toggle="sidebar" data-target="#sidebar"><i class="ion-ios-arrow-left"></i></a>
+            </div>
+            <div id="menu-list">
+                <ul class="nav-list">
+                    <li class="for-tablet nav-title"><a>Menu</a></li>
+                    <li class="for-tablet"><a href="login.html">Login</a></li>
+                    <li class="for-tablet"><a href="register.html">Register</a></li>
+                    <li><a routerLink="/">Trang chủ</a></li>
+                    <li class="magz-dropdown"><a routerLink="/user/Introduce">Giới thiệu<i class="ion-ios-arrow-right"></i></a></li>
+                    <li class="dropdown magz-dropdown">
+                        <a href="category.html">Khảo sát <i class="ion-ios-arrow-right"></i></a>
+                        <ul class="dropdown-menu" *ngIf="token != null">
+                            <li><a routerLink="/user/Survey">Tiến Hành Khảo Sát</a></li>
+                            <li><a routerLink="/user/Manual" style="cursor:pointer;">Hướng Dẫn</a></li>
+                        </ul>
+                        <ul class="dropdown-menu" *ngIf="token == null">
+                            <li><a routerLink="/user/LoginUser">Đăng nhập để tiến hành khảo sát</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown magz-dropdown">
+                        <a href="category.html">Doanh Nghiệp <i class="ion-ios-arrow-right"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Doanh Nghiệp Tham Gia</a></li>
+                            <li><a href="index.html">Kết Quả T-H-I-O chung</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown magz-dropdown"><a href="#">Nhiệm Vụ Thống Kê <i class="ion-ios-arrow-right"></i></a>
+                        <ul class="dropdown-menu">
+
+                            <li class="dropdown magz-dropdown"><a href="category.html">Chế Độ Báo Cáo Thống Kê <i class="ion-ios-arrow-right"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="category.html">Chế Độ Báo Cáo Thống Kê Ngành KH&CN</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown magz-dropdown"><a href="#">Điều Tra Thống Kê <i class="ion-ios-arrow-right"></i></a>
+                                <ul class="dropdown-menu" style=" width: 330px;">
+                                    <li><a href="category.html">Điều Tra Nghiên Cứu Khoa Học Và Phát Triển Công Nghệ</a></li>
+                                    <li class="dropdown magz-dropdown"><a href="category.html">Điều Tra Tiềm Lực KH&CN <i class="ion-ios-arrow-right"></i></a></li>
+                                    <li><a href="category.html">Điều Tra Hội Nhập Quốc Tế Về KH&CN</a></li>
+                                    <li><a href="category.html">Điều Tra Nhận Thức Công Chúng Về KH&CN</a></li>
+                                    <li><a href="category.html">Điều Tra Tổ chức trung gian của thi trường KH&CN</a></li>
+                                    <li><a href="category.html">Điều Tra Thương mại khóa kết quả nghiên cứu</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown magz-dropdown"><a href="#">Dropdown Icons <i class="ion-ios-arrow-right"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="icon ion-person"></i> My Account</a></li>
+                            <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li>
+                            <li><a href="#"><i class="icon ion-chatbox"></i> Comments</a></li>
+                            <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li>
+                            <li><a href="#"><i class="icon ion-settings"></i> Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End nav -->
+</header>
+<div class="clear"></div>

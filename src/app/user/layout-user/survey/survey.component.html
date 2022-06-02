@@ -1,3 +1,19 @@
+<style>
+    .activeQ {
+        background-color: yellow !important;
+    }
+    
+    .mystyle {
+        width: 100%;
+        padding: 25px;
+        background-color: coral;
+        color: white;
+        font-size: 25px;
+    }
+</style>
+
+
+
 <section class="single" ngDefaultControl style="font-family: Arial;">
     <div class="container">
         <div class="row" *ngIf="data_getone">
@@ -24,6 +40,7 @@
                         <hr>
                     </div>
                 </aside>
+
                 <aside>
                     <!-- <h1 class="aside-title">Techno</h1> -->
                     <div class="aside-body">
@@ -36,25 +53,35 @@
 
                         <article class="article-fw">
                             <div class="inner">
-                                <button class="btn btn-sm btn-info question " *ngFor="let item of data_51; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="questionID" class="btn btn-sm btn-info question " [ngClass]="{'active': item.maCauHoi}" (click)="activateClass(item)" *ngFor="let item of data_51; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
+
+                            <!-- <ul class="sub_modules">
+                                <li (click)="activateClass(subModule)"
+                                    *ngFor="let subModule of subModules"
+                                    [ngClass]="{'active': subModule.active}">
+                                  <a>{{ subModule.name }}</a>
+                                </li>
+                              </ul> -->
+
+
                         </article>
                         <h1 class="aside-title">Trang thiết bị</h1>
                         <article class="article-fw">
                             <div class="inner">
-                                <button class="btn btn-sm btn-info question " *ngFor="let item of data_50; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="button2" class="btn btn-sm btn-info question " *ngFor="let item of data_50; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
                         <h1 class="aside-title">Thông tin</h1>
                         <article class="article-fw">
                             <div class="inner">
-                                <button class="btn btn-sm btn-info question " *ngFor="let item of data_52; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="button2" class="btn btn-sm btn-info question " *ngFor="let item of data_52; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
                         <h1 class="aside-title">Tổ chức</h1>
                         <article class="article-fw">
                             <div class="inner">
-                                <button class="btn btn-sm btn-info question " *ngFor="let item of data_53; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="button2" class="btn btn-sm btn-info question " *ngFor="let item of data_53; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
                         <div class="line"></div>
@@ -108,6 +135,10 @@
                     <div class="btn btn-info ">Trở lại</div>
                     <div class="btn btn-info " style="float: right; margin-left: 5px; ">Tiếp tục</div>
                     <div class="btn btn-info " style="float: right; " (click)="postRs()">Nộp bài</div>
+
+
+                    <hr>
+
                 </article>
                 <!-- hịaahshshshshsshsh
                 <div *ngFor="let item1 of data1; let i=index ">
@@ -133,3 +164,53 @@
         </div>
     </div>
 </section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    // function myFunction() {
+    //     var element = document.getElementById("myDIV");
+    //     element.classList.add("mystyle");
+    // }
+
+
+    // // function myFunction() {
+    // //     var element = document.getElementById("questionID");
+    // //     element.classList.add("activeQ");
+    // // }
+    // $(document).ready(function() {
+    //     // $("#button1").click(function() {
+    //     //     $("#button2").click();
+    //     // });
+    //     $(".question").click(function() {
+    //         $(".question").addClass("activeQ");
+    //         // element.classList.add("activeQ");
+    //         // console.log("licked");
+    //         //alert("Sự kiện click() vừa mới xảy ra trên phần tử #button2!");
+    //     });
+
+    //     const element = document.getElementsByClassName("question");
+    //     // Add a class (quote) to the element
+
+    //     element.classList.add("activeQ");
+
+    // function addClass() {
+    //     console.log('hiéuu');
+    //     document.body.classList.add("activeQ");
+    // }
+    //     })
+</script>
+<!-- <script>
+    const element = document.getElementsByClassName("question");
+    // Add a class (quote) to the element
+
+    element.classList.add("activeQ");
+
+
+
+    function addClass() {
+        console.log('hiéuu');
+        document.body.classList.add("activeQ");
+    }
+</script> -->
