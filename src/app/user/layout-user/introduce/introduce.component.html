@@ -1,27 +1,11 @@
 <section class="home">
     <div class="container">
         <div class="row" style="padding-bottom: 10px;">
-            <h2 style="font:bold;">Danh sách doanh nghiệp tham gia khảo sát</h2>
+            <h2 style="font:bold;">Giới thiệu dự án</h2>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div *ngFor="let i of data_Intro">
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
 
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
-                    <p>Đang cập nhật</p>
+                    <div [innerHTML]="i.mota"></div>
                 </div>
             </div>
         </div>

@@ -37,8 +37,7 @@ export class HomeComponent implements OnInit {
   }
   getCauHoi() {
     this.TinTucService.getall(this.DL_CH).subscribe((res: any) => {
-      this.data = res.data
-      console.log(this.data);
+      this.data = res.data     
     })
   }
 
@@ -46,31 +45,26 @@ export class HomeComponent implements OnInit {
   getTin_KHCN(){
     this.TinTucService.getKH_CN().subscribe((res:any)=>{
       this.data_KHCN=res.data;
-      console.log('KHCN',this.data_KHCN);
     })
   }
   getTin_ATBX(){
     this.TinTucService.getATBX().subscribe((res:any)=>{
       this.data_ATBX=res.data;
-      console.log('ATBX',this.data_ATBX);
     })
   }
   getTin_SHTT(){
     this.TinTucService.getSHTT().subscribe((res:any)=>{
       this.data_SHTT=res.data;
-      console.log('SHTT',this.data_SHTT);
     })
   }
   getTin_TC_DL_CL(){
     this.TinTucService.getTC_DL_CL().subscribe((res:any)=>{
       this.data_TC_DL_CL=res.data;
-      console.log('TC_DL_CL',this.data_TC_DL_CL);
     })
   }
   getTin_TBCV(){
     this.TinTucService.getTBCV().subscribe((res:any)=>{
       this.data_TBCV=res.data;
-      console.log('TBCV',this.data_TBCV);
     })
   }
 
@@ -89,7 +83,6 @@ export class HomeComponent implements OnInit {
     this.TinTucService.getOne(id).subscribe((res:any)=>{
      
     this.data_getone=res;
-    console.log(this.data_getone);
     })
   }
 

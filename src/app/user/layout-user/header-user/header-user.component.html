@@ -2,14 +2,14 @@
     <div class="firstbar">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-9 col-sm-12">
                     <div class="brand">
                         <a href="/">
                             <img src="../../../assets/Both/logo.png" alt="Magz Logo">
                         </a>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-12">
+                <!-- <div class="col-md-3 col-sm-12">
                     <form class="search" autocomplete="off">
                         <div class="form-group">
                             <div class="input-group">
@@ -21,12 +21,12 @@
                         </div>
 
                     </form>
-                </div>
+                </div> -->
                 <div class="col-md-3 col-sm-12 text-right">
                     <ul class="nav-icons">
-                        <li><a href="register.html" class="textin icon-header "><i class="fa fa-facebook " ></i><div></div></a></li>
-                        <li><a href="register.html" class="textin icon-header"><i class="fa fa-google-plus "></i><div></div></a></li>
-                        <li><a href="register.html" class="textin icon-header "><i class="fa fa-youtube-play "></i><div></div></a></li>
+                        <li><a href="https://www.facebook.com/khcnhungyen.gov.vn" class="textin icon-header "><i class="fa fa-facebook " ></i><div></div></a></li>
+                        <li><a href="#" class="textin icon-header"><i class="fa fa-google-plus "></i><div></div></a></li>
+                        <li><a href="https://www.youtube.com/watch?v=lEmxFiBqeAM" class="textin icon-header "><i class="fa fa-youtube-play "></i><div></div></a></li>
 
                     </ul>
 
@@ -36,7 +36,7 @@
                         <li><a routerLink="/user/LoginUser" class="textin"><i class="ion-person"></i><div>Đăng nhập</div></a></li>
                     </ul>
                     <ul class="nav-icons" *ngIf="token != null">
-                        <li><a (click)="Logout()" style="cursor: pointer" c class="textin"><i class="ion-person"></i><div>Đăng xuất</div></a></li>
+                        <li><a (click)="Logout()" style="cursor: pointer" c class="textin"><i class="icon ion-log-out"></i><div>Đăng xuất</div></a></li>
                         <!-- <li><a href="/user/LoginUser" class="textin"><i class="ion-person"></i><div>Đăng nhập</div></a></li> -->
                     </ul>
                 </div>
@@ -80,11 +80,11 @@
                     <li class="dropdown magz-dropdown">
                         <a href="category.html">Doanh Nghiệp <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Doanh Nghiệp Tham Gia</a></li>
-                            <li><a href="index.html">Kết Quả T-H-I-O chung</a></li>
+                            <li><a routerLink="/user/Company">Doanh Nghiệp Tham Gia</a></li>
+                            <!-- <li><a href="index.html">Kết Quả T-H-I-O chung</a></li> -->
                         </ul>
                     </li>
-                    <li class="dropdown magz-dropdown"><a href="#">Nhiệm Vụ Thống Kê <i class="ion-ios-arrow-right"></i></a>
+                    <!-- <li class="dropdown magz-dropdown"><a href="#">Nhiệm Vụ Thống Kê <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
 
                             <li class="dropdown magz-dropdown"><a href="category.html">Chế Độ Báo Cáo Thống Kê <i class="ion-ios-arrow-right"></i></a>
@@ -117,7 +117,7 @@
                             <li class="divider"></li>
                             <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

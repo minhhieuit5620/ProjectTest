@@ -63,9 +63,9 @@
                             <th>Mã Tiêu Chí Cha</th>
                             <th>Trạng Thái</th>
                             <th>Người Thêm</th>
-                            <th>Ngày Thêm</th>
+                            <!-- <th>Ngày Thêm</th> -->
                             <th>Người Sửa</th>
-                            <th>Ngày Sửa</th>
+                            <!-- <th>Ngày Sửa</th> -->
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -79,9 +79,9 @@
                             <td *ngIf="item.trangThai==0"> Không hoạt động</td>
                             <td *ngIf="item.trangThai==-1"> Đã xóa</td>
                             <td> {{item.nguoiThem}} </td>
-                            <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td>
+                            <!-- <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td> -->
                             <td> {{item.nguoiSua}} </td>
-                            <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td>
+                            <!-- <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td> -->
                             <td>
                                 <button type="button" (click)="getOne(item.maNhomCauHoi)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
                                     Sửa

@@ -19,6 +19,8 @@ import { ManualComponent } from './manual/manual.component';
 import { IntroduceComponent } from './introduce/introduce.component';
 import { FooterUserComponent } from './footer-user/footer-user.component';
 import { CompanyComponent } from './company/company.component';
+import { AuthGuardService } from 'src/app/Sevices/Auth/auth-guard.service';
+import { AuthGuardUser } from 'src/app/Sevices/Auth/auth-guard-user.service';
 
 // import { LayoutComponent } from './layout.component';
 
@@ -27,12 +29,18 @@ export const Mainroutes: Routes = [
     path: '', component: LayoutUserComponent ,
     
     children: [
+      // {
+      //   path: '', component: NhomCauHoiComponent,canActivate : [AuthGuardService],
+      // },
      //{path: '', component: MainsComponent }, 
       {path:'',component:HomeComponent},
       {path:"Home",component:HomeComponent},
-      {path:"Survey",component:SurveyComponent},
+      {
+        path:"Survey",component:SurveyComponent,canActivate : [AuthGuardUser],
+      },
       {path:"LoginUser",component:LoginUserComponent},
       {path:"RegisterUser",component:RegisterUserComponent},
+      
       {path:"Introduce",component:IntroduceComponent},
       {path:"Manual",component:ManualComponent},
       {path:"Company",component:CompanyComponent},
@@ -58,6 +66,7 @@ export const Mainroutes: Routes = [
       CommonModule, 
      // HeaderUserComponent,
      // LayoutRoutingModule, 
+     
       NgbDropdownModule,
       NgbModule,
       FormsModule,
@@ -79,8 +88,8 @@ export const Mainroutes: Routes = [
        CompanyComponent,
      
        
-  ]
-    // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
+  ],
+  providers: [AuthGuardUser],    // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
 })
 export class Layout_UserModule {
 

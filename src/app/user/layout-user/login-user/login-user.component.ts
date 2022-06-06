@@ -9,20 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login-user.component.html',
   styleUrls: ['./login-user.component.css']
 })
-export class LoginUserComponent implements OnInit {
-
-  // form = new FormGroup({
-  //   email: new FormControl('', [
-  //     Validators.required,
-  //     Validators.minLength(8),
-  //     Validators.maxLength(20),
-  //   ]),
-  //   password: new FormControl('', [
-  //     Validators.required,
-  //     Validators.minLength(6),
-  //     Validators.maxLength(20),
-  //   ]),
-  // });
+export class LoginUserComponent implements OnInit { 
   form: any = {
     EmailCus: null,
     password: null

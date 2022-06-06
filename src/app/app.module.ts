@@ -16,6 +16,7 @@ import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 // import { UserLoginComponent } from './user/user-login/user-login.component';
 import { HeaderUserComponent } from './user/layout-user/header-user/header-user.component';
+import { LoginComponent } from './admin/login/login.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,7 @@ import { HeaderUserComponent } from './user/layout-user/header-user/header-user.
         PdfViewerModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    declarations: [AppComponent,AdminComponent, UserComponent ],
+    declarations: [AppComponent,AdminComponent, UserComponent,LoginComponent ],
     providers: [],
     bootstrap: [AppComponent]
 })

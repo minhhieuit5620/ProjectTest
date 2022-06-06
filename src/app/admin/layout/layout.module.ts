@@ -15,62 +15,70 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { PageHeaderComponent } from '../shared/modules/page-header/page-header.component';
+import { LoginComponent } from '../login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { KhaoSatComponent } from './tables/khao-sat/khao-sat.component';
+import { AuthGuardService } from 'src/app/Sevices/Auth/auth-guard.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 export const Mainroutes: Routes = [
-    {    
-      path: '', component: LayoutComponent ,
-      
-      children: [
-        {
-          path:'',component:NhomCauHoiComponent
-         },
-          {
-              path:'NhomCauHoi',component:NhomCauHoiComponent
-          },
-          {
-            path:'table',component:TablesComponent
-        }
-       //{path: '', component: MainsComponent }, 
-        // {path:'',component:HomeComponent},
-        // {path:"home",component:HomeComponent},
-        // {path:"KhaoSat",component:SurveyComponent},
-        // { path: 'products', component: ProductComponent }, 
-        // {path:'detail/:id/:IdCategory',component:DetailProductComponent},
-        // { path: 'projects', component: ProjectComponent }, 
-        // {path:'detailProject/:Id_project/:Id_cate_project',component:DetailProjectComponent},
-        // {path:'contact',component:ContactComponent},
-        // //{path:'detailProject',component:DetailProjectComponent},
-        // {path:'cart',component:CartComponent},
-        
-        // /detailProject/{{item.Id_project}}
-      ]
-      
-    },
-  
-  ];
-  @NgModule({
-    imports: [
-     // BrowserModule,
-      CommonModule, 
-      
-     // LayoutRoutingModule, 
-      NgbDropdownModule,
-      NgbModule,
-      FormsModule,
-      // BrowserAnimationsModule,
-     RouterModule.forChild(Mainroutes)
-    
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    declarations: [
+  {
+    path: '', component: LayoutComponent,canActivate : [AuthGuardService],
+
+    children: [
+      {
+        path: '', component: NhomCauHoiComponent,canActivate : [AuthGuardService],
+      },
+      {
+        path: 'NhomCauHoi', component: NhomCauHoiComponent,canActivate : [AuthGuardService],
+      },
+      {
+        path: 'Table', component: TablesComponent ,canActivate : [AuthGuardService],
+      },
+      {
+        path: 'KhaoSat', component: KhaoSatComponent,canActivate : [AuthGuardService],
+      },
+      {
+        path: 'dashboard', component: DashboardComponent,canActivate : [AuthGuardService],
+      },
+      {
+        path: '**', component: NotFoundComponent,
+      },
+
+
+
+    ]
+
+  },
+
+];
+@NgModule({
+  imports: [
+    // BrowserModule,
+    CommonModule,
+
+    // LayoutRoutingModule, 
+    NgbDropdownModule,
+    NgbModule,
+    FormsModule,
+    // BrowserAnimationsModule,
+    RouterModule.forChild(Mainroutes)
+
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [
     LayoutComponent,
-    TablesComponent, 
-    SidebarComponent, 
+    TablesComponent,
+    DashboardComponent,
+    SidebarComponent,
     HeaderComponent,
     PageHeaderComponent,
-    NhomCauHoiComponent
-  ]
+    NhomCauHoiComponent,
+    KhaoSatComponent
+  ],
+  providers: [AuthGuardService],
 })
 export class LayoutModule {
-    
+
 }

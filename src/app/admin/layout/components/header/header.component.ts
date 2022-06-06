@@ -41,7 +41,8 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('auth-admin');
+        this.router.navigate(['/admin/Login']);
     }
 
 }

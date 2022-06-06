@@ -28,7 +28,7 @@ export class DetailNewComponent implements OnInit {
   getIdPro():void{
     const id=(+this.route.snapshot.params["id"]);
     //const cate=(+this.route.snapshot.params["cateId"]);
-    console.log(`this.route.snapshot.paramMapId = ${JSON.stringify(this.route.snapshot.params)}`);
+    // console.log(`this.route.snapshot.paramMapId = ${JSON.stringify(this.route.snapshot.params)}`);
     this.TinTucService.getOne_(id).subscribe(tintuc => this.tintuc = tintuc);  
     //console.log(cate);
     //window.location.reload();

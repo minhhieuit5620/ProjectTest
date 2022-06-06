@@ -1,20 +1,49 @@
 <nav [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }" class="sidebar">
     <div class="list-group">
-        <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/dashboard">
+        <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/admin/dashboard">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>{{ 'Dashboard'  }}</span>
+            <span>{{ 'Trang chủ'  }}</span>
         </a>
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/charts']" class="list-group-item">
+        <!-- <a [routerLinkActive]="['router-link-active']" [routerLink]="['/charts']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>{{ 'Charts'  }}</span>
-        </a>
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/tables']" class="list-group-item">
+        </a> -->
+        <div class="nested-menu">
+            <a (click)="addExpandClass('pages')" class="list-group-item">
+                <i class="fa fa-fw fa-table"></i>&nbsp;
+                <span style="margin-right:100px;">{{ 'Câu hỏi'  }}</span>
+                <i class="fa fa-caret-down"></i>
+            </a>
+            <li [class.expand]="showMenu === 'pages'" class="nested">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/NhomCauHoi']" class="list-group-item">
+                            <i class="fa fa-fw fa-table"></i>&nbsp;
+                            <span>{{ 'Nhóm câu hỏi'  }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Submenu'  }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Submenu'  }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <!-- <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/NhomCauHoi']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
-            <span>{{ 'Tables'  }}</span>
-        </a>
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/forms']" class="list-group-item">
+            <span>{{ 'Nhóm câu hỏi'  }}</span>
+        </a> -->
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/KhaoSat']" class="list-group-item">
             <i class="fa fa-fw fa-edit"></i>&nbsp;
-            <span>{{ 'Forms'  }}</span>
+            <span>{{ 'Khảo sát'  }}</span>
         </a>
         <a [routerLinkActive]="['router-link-active']" [routerLink]="['/bs-element']" class="list-group-item">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;

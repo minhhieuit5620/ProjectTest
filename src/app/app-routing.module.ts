@@ -32,7 +32,7 @@ const routes: Routes = [
   // },
  
   {
-    path: 'login',
+    path: 'admin/Login',
     component: LoginComponent,
   },
 ];
