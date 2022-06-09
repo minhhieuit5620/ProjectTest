@@ -56,23 +56,10 @@ export class NhomCauHoiComponent implements OnInit {
   ngOnInit(): void {
     this.GetAll();
   }
-  setValue(benhNhan: any) {
-    this.form.setValue({
-      tenBenhNhan: benhNhan.tenBenhNhan,
-      gioiTinh: benhNhan.gioiTinh,
-      namSinh: datePipe.transform(benhNhan.namSinh, 'yyyy-MM-dd'),
-      diaChi: benhNhan.diaChi,
-      soDt: benhNhan.soDt,
-      ngheNghiep: benhNhan.ngheNghiep,
-      ngayTao: datePipe.transform(Date.now(), 'yyyy-MM-dd'),
-    });
-  }
+
   
 
-  GetAll(){
-    
-    // return this.httpClient.get<Product[]>(baseURL + '/Getproducts').toPromise().then(res => <Product[]>res).then(data => {return data;});
-    //return this.NhomCauHoiService.getall().toPromise().then(res => <NhomCauHoi[]>res).then(data => {return data;})
+  GetAll(){    
     this.NhomCauHoiService.getall(this.dl).subscribe((res:any)=>{
       this.data=res.data;
       console.log(this.data);

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             (data) => {
                 this.tokenStorage.saveAdmin(data.token);
                 this.tokenStorage.saveUser(data.admin);
-                this.route.navigate(['/admin/NhomCauHoi']);
+                this.route.navigate(['/admin/dashboard']);
             },
             (err) => {
                 console.log("d2")

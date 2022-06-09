@@ -1,0 +1,268 @@
+<!-- <div [@routerTransition]> -->
+<app-page-header [heading]="'Quản lí câu hỏi'" [icon]="'fa-table'"></app-page-header>
+
+
+<div class="row">
+    <div class="col col-xl-12 col-lg-12">
+
+        <button type="button" style="margin:10px;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add">
+            Thêm câu hỏi
+        </button>
+
+
+        <!-- Modal Thêm -->
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" ngDefaultControl>
+            <div class="modal-dialog modal-lg" role="document" style="margin-top:200px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Thêm thông tin</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <label for="">Nội dung</label>
+                                <input type="text" name="tenToChuc" [(ngModel)]="dlAdd.CauHoi.noiDung" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Gợi ý</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="dlAdd.CauHoi.goiYcauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted"></small>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="fw">Loại câu hỏi</label>
+                                <select (change)="selectChangeHandler($event)" style="height: 40px !important;" name="loaiCauHoi" id="lch" [(ngModel)]="dlAdd.CauHoi.maLoaiCauHoi" class="form-control styled-select">
+                                 
+                                    <option  value="1" >Câu hỏi một lựa chọn</option>
+                                    <option  value="2" >Câu hỏi nhiều lựa chọn</option>
+                                    <option  value="3" >Câu hỏi trả lời bằng văn bản</option>                                   
+                                </select>
+                            </div>
+                            <!-- {{selectedLoai}} -->
+
+                            <div class="form-group">
+                                <label class="fw">Nhóm câu hỏi</label>
+                                <select style="height: 40px !important;" name="nhomCauHoi" id="nch" [(ngModel)]="dlAdd.CauHoi.maNhomCauHoi" class="form-control styled-select">                                    
+                                    <option   *ngFor="let item of dataNCH"   value="{{item.maNhomCauHoi}}" > {{item.tenNhomCauHoi}} </option>
+                                    <!-- <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
+                                    <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
+                                    <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option> -->
+                                </select>
+                                <!-- <input type="text" name="loaiHinh" [(ngModel)]="form.maLoaiHinh" class="form-control" required> -->
+                            </div>
+
+                            <div *ngIf="selectedLoai=='1'" class="form-group">
+                                <br> Đáp án
+                                <hr>
+
+                                <label for="">Đáp án 1</label>
+                                <input type="text" name="maDinhDanh" [(ngModel)]="lc[0]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 2</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="lc[1]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 3</label>
+                                <input type="text" name="maDinhDanhD" [(ngModel)]="lc[2]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 4</label>
+                                <input type="text" name="maDinhDanhD1" [(ngModel)]="lc[3]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+
+                            </div>
+                            <div *ngIf="selectedLoai=='2'" class="form-group">
+                                <br> Đáp án
+                                <hr>
+
+                                <label for="">Đáp án 1</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="lc[0]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 2</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="lc[1]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 3</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="lc[2]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 4</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="lc[3]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 5</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="lc[4]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <label for="">Đáp án 6</label>
+                                <input type="text" name="maDinhDanhDN" [(ngModel)]="lc[5]" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" (click)="Add()">Save</button>
+                        <!-- <button type="button" class="btn btn-primary" (click)="update(data_getone.maNhomCauHoi,data_getone.tenNhomCauHoi,data_getone.maTieuChiCha,data_getone.trangThai)">Update</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Thêm -->
+
+
+
+
+        <div class="card mb-12">
+            <div class="card-header">Thông tin câu hỏi</div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="width:250px;">Nội dung</th>
+                            <th style="width:250px;">Gợi ý câu hỏi</th>
+                            <th>Loại câu hỏi</th>
+                            <th>Nhóm câu hỏi</th>
+                            <th>Trạng thái</th>
+                            <th>Người Thêm</th>
+                            <th>Người Sửa</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data_Q; let i=index">
+                            <td> {{i+1}} </td>
+                            <td>{{item.noiDung}}</td>
+                            <td>{{item.goiYcauHoi}}</td>
+                            <td *ngIf="item.maLoaiCauHoi==1">Câu hỏi một lựa chọn</td>
+                            <td *ngIf="item.maLoaiCauHoi==2"> Câu hỏi nhiều lựa chọn</td>
+                            <td *ngIf="item.maLoaiCauHoi==3">Câu hỏi trả lời</td>
+                            <!-- <td>{{item.maLoaiCauHoi}}</td> -->
+                            <td>{{item.maNhomCauHoi}}</td>
+                            <!-- <td *ngIf="item.maTieuChiCha==null;"> 0 </td>
+                                <td *ngIf="item.maTieuChiCha!=null;"> {{item.maTieuChiCha}} </td> -->
+                            <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
+                            <td *ngIf="item.trangThai==0"> Không hoạt động</td>
+                            <td *ngIf="item.trangThai==-1"> Đã xóa</td>
+                            <td> {{item.nguoiThem}} </td>
+                            <!-- <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td> -->
+                            <td> {{item.nguoiSua}} </td>
+                            <!-- <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td> -->
+                            <td>
+                                <button type="button" (click)="getOne(item.maCauHoi)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
+                                        Sửa
+                                    </button>
+
+                                <button type="button" (click)="getOne(item.maCauHoi)" class="btn btn-danger " data-toggle="modal" data-target="#Xoa">
+                                        Xóa
+                                      </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ngb-pagination [(page)]="pageIndex" [boundaryLinks]="true" [collectionSize]="130" [maxSize]="5">
+            </ngb-pagination>
+
+
+
+
+
+            <!-- Modal Sửa -->
+            <div class="modal fade" id="Sua" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="data_getone" ngDefaultControl>
+                <div class="modal-dialog modal-lg" role="document" style="margin-top:200px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Sửa thông tin</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="form-group">
+                                    <label for="">Nội dung</label>
+                                    <input type="text" name="tenToChuc" [(ngModel)]="data_getone.noiDung" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Gợi ý</label>
+                                    <input type="text" name="maDinhDanhDN" [(ngModel)]="data_getone.goiYcauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Loại câu hỏi</label>
+                                    <input type="text" name="maDinhDanhDN" [(ngModel)]="data_getone.maLoaiCauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Nhóm câu hỏi</label>
+                                    <input type="text" name="maDinhDanhDN" [(ngModel)]="data_getone.maNhomCauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Người thêm</label>
+                                    <input type="email" name="maDinhDanhDN" [(ngModel)]="data_getone.nguoiThem" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Người Sửa</label>
+                                    <input type="text" name="website" [(ngModel)]="data_getone.nguoiSua" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Trạng thái</label>
+                                    <input type="text" name="trangThai" [(ngModel)]="data_getone.trangThai" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
+                                <hr>
+                                <div *ngIf="data_getone.maLoaiCauHoi==1||data_getone.maLoaiCauHoi==2">
+                                    <h5>Đáp án</h5>
+                                    <div>
+                                        <div class="form-group" *ngFor="let answer of data_Answer; let i=index">
+                                            <!-- <label>{{answer.noiDung}}</label> -->
+                                            <input type="text" name="trangThai" [(ngModel)]="answer.noiDung" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                            <!-- <label><input id="{{answer.maLuaChon}}" (click)="chonDapAn(answer.maLuaChon,1)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="radio"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- <button type="button" class="btn btn-primary" (click)="update(data_getone.maNhomCauHoi,data_getone.tenNhomCauHoi,data_getone.maTieuChiCha,data_getone.trangThai)">Update</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Sửa  -->
+
+
+            <!-- Modal Xóa -->
+
+            <div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="data_getone" ngDefaultControl>
+                <div class="modal-dialog" role="document" style="margin-top:200px;">
+                    <div class="modal-content">
+                        <!-- <form method="post" (ngSubmit)="delete_NCH(item.maNhomCauHoi)" class="p-3" role="form"> -->
+                        <div class="modal-header">
+                            <h5 class="modal-title" ngDefaultControl>Xóa thông tin nhóm câu hỏi {{data_getone.maCauHoi}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <span>Bạn có chắc chắn muốn xóa thông tin ?</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" (click)="Delete(data_getone.maCauHoi)">Xóa</button>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

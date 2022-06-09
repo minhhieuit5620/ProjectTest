@@ -21,35 +21,48 @@ import { KhaoSatComponent } from './tables/khao-sat/khao-sat.component';
 import { AuthGuardService } from 'src/app/Sevices/Auth/auth-guard.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { CompanyMnComponent } from './tables/company-mn/company-mn.component';
+import { QAndAComponent } from './tables/q-and-a/q-and-a.component';
 
 export const Mainroutes: Routes = [
   {
-    path: '', component: LayoutComponent,canActivate : [AuthGuardService],
+    path: '', component: LayoutComponent,
 
     children: [
       {
-        path: '', component: NhomCauHoiComponent,canActivate : [AuthGuardService],
+        path: '', component: NhomCauHoiComponent,
       },
       {
-        path: 'NhomCauHoi', component: NhomCauHoiComponent,canActivate : [AuthGuardService],
+        path: 'NhomCauHoi', component: NhomCauHoiComponent,
       },
       {
-        path: 'Table', component: TablesComponent ,canActivate : [AuthGuardService],
+        path: 'Table', component: TablesComponent ,
       },
       {
-        path: 'KhaoSat', component: KhaoSatComponent,canActivate : [AuthGuardService],
+        path: 'KhaoSat', component: KhaoSatComponent,
       },
       {
-        path: 'dashboard', component: DashboardComponent,canActivate : [AuthGuardService],
+        path: 'DoanhNghiep_Mn', component: CompanyMnComponent,
       },
       {
-        path: '**', component: NotFoundComponent,
+        path: 'dashboard', component: DashboardComponent,
       },
+      {
+        path: 'QA', component: QAndAComponent,
+      },
+  
 
-
+      
 
     ]
 
+  },
+  {
+    path: 'Login',
+    component: LoginComponent,
+  },
+  {
+    path: '**', component: NotFoundComponent,
   },
 
 ];
@@ -71,11 +84,15 @@ export const Mainroutes: Routes = [
     LayoutComponent,
     TablesComponent,
     DashboardComponent,
+    LoginComponent,
     SidebarComponent,
     HeaderComponent,
     PageHeaderComponent,
     NhomCauHoiComponent,
-    KhaoSatComponent
+    KhaoSatComponent,
+    CompanyMnComponent,
+    QAndAComponent,
+
   ],
   providers: [AuthGuardService],
 })

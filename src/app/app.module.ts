@@ -32,7 +32,7 @@ import { LoginComponent } from './admin/login/login.component';
         PdfViewerModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    declarations: [AppComponent,AdminComponent, UserComponent,LoginComponent ],
+    declarations: [AppComponent,AdminComponent, UserComponent ],
     providers: [],
     bootstrap: [AppComponent]
 })

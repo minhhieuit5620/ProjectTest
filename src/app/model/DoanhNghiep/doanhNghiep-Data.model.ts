@@ -1,6 +1,6 @@
 export class doanhNghiep_Data {
     maDoanhNghiep: number;
-    maDinhDanhDN: number;
+    maDinhDanhDn: number;
     taiKhoan: string;
     matKhau: string;
     tenToChuc:string;

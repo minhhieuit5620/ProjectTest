@@ -53,7 +53,7 @@
 
                         <article class="article-fw">
                             <div class="inner">
-                                <button id="questionID" class="btn btn-sm btn-info question " [ngClass]="{'active': item.maCauHoi}" (click)="activateClass(item)" *ngFor="let item of data_51; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="questionID" class="btn btn-sm btn-info question " *ngFor="let item of data_51; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
 
                             <!-- <ul class="sub_modules">
@@ -113,19 +113,19 @@
                             <form class="checkbox-group">
                                 <div *ngIf="data_getone.maLoaiCauHoi===1">
                                     <div class="form-group" *ngFor="let answer of data_Answer; let i=index">
-                                        <label><input id="{{answer.maLuaChon}}" (click)="chonDapAn(answer.maLuaChon,1)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="radio"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
+                                        <label><input id="{{answer.maLuaChon}}"  class="chon" routerLinkActive="actived"  (click)="activeClass" (click)="chonDapAn(answer.maLuaChon,1)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="radio"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
 
                                     </div>
                                 </div>
                                 <div *ngIf="data_getone.maLoaiCauHoi===2">
                                     <div class="form-group" *ngFor="let answer of data_Answer; let i=index">
-                                        <label><input id="{{answer.maLuaChon}}" (click)="chonDapAn(answer.maLuaChon,2)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="checkbox"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
+                                        <label><input id="{{answer.maLuaChon}}" class="chon" (click)="chonDapAn(answer.maLuaChon,2)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="checkbox"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
                                     </div>
                                 </div>
                                 <div *ngIf="data_getone.maLoaiCauHoi===3">
                                     <div class="form-group">
                                         <label for=""></label>
-                                        <input type="text" name="answer" id="" [(ngModel)]="arr_de[id_cauHoi][0]" class="form-control " placeholder="Nhập đáp án trả lời phù hợp .... " aria-describedby="helpId ">
+                                        <input type="text" name="answer" id="" [(ngModel)]="arr_de[id_cauHoi][0]" class="form-control chon" placeholder="Nhập đáp án trả lời phù hợp .... " aria-describedby="helpId ">
                                     </div>
 
                                 </div>
@@ -135,10 +135,7 @@
                     <div class="btn btn-info ">Trở lại</div>
                     <div class="btn btn-info " style="float: right; margin-left: 5px; ">Tiếp tục</div>
                     <div class="btn btn-info " style="float: right; " (click)="postRs()">Nộp bài</div>
-
-
                     <hr>
-
                 </article>
                 <!-- hịaahshshshshsshsh
                 <div *ngFor="let item1 of data1; let i=index ">
@@ -164,53 +161,3 @@
         </div>
     </div>
 </section>
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-    // function myFunction() {
-    //     var element = document.getElementById("myDIV");
-    //     element.classList.add("mystyle");
-    // }
-
-
-    // // function myFunction() {
-    // //     var element = document.getElementById("questionID");
-    // //     element.classList.add("activeQ");
-    // // }
-    // $(document).ready(function() {
-    //     // $("#button1").click(function() {
-    //     //     $("#button2").click();
-    //     // });
-    //     $(".question").click(function() {
-    //         $(".question").addClass("activeQ");
-    //         // element.classList.add("activeQ");
-    //         // console.log("licked");
-    //         //alert("Sự kiện click() vừa mới xảy ra trên phần tử #button2!");
-    //     });
-
-    //     const element = document.getElementsByClassName("question");
-    //     // Add a class (quote) to the element
-
-    //     element.classList.add("activeQ");
-
-    // function addClass() {
-    //     console.log('hiéuu');
-    //     document.body.classList.add("activeQ");
-    // }
-    //     })
-</script>
-<!-- <script>
-    const element = document.getElementsByClassName("question");
-    // Add a class (quote) to the element
-
-    element.classList.add("activeQ");
-
-
-
-    function addClass() {
-        console.log('hiéuu');
-        document.body.classList.add("activeQ");
-    }
-</script> -->

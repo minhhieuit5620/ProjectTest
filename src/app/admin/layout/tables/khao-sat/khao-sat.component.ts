@@ -17,9 +17,15 @@ export class KhaoSatComponent implements OnInit {
   //NCH_data:NhomCauHoi_Data={maNhomCauHoi: 1,tenNhomCauHoi: '', maTieuChiCha:0,trangThai:0, nguoiThem: 'string' ,ngayThem:new Date,nguoiSua:'string',ngaySua:new Date}
   dl:khaoSatMn_DTO={ Data:{maKhaoSat: 0,maDoanhNghiep: 0,maDotKhaoSat:0, trangThai:0, ngayDanhGia:new Date,nguoiSua:' ',ngaySua:new Date}
   ,Page:{pageSize:60, pageIndex:1} };
+  
+  advancedPagination: number;
+  isDisabled: boolean;
   constructor(
     private KhaoSatServices: KhaoSatService,
-  ) { }
+  ) {
+    this.advancedPagination = 1;
+    this.isDisabled = true;
+   }
 
   ngOnInit(): void {
     this. GetAll();

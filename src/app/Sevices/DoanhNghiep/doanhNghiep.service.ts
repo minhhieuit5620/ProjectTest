@@ -31,24 +31,13 @@ export class doanhNghiepService {
 
 
   getOne(id:Number) {
-    return this.http.get<CauHoi_Data[]>(environment.apiUrl+'/api/CauHoi/GetCauHoiById/'+id);
+    return this.http.get<CauHoi_Data[]>(environment.apiUrl+'/api/DoanhNghiep/GetDoanhNghiepByID/'+id);
   }
-
-
-  //Get cau hoi
-  getAnswers(id:number){
-    return this.http.get<LuaChon_DTO>(environment.apiUrl+'/api/LuaChon/GetLuaChonByMaCH/'+id)
-  }
-
   
-
-
-  Put_NCH(data:CauHoi_DTO):Observable<CauHoi_DTO>{
-    return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/Add_Or_Update',data);
+  Put(data:DoanhNghiep_DTO):Observable<DoanhNghiep_DTO>{
+    return this.http.post<DoanhNghiep_DTO>(environment.apiUrl+'/api/DoanhNghiep/Add_Or_Update',data);
   }
-  Delete_NCH(id:Number,data:CauHoi_DTO):Observable<CauHoi_DTO>{
-    return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/Delete_CauHoi/'+id,data);
-  }
-
-
+  Delete(id:Number,data:DoanhNghiep_DTO):Observable<DoanhNghiep_DTO>{
+    return this.http.post<DoanhNghiep_DTO>(environment.apiUrl+'/api/DoanhNghiep/Delete_DN/'+id,data);
+  }  
 }

@@ -36,7 +36,7 @@ export const Mainroutes: Routes = [
       {path:'',component:HomeComponent},
       {path:"Home",component:HomeComponent},
       {
-        path:"Survey",component:SurveyComponent,canActivate : [AuthGuardUser],
+        path:"Survey",component:SurveyComponent,
       },
       {path:"LoginUser",component:LoginUserComponent},
       {path:"RegisterUser",component:RegisterUserComponent},
@@ -88,8 +88,9 @@ export const Mainroutes: Routes = [
        CompanyComponent,
      
        
-  ],
-  providers: [AuthGuardUser],    // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
+  ]
+  
+  //,providers: [AuthGuardUser],    // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
 })
 export class Layout_UserModule {
 

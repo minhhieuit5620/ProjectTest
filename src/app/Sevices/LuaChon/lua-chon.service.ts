@@ -30,10 +30,18 @@ export class LuaChonService {
   }
 
 
+
+
   Put_NCH(data:LuaChon_DTO):Observable<LuaChon_DTO>{
     return this.http.post<LuaChon_DTO>(environment.apiUrl+'/api/CauHoi/Add_Or_Update',data);
   }
   Delete_NCH(id:Number,data:LuaChon_DTO):Observable<LuaChon_DTO>{
     return this.http.post<LuaChon_DTO>(environment.apiUrl+'/api/CauHoi/Delete_CauHoi/'+id,data);
   }
+
+  
+  DeleteByMCH(id:number,data:LuaChon_DTO):Observable<LuaChon_DTO>{
+    return this.http.post<LuaChon_DTO>(environment.apiUrl+'/api/LuaChon/Delete_LuaChonByMaCauHoi/'+id,data);
+  }
+
 }

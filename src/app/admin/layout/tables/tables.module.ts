@@ -6,6 +6,8 @@ import { TablesRoutingModule } from './tables-routing.module';
 import { TablesComponent } from './tables.component';
 import { NhomCauHoiComponent } from './nhom-cau-hoi/nhom-cau-hoi.component';
 import { KhaoSatComponent } from './khao-sat/khao-sat.component';
+import { CompanyMnComponent } from './company-mn/company-mn.component';
+import { QAndAComponent } from './q-and-a/q-and-a.component';
 
 @NgModule({
     imports: [
@@ -13,6 +15,6 @@ import { KhaoSatComponent } from './khao-sat/khao-sat.component';
           TablesRoutingModule,
           PageHeaderModule,
           NgModule],
-    declarations: [TablesComponent, NhomCauHoiComponent, KhaoSatComponent]
+    declarations: [TablesComponent, NhomCauHoiComponent, KhaoSatComponent, CompanyMnComponent, QAndAComponent]
 })
 export class TablesModule {}

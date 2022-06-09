@@ -128,9 +128,6 @@ export class SurveyComponent implements OnInit {
     // localStorage.setItem('hieu','hieu');
 
   }
-  addAnswers(CauHoi: CauHoi_Data, DapAn: LuaChon_Data) {
-    this.CauHoiService.addAnswer(CauHoi, DapAn);
-  }
 
 
 
@@ -255,6 +252,11 @@ export class SurveyComponent implements OnInit {
   }
   activateClass(subModule:any){
     subModule.maCauHoi = !subModule.maCauHoi;    
+  }
+
+
+  activeClass(){
+    
   }
 
 

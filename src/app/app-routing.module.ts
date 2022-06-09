@@ -31,10 +31,7 @@ const routes: Routes = [
   //   component: UserLoginComponent,
   // },
  
-  {
-    path: 'admin/Login',
-    component: LoginComponent,
-  },
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
