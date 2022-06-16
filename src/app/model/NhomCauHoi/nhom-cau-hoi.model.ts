@@ -4,4 +4,5 @@ import { NhomCauHoi_Page } from "./nhom-cau-hoi-page.model";
 export class NhomCauHoi_DTO {
     Data:NhomCauHoi_Data ; 
     Page :NhomCauHoi_Page;
+  
 }

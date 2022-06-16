@@ -28,12 +28,12 @@
                             <span>{{ 'Câu hỏi'  }}</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-monument"></i>&nbsp;
                             <span>{{ 'Submenu'  }}</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
         </div>
@@ -53,15 +53,21 @@
             &nbsp;
             <span>{{ 'Doanh nghiệp'  }}</span>
         </a>
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/grid']" class="list-group-item">
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/User']" class="list-group-item">
+            <i class="fa fa-fw fa-user"></i>
+            <!-- <i class="fa fa-fw fa-desktop"></i> -->
+            &nbsp;
+            <span>{{ 'Người dùng'  }}</span>
+        </a>
+        <!-- <a [routerLinkActive]="['router-link-active']" [routerLink]="['/grid']" class="list-group-item">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;
             <span>{{ 'Bootstrap Grid'  }}</span>
         </a>
         <a [routerLinkActive]="['router-link-active']" [routerLink]="['/components']" class="list-group-item">
             <i class="fa fa-th-list"></i>&nbsp;
             <span>{{ 'Component'  }}</span>
-        </a>
-        <div class="nested-menu">
+        </a> -->
+        <!-- <div class="nested-menu">
             <a (click)="addExpandClass('pages')" class="list-group-item">
                 <i class="fa fa-plus"></i>&nbsp;
                 <span>{{ 'Menu'  }}</span>
@@ -96,9 +102,9 @@
         <a class="list-group-item" href="http://www.strapui.com/">
             <i class="fa fa-caret-down"></i>&nbsp;
             <span>{{ 'More Themes'  }}</span>
-        </a>
+        </a> -->
 
-        <div class="header-fields">
+        <!-- <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">
                 <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
             </a>
@@ -137,10 +143,10 @@
                     </ul>
                 </li>
             </div>
-        </div>
+        </div> -->
     </div>
     <div (click)="toggleCollapsed()" [ngClass]="{ collapsed: collapsed }" class="toggle-button">
         <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>&nbsp;
-        <span>{{ 'Collapse Sidebar'  }}</span>
+        <span>{{ 'Thu gọn'  }}</span>
     </div>
 </nav>

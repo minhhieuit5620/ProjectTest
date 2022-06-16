@@ -14,9 +14,11 @@ export class NhomCauHoiService {
   getall(data:NhomCauHoi_DTO):Observable<NhomCauHoi_DTO> {
     return this.http.post<NhomCauHoi_DTO>(environment.apiUrl+'/api/Nhom/GetAllNhomCauHoi',data);
   }
-  // getall():Observable<NhomCauHoi[]>{
-  //   return this.http.post<NhomCauHoi[]>(environment.apiUrl+'/api/Nhom/GetAllNhomCauHoi');
-  // }
+
+  searchNCH(search:string,data:NhomCauHoi_DTO):Observable<NhomCauHoi_DTO>{
+    return this.http.post<NhomCauHoi_DTO>(environment.apiUrl+'/api/Nhom/SearchNCH/'+search,data);
+  }
+  
   Add_NCH(data:NhomCauHoi_DTO):Observable<NhomCauHoi_DTO>{
     return this.http.post<NhomCauHoi_DTO>(environment.apiUrl+'/api/Nhom/Add_Or_Update',data);
   }

@@ -14,29 +14,35 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Mã doanh nghiệp</th>
+                            <th>Tên doanh nghiệp</th>
+                            <th>Mã số thuế</th>
                             <th>Mã đợt khảo sát</th>
-                            <th>Trạng Thái</th>
-
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <!-- <th>Mã đợt khảo sát</th> -->
                             <!-- <th>Ngày Thêm</th> -->
-                            <th>Người Sửa</th>
+                            <!-- <th>Người Sửa</th> -->
                             <!-- <th>Ngày Sửa</th> -->
                             <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of data; let i=index">
+                        <tr *ngFor="let item of KS_DN; let i=index">
                             <td> {{i+1}} </td>
-                            <td>{{item.maDoanhNghiep}}</td>
+                            <td>{{item.tenToChuc}}</td>
+                            <td> {{item.maDinhDanhDn}} </td>
                             <td> {{item.maDotKhaoSat}} </td>
+                            <td> {{item.diaChi}} </td>
+                            <td> {{item.dienThoai}} </td>
+
                             <!-- <td *ngIf="item.maTieuChiCha==null;"> 0 </td>
                             <td *ngIf="item.maTieuChiCha!=null;"> {{item.maTieuChiCha}} </td> -->
-                            <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
+                            <!-- <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
                             <td *ngIf="item.trangThai==0"> Không hoạt động</td>
-                            <td *ngIf="item.trangThai==-1"> Đã xóa</td>
+                            <td *ngIf="item.trangThai==-1"> Đã xóa</td> -->
 
                             <!-- <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td> -->
-                            <td> {{item.nguoiSua}} </td>
+                            <!-- <td> {{item.nguoiSua}} </td> -->
                             <!-- <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td> -->
                             <td>
                                 <!-- <button type="button" (click)="getOne(item.maNhomCauHoi)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
@@ -46,7 +52,7 @@
                                 <button type="button" class="btn btn-info " (click)="getCTKS(item.maKhaoSat)" data-toggle="modal" data-target="#Details">
                                         Chi tiết 
                                       </button>
-                                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#Xoa">
+                                <button type="button" class="btn btn-danger " (click)="getCTKS(item.maKhaoSat)" data-toggle="modal" data-target="#Xoa">
                                         Xóa
                                       </button>
 
@@ -61,49 +67,45 @@
 
 
             <!-- Modal -->
-            <div class="modal fade" id="Details" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog bd-example-modal-lg  modal-lg " role="document" style="margin-top:350px;">
+            <div class="modal fade" id="Details" tabindex="-1" role="dialog" aria-labelledby="modelTitleId">
+                <div class="modal-dialog bd-example-modal-lg  modal-lg " role="document" style="margin-top:850px;">
                     <div class="modal-content modal-lg">
                         <div class="modal-header">
                             <h3 class="modal-title" style="margin-top: 17px;
                             margin-left: 7px;">Thông tin khảo sát</h3>
+                            <h3 style="margin-top: 17px;margin-left: 17px;"> {{sl}}/50</h3>
+
                             <button type="button" style="margin-left: 450px;padding-left: 15px !important;
                             padding-right: 30px !important;" class="btn btn-primary btn-lg" (click)="exportExcel()">
                             <i class="fa fa-upload fa-fw"></i> Export
                             </button>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <span >&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body  modal-lg">
                             <div class="container-fluid">
                                 <table class="table table-hover table-striped" id="excel-table">
                                     <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Mã doanh nghiệp</th>
-                                            <th>Mã câu hỏi</th>
-                                            <th>Trạng Thái</th>
-                                            <th>Mã lựa chọn</th>
-                                            <th>Giá trị nhập</th>
+                                            <th>Tên tổ chức</th>
+                                            <th>Mã số thuế</th>
+
+                                            <th>Câu hỏi</th>
+                                            <th>Đáp án</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of data_CT; let i=index">
+                                        <tr *ngFor="let item of CTKS_CH_LC; let i=index">
                                             <td> {{i+1}} </td>
-                                            <td>{{item.maKhaoSat}}</td>
-                                            <td> {{item.maCauHoi}} </td>
-                                            <!-- <td *ngIf="item.maTieuChiCha==null;"> 0 </td>
-                                            <td *ngIf="item.maTieuChiCha!=null;"> {{item.maTieuChiCha}} </td> -->
-                                            <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
-                                            <td *ngIf="item.trangThai==0"> Không hoạt động</td>
-                                            <td *ngIf="item.trangThai==-1"> Đã xóa</td>
-
-                                            <!-- <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td> -->
-                                            <td> {{item.maLuaChon}} </td>
-                                            <td> {{item.giaTriNhap}} </td>
-                                            <!-- <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td> -->
-
+                                            <td>{{item.tenToChuc}}</td>
+                                            <td>{{item.maDinhDanhDn}}</td>
+                                            <td> {{item.noiDung_ch}} </td>
+                                            <td>
+                                                <p *ngIf="item.maLuaChon_lc!=null"> {{item.noiDung_lc}}</p>
+                                                <p *ngIf="item.maLuaChon_lc==0"> {{item.giaTriNhap_ct}}</p>
+                                            </td>
                                         </tr>
 
                                     </tbody>
@@ -112,7 +114,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                             <!-- <button type="button" class="btn btn-primary" (click)="Add()">Save</button> -->
                         </div>
                     </div>
@@ -125,14 +127,14 @@
 
             <!-- Modal Xóa -->
 
-            <!-- <div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="data_getone" ngDefaultControl>
+            <div class="modal fade" id="Xoa" #closebutton tabindex="-1" role="dialog" aria-labelledby="modelTitleId" *ngIf="CTKS_CH_LC" ngDefaultControl>
                 <div class="modal-dialog" role="document" style="margin-top:200px;">
                     <div class="modal-content">
-                     
+
                         <div class="modal-header">
                             <h5 class="modal-title" ngDefaultControl>Xóa thông tin nhóm câu hỏi </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span >&times;</span>
                                     </button>
                         </div>
                         <div class="modal-body">
@@ -142,12 +144,12 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" (click)="delete_NCH(data_getone.maNhomCauHoi)">Xóa</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete_KS(CTKS_CH_LC[0].maKhaoSat_ks)">Xóa</button>
                         </div>
-  
+
                     </div>
                 </div>
-            </div> -->
+            </div>
 
 
         </div>

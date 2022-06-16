@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
         const { userName, password } = this.form;
         this.authService.loginAdmin(userName, password).subscribe(
             (data) => {
-                this.tokenStorage.saveAdmin(data.token);
-                this.tokenStorage.saveUser(data.admin);
+                this.tokenStorage.saveTokenAdmin(data.token);
+                this.tokenStorage.saveAdmin(data.admin);
                 this.route.navigate(['/admin/dashboard']);
             },
             (err) => {

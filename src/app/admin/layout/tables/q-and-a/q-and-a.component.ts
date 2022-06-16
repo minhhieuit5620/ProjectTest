@@ -23,17 +23,14 @@ const datePipe = new DatePipe('en-US');
   styleUrls: ['./q-and-a.component.css']
 })
 export class QAndAComponent implements OnInit {
-  pageSize=20;
-  pageIndex=1;
-  advancedPagination: number;
-  isDisabled: boolean;
+
+
   constructor(
     private CauHoiService:CauHoiService,
     private NhomCauHoiService: NhomCauHoiService,
     private LChon:LuaChonService,
   ) {
-    this.advancedPagination = 1;
-    this.isDisabled = true;
+  
    }
 
 // data Nhóm câu hỏi
@@ -56,9 +53,15 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
   }
   //CauHois:CauHoi={maCauHoi:0,noiDung:"",goiYcauHoi:"",maLoaiCauHoi:1,maNhomCauHoi:1,trangThai:1,nguoiThem:"Hiếu",nguoiSua:" ",ngayThem:new Date,ngaySua:new Date}
 
+  form: any = {
+    tmp: null,   
+};
+
   lc:any[]=[];
   lc2:any[]=[];
 
+  total:any;
+  currentPage:number=1;
 
   data_Q:CauHoi_Data[];
    @Input() data_getone:CauHoi_Data;
@@ -69,18 +72,25 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
   Page:{pageSize:20,pageIndex:1}}
 
   ngOnInit(): void {
-    this.getQ();
+    this.getQ(1);
     this.GetAllNCH();
   }
 
-  getQ(){
+  getQ(a:number){
+    this.dl = {
+      Data: { maCauHoi: 0, noiDung: ' ', goiYcauHoi: ' ', maLoaiCauHoi: 0, maNhomCauHoi: 0, trangThai: 0, nguoiThem: ' ', ngayThem: new Date, nguoiSua: ' ', ngaySua: new Date }
+      , Page: { pageSize: 60, pageIndex:a }
+    };
     this.CauHoiService.getall(this.dl).subscribe((res:any)=>{
       this.data_Q=res.data;
-      console.log('DN',this.data_Q);
+      this.currentPage = a;
+      this.total=res.pages;
     })
   }
-  getOne(id:number){
-    
+  counter(i: number) {
+    return new Array(i);
+  }
+  getOne(id:number){    
     this.CauHoiService.getOne(id).subscribe((res:any)=>{     
     this.data_getone=res;    
     console.log(this.data_getone);
@@ -90,7 +100,19 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
       console.log(this.data_Answer);
     })
   }
-  
+  Search(a:number){
+    this.dl = {
+      Data: { maCauHoi: 0, noiDung: ' ', goiYcauHoi: ' ', maLoaiCauHoi: 0, maNhomCauHoi: 0, trangThai: 0, nguoiThem: ' ', ngayThem: new Date, nguoiSua: ' ', ngaySua: new Date }
+      , Page: { pageSize: 60, pageIndex:a }
+    };
+    this.CauHoiService.searchCH(this.form.tmp,this.dl).subscribe((res:any)=>{
+      this.data_Q=res.data;
+      this.currentPage = a;
+      this.total=res.pages;
+     
+    })
+  }
+
   GetAllNCH(){    
     this.NhomCauHoiService.getall(this.dlNCH).subscribe((res:any)=>{
       this.dataNCH=res.data;
@@ -107,7 +129,7 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
     }
    this.dlAdd.LuaChon=this.lc2;
    this.CauHoiService.Post_CH_DA(this.dlAdd);
-   return this.getQ();
+  // return this.getQ();
   }
 
   selectedLoai: string = '';  
@@ -135,7 +157,7 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
         console.log(id);
         //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
         $('#Xoa').modal('hide');
-        this.getQ();
+      //  this.getQ();
       },
       (error) => {
       //  this.showError('Xoá thông tin bệnh nhân không thành công!');

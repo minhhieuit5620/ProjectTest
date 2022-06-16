@@ -21,6 +21,7 @@ import { FooterUserComponent } from './footer-user/footer-user.component';
 import { CompanyComponent } from './company/company.component';
 import { AuthGuardService } from 'src/app/Sevices/Auth/auth-guard.service';
 import { AuthGuardUser } from 'src/app/Sevices/Auth/auth-guard-user.service';
+import { LogoutUserGuard } from 'src/app/Sevices/Auth/logout-user.guard';
 
 // import { LayoutComponent } from './layout.component';
 
@@ -36,10 +37,11 @@ export const Mainroutes: Routes = [
       {path:'',component:HomeComponent},
       {path:"Home",component:HomeComponent},
       {
-        path:"Survey",component:SurveyComponent,
+        path:"Survey",component:SurveyComponent,canActivate: [AuthGuardUser]
       },
-      {path:"LoginUser",component:LoginUserComponent},
-      {path:"RegisterUser",component:RegisterUserComponent},
+      {path:"LoginUser",component:LoginUserComponent,canActivate: [LogoutUserGuard]
+      }, 
+      {path:"RegisterUser",component:RegisterUserComponent,canActivate: [LogoutUserGuard]},
       
       {path:"Introduce",component:IntroduceComponent},
       {path:"Manual",component:ManualComponent},
@@ -90,7 +92,7 @@ export const Mainroutes: Routes = [
        
   ]
   
-  //,providers: [AuthGuardUser],    // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
+  ,providers: [AuthGuardUser,LogoutUserGuard],    // declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
 })
 export class Layout_UserModule {
 

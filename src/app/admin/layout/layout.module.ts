@@ -23,14 +23,16 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { CompanyMnComponent } from './tables/company-mn/company-mn.component';
 import { QAndAComponent } from './tables/q-and-a/q-and-a.component';
+import { UserComponent } from './tables/user/user.component';
+import { LogoutAdminGuard } from 'src/app/Sevices/Auth/logout-admin.guard';
 
 export const Mainroutes: Routes = [
   {
-    path: '', component: LayoutComponent,
+    path: '', component: LayoutComponent,canActivate: [AuthGuardService],
 
     children: [
       {
-        path: '', component: NhomCauHoiComponent,
+        path: '', component: DashboardComponent,
       },
       {
         path: 'NhomCauHoi', component: NhomCauHoiComponent,
@@ -50,6 +52,9 @@ export const Mainroutes: Routes = [
       {
         path: 'QA', component: QAndAComponent,
       },
+      {
+        path: 'User', component: UserComponent,
+      },
   
 
       
@@ -59,7 +64,7 @@ export const Mainroutes: Routes = [
   },
   {
     path: 'Login',
-    component: LoginComponent,
+    component: LoginComponent, canActivate: [LogoutAdminGuard]
   },
   {
     path: '**', component: NotFoundComponent,
@@ -92,9 +97,10 @@ export const Mainroutes: Routes = [
     KhaoSatComponent,
     CompanyMnComponent,
     QAndAComponent,
+    UserComponent
 
   ],
-  providers: [AuthGuardService],
+  providers: [AuthGuardService,LogoutAdminGuard],
 })
 export class LayoutModule {
 

@@ -36,7 +36,11 @@
                         <li><a routerLink="/user/LoginUser" class="textin"><i class="ion-person"></i><div>Đăng nhập</div></a></li>
                     </ul>
                     <ul class="nav-icons" *ngIf="token != null">
-                        <li><a (click)="Logout()" style="cursor: pointer" c class="textin"><i class="icon ion-log-out"></i><div>Đăng xuất</div></a></li>
+                        <li>
+
+                            <h3 *ngIf="user!=null">Xin chào, {{data_getDN.tenToChuc}} </h3>
+                            <a (click)="Logout()" style="cursor: pointer" c class="textin"><i class="icon ion-log-out"></i><div>Đăng xuất</div></a>
+                        </li>
                         <!-- <li><a href="/user/LoginUser" class="textin"><i class="ion-person"></i><div>Đăng nhập</div></a></li> -->
                     </ul>
                 </div>
@@ -67,7 +71,7 @@
                     <li><a routerLink="/">Trang chủ</a></li>
                     <li class="magz-dropdown"><a routerLink="/user/Introduce">Giới thiệu<i class="ion-ios-arrow-right"></i></a></li>
                     <li class="dropdown magz-dropdown">
-                        <a href="category.html">Khảo sát <i class="ion-ios-arrow-right"></i></a>
+                        <a>Khảo sát <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu" *ngIf="token != null">
                             <li><a routerLink="/user/Survey">Tiến Hành Khảo Sát</a></li>
                             <li><a routerLink="/user/Manual" style="cursor:pointer;">Hướng Dẫn</a></li>
@@ -78,7 +82,7 @@
                         </ul>
                     </li>
                     <li class="dropdown magz-dropdown">
-                        <a href="category.html">Doanh Nghiệp <i class="ion-ios-arrow-right"></i></a>
+                        <a>Doanh Nghiệp <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                             <li><a routerLink="/user/Company">Doanh Nghiệp Tham Gia</a></li>
                             <!-- <li><a href="index.html">Kết Quả T-H-I-O chung</a></li> -->

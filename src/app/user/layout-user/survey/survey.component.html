@@ -1,6 +1,10 @@
 <style>
     .activeQ {
-        background-color: yellow !important;
+        background-color: #00FF00 !important;
+    }
+    
+    .inActiveQ {
+        background-color: #ffc107 !important;
     }
     
     .mystyle {
@@ -12,6 +16,15 @@
     }
 </style>
 
+<script>
+    $(document).ready(function() {
+        $("button").click(function() {
+            alert("h");
+            $(this).addClass("activeQ");
+            // $("p").addClass("hint highlight");
+        });
+    });
+</script>
 
 
 <section class="single" ngDefaultControl style="font-family: Arial;">
@@ -22,7 +35,7 @@
                     <h3 class="aside-title">Phiếu Khảo Sát</h3>
                     <div class="aside-body">
                         <div>
-                            <div class="item-in">
+                            <!-- <div class="item-in">
                                 <b>Mã Phiếu :</b>
                                 <span> 111111</span>
                             </div>
@@ -33,7 +46,7 @@
                             <div class="item-in">
                                 <b>Thời gian kết thúc :</b>
                                 <span> 111111</span>
-                            </div>
+                            </div> -->
 
 
                         </div>
@@ -45,46 +58,62 @@
                     <!-- <h1 class="aside-title">Techno</h1> -->
                     <div class="aside-body">
                         <h1 class="aside-title">Nhân lực</h1>
-                        <!-- <article class="article-fw">
+                        <!-- <article class="article-fw" >
                             <div class="inner">
                                 <button class="btn btn-sm btn-info question " *ngFor="let item of data; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                            </div>
+                        </article>
+                        <h1 class="aside-title">Trang thiết bị</h1>
+                        <article class="article-fw" >
+                            <div class="inner">
+                                <button class="btn btn-sm btn-info question " style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article> -->
 
                         <article class="article-fw">
                             <div class="inner">
-                                <button id="questionID" class="btn btn-sm btn-info question " *ngFor="let item of data_51; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="d{{item.maCauHoi}}" type="button" class="btn btn-sm btn-info question" [class.activeQ]="item.maCauHoi === activeIndex" (click)="activeIndex = item.maCauHoi" *ngFor="let item of data_51; let i=index" style="color: #fff; border-radius: 5px;"
+                                    (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
-
-                            <!-- <ul class="sub_modules">
-                                <li (click)="activateClass(subModule)"
-                                    *ngFor="let subModule of subModules"
-                                    [ngClass]="{'active': subModule.active}">
-                                  <a>{{ subModule.name }}</a>
-                                </li>
-                              </ul> -->
-
-
                         </article>
                         <h1 class="aside-title">Trang thiết bị</h1>
                         <article class="article-fw">
-                            <div class="inner">
-                                <button id="button2" class="btn btn-sm btn-info question " *ngFor="let item of data_50; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                            <div class="inner" #traloi>
+                                <button id="d{{item.maCauHoi}}" class="btn btn-sm btn-info question " [class.activeQ]="item.maCauHoi === activeIndex" (click)="activeIndex = item.maCauHoi" [ngClass]="status ?'inActiveQ': 'ActiveQ'" *ngFor="let item of data_50; let i=index" style="color: #fff; border-radius: 5px;"
+                                    (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
                         <h1 class="aside-title">Thông tin</h1>
                         <article class="article-fw">
                             <div class="inner">
-                                <button id="button2" class="btn btn-sm btn-info question " *ngFor="let item of data_52; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="d{{item.maCauHoi}}" class="btn btn-sm btn-info question " [class.activeQ]="item.maCauHoi === activeIndex" (click)="activeIndex = item.maCauHoi" *ngFor="let item of data_52; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)"
+                                    (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
                         <h1 class="aside-title">Tổ chức</h1>
                         <article class="article-fw">
                             <div class="inner">
-                                <button id="button2" class="btn btn-sm btn-info question " *ngFor="let item of data_53; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="d{{item.maCauHoi}}" class="btn btn-sm btn-info question " [class.activeQ]="item.maCauHoi === activeIndex" (click)="activeIndex = item.maCauHoi" *ngFor="let item of data_53; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)"
+                                    (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
                         <div class="line"></div>
+
+                        <div>
+                            <input type="button" class="btn btn-sm btn-info" style="margin-right: 10px;" value=" ">
+                            <label for=""> Câu hỏi chưa trả lời</label>
+                        </div>
+                        <br/>
+                        <div>
+                            <input type="button" class="btn btn-sm" style="background-color:#00FF00 ;margin-right: 10px;" value=" ">
+                            <label for=""> Câu hỏi hiện tại</label>
+                        </div>
+                        <br/>
+                        <div>
+                            <input type="button" class="btn btn-sm " style="background-color:#ffc107 ;margin-right: 10px;" value=" ">
+                            <label for=""> Câu hỏi đã trả lời</label>
+                        </div>
+
 
                     </div>
                 </aside>
@@ -99,12 +128,12 @@
             </div>
             <div class="col-md-6" style="margin-top:120px;">
 
-                <div class="form-group" style="float: right;">
+                <!-- <div class="form-group" style="float: right;">
                     <label><input type="checkbox" name="category"> Đánh dấu xem lại</label>
-                </div>
+                </div> -->
                 <article class="article main-article">
                     <header>
-                        <h3>Câu Hỏi: </h3>
+                        <h3>Nội Dung Câu Hỏi: </h3>
                         <hr>
                     </header>
                     <div class="main" style="padding-top: 0px;">
@@ -119,22 +148,22 @@
                                 </div>
                                 <div *ngIf="data_getone.maLoaiCauHoi===2">
                                     <div class="form-group" *ngFor="let answer of data_Answer; let i=index">
-                                        <label><input id="{{answer.maLuaChon}}" class="chon" (click)="chonDapAn(answer.maLuaChon,2)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="checkbox"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
+                                        <label><input id="{{answer.maLuaChon}}" class="chon" (click)="chonDapAn(answer.maLuaChon,2)"   checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="checkbox"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
                                     </div>
                                 </div>
                                 <div *ngIf="data_getone.maLoaiCauHoi===3">
                                     <div class="form-group">
                                         <label for=""></label>
-                                        <input type="text" name="answer" id="" [(ngModel)]="arr_de[id_cauHoi][0]" class="form-control chon" placeholder="Nhập đáp án trả lời phù hợp .... " aria-describedby="helpId ">
+                                        <input type="text" name="answer" id="" [(ngModel)]="arr_de[id_cauHoi][0]" (blur)="test()" class="form-control chon" placeholder="Nhập đáp án trả lời phù hợp .... " aria-describedby="helpId ">
                                     </div>
 
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="btn btn-info ">Trở lại</div>
-                    <div class="btn btn-info " style="float: right; margin-left: 5px; ">Tiếp tục</div>
-                    <div class="btn btn-info " style="float: right; " (click)="postRs()">Nộp bài</div>
+                    <!-- <div class="btn btn-info ">Trở lại</div>
+                    <div class="btn btn-info " style="float: right; margin-left: 5px; ">Tiếp tục</div> -->
+                    <div class="btn btn-info btn-lg " style="float: right;margin-top: 30px; " (click)="postRs()">Nộp bài</div>
                     <hr>
                 </article>
                 <!-- hịaahshshshshsshsh
@@ -151,9 +180,9 @@
                     Bạn có muốn bắt đầu khảo sát ngay bây giờ ?
                 </h2>
                 <div>
-                    <button class="btn btn-info " style="padding:15px; margin-right: 10px; " (click)="getOne(data[0].maCauHoi) " (click)="getDapAn(data[0].maCauHoi) "> Bắt đầu</button>
+                    <button class="btn btn-info " style="padding:15px; margin-right: 10px; " [class.activeQ]="data[0].maCauHoi === activeIndex" (click)="activeIndex = data[0].maCauHoi" (click)="getOne(data[0].maCauHoi) " (click)="getDapAn(data[0].maCauHoi) "> Bắt đầu</button>
 
-                    <button class="btn btn-warning " style="padding:15px; margin-right: 10px; "> <a href="# " style="color: #fff;text-decoration: none; ">Hướng dẫn thi </a>  </button>
+                    <button class="btn btn-warning " style="padding:15px; margin-right: 10px; "> <a routerLink="/user/Manual" style="color: #fff;text-decoration: none; ">Hướng dẫn thi </a>  </button>
 
                     <!-- <button class="btn btn-warning " style="padding:15px; "> Quay lại trang chủ</button> -->
                 </div>

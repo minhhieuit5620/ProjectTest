@@ -16,37 +16,28 @@ const datePipe = new DatePipe('en-US');
 export class NhomCauHoiComponent implements OnInit {
 
   @Input() data_getone:NhomCauHoi_Data;
-  ngayTao = datePipe.transform(Date.now(), 'yyyy-MM-dd');
+  ngayTao = datePipe.transform(Date.now(), 'yyyy-MM-dd'); 
 
-  form = new FormGroup({
-    tenBenhNhan: new FormControl(null, [Validators.required]),
-    gioiTinh: new FormControl(true, [Validators.required]),
-    namSinh: new FormControl(null, [Validators.required]),
-    diaChi: new FormControl(null, [Validators.required]),
-    soDt: new FormControl(null, [Validators.required]),
-    ngheNghiep: new FormControl(null, [Validators.required]),
-    ngayTao: new FormControl(this.ngayTao, [Validators.required]),
-  });
+  form: any = {
+    tmp: null,
+   
+};
+
+total:any;
+currentPage:number=1;
 
 
-
-
- // users=["hieu","hieu","hieu","hieu","hieu","hieu"]
- pageSize=20;
- pageIndex=1;
-
-  
   data:NhomCauHoi_Data[];
   data_DTO:NhomCauHoi_DTO[]=[];
+  DTO:NhomCauHoi_DTO;
   NCH_data:NhomCauHoi_Data={maNhomCauHoi: 1,tenNhomCauHoi: '', maTieuChiCha:0,trangThai:0, nguoiThem: 'string' ,ngayThem:new Date,nguoiSua:'string',ngaySua:new Date}
   dl:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,trangThai:0, nguoiThem: ' ' ,ngayThem:new Date,nguoiSua:' ',ngaySua:new Date}
   ,Page:{pageSize:60, pageIndex:1} };
 
-
+  
   advancedPagination: number;
   isDisabled: boolean;
-  constructor(
-   
+  constructor(   
     private NhomCauHoiService: NhomCauHoiService,
   ) {
     this.advancedPagination = 1;
@@ -54,22 +45,35 @@ export class NhomCauHoiComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.GetAll();
+    this.GetAll(1);
   }
 
   
 
-  GetAll(){    
+  GetAll(a:number){    
+    this.dl={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,trangThai:0, nguoiThem: ' ' ,ngayThem:new Date,nguoiSua:' ',ngaySua:new Date}
+    ,Page:{pageSize:60, pageIndex:a} };
     this.NhomCauHoiService.getall(this.dl).subscribe((res:any)=>{
       this.data=res.data;
-      console.log(this.data);
+      this.currentPage = a;
+      this.total=res.pages;
+     // console.log('DTO', this.total);
+    })
+  }
+  Search(a:number){
+    this.dl={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,trangThai:0, nguoiThem: ' ' ,ngayThem:new Date,nguoiSua:' ',ngaySua:new Date}
+    ,Page:{pageSize:60, pageIndex:a} };
+    this.NhomCauHoiService.searchNCH(this.form.tmp,this.dl).subscribe((res:any)=>{
+      this.data=res.data;
+      this.currentPage = a;
+      this.total=res.pages;
+      //console.log('DTO', this.total);
     })
   }
 
-
   Add():any{
     this.NhomCauHoiService.Add_NCH(this.dl).subscribe(datas=>{this.data_DTO.push(datas)})
-    return this.GetAll();
+   // return this.GetAll();
   }
 //vẫn dùng được
   // GetOne(id:number){
@@ -108,7 +112,7 @@ export class NhomCauHoiComponent implements OnInit {
         console.log(id);
         //this.data_DTO.push(data)     
         $('#Sua').modal('hide');
-        this.GetAll();
+        // this.GetAll();
       })//,
     //   (error) => {
     //  
@@ -116,6 +120,10 @@ export class NhomCauHoiComponent implements OnInit {
     //   }
     // );
   }
+
+  counter(i: number) {
+    return new Array(i);
+}
 
   Put(){
 
@@ -125,8 +133,9 @@ export class NhomCauHoiComponent implements OnInit {
       (data:any) => {
         console.log(id);
         //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
+        
         $('#Xoa').modal('hide');
-        this.GetAll();
+        // this.GetAll();
       },
       (error) => {
       //  this.showError('Xoá thông tin bệnh nhân không thành công!');

@@ -17,13 +17,19 @@ const datePipe = new DatePipe('en-US');
 })
 export class CompanyMnComponent implements OnInit {
 
+  form: any = {
+    tmp: null,
+   
+};
   advancedPagination: number;
   isDisabled: boolean;
   constructor(
     private DoanhNghiepService:doanhNghiepService
   ) { }
 
-  
+  total:any;
+  currentPage:number=1;
+
   dl:DoanhNghiep_DTO={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
   ,Page:{pageSize:10, pageIndex:1} };
 
@@ -31,19 +37,34 @@ export class CompanyMnComponent implements OnInit {
   @Input() data_getone:doanhNghiep_Data;
 
   ngOnInit(): void {
-    this.getDN();
+    this.getDN(1);
   }
+  counter(i: number) {
+    return new Array(i);
+}
 
-  getDN(){
+  getDN(a:number){
+    this.dl={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+    ,Page:{pageSize:10, pageIndex:a} };
     this.DoanhNghiepService.getallDN(this.dl).subscribe((res:any)=>{
       this.data_DN=res.data;
-      console.log('DN',this.data_DN);
+      this.currentPage = a;
+      this.total=res.pages;
+      
     })
   }
-  getOne(id:number){
-    
-    this.DoanhNghiepService.getOne(id).subscribe((res:any)=>{
-     
+  Search(a:number){
+    this.dl={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+    ,Page:{pageSize:10, pageIndex:a} };
+    this.DoanhNghiepService.searchDN(this.form.tmp,this.dl).subscribe((res:any)=>{
+      this.data_DN=res.data;
+      this.currentPage = a;
+      this.total=res.pages;
+      //console.log('DTO', this.total);
+    })
+  }
+  getOne(id:number){    
+    this.DoanhNghiepService.getOne(id).subscribe((res:any)=>{    
     this.data_getone=res;
     console.log(this.data_getone);
     })
@@ -56,7 +77,7 @@ export class CompanyMnComponent implements OnInit {
         console.log(id);
         //this.data_DTO.push(data)     
         $('#Sua').modal('hide');
-        this.getDN();
+        // this.getDN();
       })
   }
 
@@ -68,7 +89,7 @@ export class CompanyMnComponent implements OnInit {
         console.log(id);
         //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
         $('#Xoa').modal('hide');
-        this.getDN();
+        // this.getDN();
       },
       (error) => {
       //  this.showError('Xoá thông tin bệnh nhân không thành công!');

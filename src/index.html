@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ProjectTest</title>
+    <title>Khảo sát trình độ khoa học Hưng Yên</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="./assets/Both/logo-mini-removebg-preview.png">
@@ -24,10 +24,16 @@
     <link rel="stylesheet" href="./assets/User/css/style.css">
     <link rel="stylesheet" href="./assets/User/css/skins/all.css">
     <link rel="stylesheet" href="./assets/User/css/demo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="skin-orange">
     <app-root></app-root>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./assets/User/js/jquery.js"></script>
     <script src="./assets/User/js/jquery.migrate.js"></script>
     <script src="./assets/User/scripts/bootstrap/bootstrap.min.js"></script>
@@ -46,21 +52,22 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function() {
 
 
-
-            $('.chon').on('click', function() {
+            $("button").click(function() {
                 alert("hieêu");
-                $(this).addClass('activeQ');
+                $(this).addClass('inActiveQ');
             });
 
-            // $("button").click(function() {
-            //     $("p:first").addClass("intro");
+
+            // $("#chon").on("click", function() {
+            //     debugger;
+            //     alert("hieêu");
+            //     $(this).addClass('inActiveQ');
             // });
-            // console.log("ready!");
         });
 
         // $( "p" ).addClass( "myClass yourClass" );
@@ -76,6 +83,10 @@
             background-color: coral;
             color: white;
             font-size: 25px;
+        }
+        
+        .inActiveQ {
+            background-color: red !important;
         }
     </style>
 

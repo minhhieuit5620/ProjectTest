@@ -3,9 +3,15 @@
 
 
 <div class="row">
+    <div style="margin-left: 1000px;">
+        <form class="search" style="margin:10px;" (ngSubmit)=" f.form.valid && Search(1)" #f="ngForm" style="float: right;margin-right: 30px;">
+            <input type="text" name="search" [(ngModel)]="form.tmp" style="height: 50px;" placeholder="Nhập để tìm kiếm ....." />
+            <button type="submit" style="height: 50px;border:none">Tìm</button>
+        </form>
+    </div>
+
 
     <div class="col col-xl-12 col-lg-12" ngDefaultControl>
-
 
         <div class="card mb-12">
             <div class="card-header">Thông tin khảo sát</div>
@@ -66,19 +72,43 @@
             <!-- Button trigger modal -->
 
 
+            <div _ngcontent-rjw-c115="" role="navigation" ng-reflect-page="3" ng-reflect-boundary-links="true" ng-reflect-collection-size="53" ng-reflect-max-size="20">
+                <ul class="pagination">
+                    <li class="page-item" *ngIf="currentPage+1>total">
+                        <a (click)="getDN(1)" class="page-link"><span>««</span></a>
+                    </li>
 
-            <!-- <div class="text-uppercase text-muted fs-12">maxSize = 5, rotate = false</div> -->
-            <!-- <ngb-pagination [(page)]="pageIndex" [boundaryLinks]="true" [collectionSize]="130" [maxSize]="5">
-                </ngb-pagination> -->
+                    <li class="page-item"><a (click)="getDN(currentPage-1)" class="page-link" *ngIf="currentPage+1>total"><span>«</span>
+                        </a></li>
+                    <div *ngFor="let item of counter(total); let i = index ">
+                        <li class="page-item active" *ngIf="i+1==currentPage">
+                            <a (click)="getDN(i+1)" class="page-link">{{i+1}}</a>
+                        </li>
+                        <li class="page-item" *ngIf="i+1!=currentPage">
+                            <a (click)="getDN(i+1)" class="page-link">{{i+1}}</a>
+                        </li>
+                    </div>
 
 
-            <div class="modal fade" id="Sua" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="data_getone" ngDefaultControl>
+                    <li class="page-item" *ngIf="currentPage+1<=total"><a (click)="getDN(currentPage+1)" class="page-link"><span>»</span>
+                        </a></li>
+
+                    <li class="page-item" *ngIf="currentPage+1<=total"><a (click)="getDN(total)" class="page-link"><span>»»</span>
+                        </a></li>
+
+
+
+                </ul>
+            </div>
+
+
+            <div class="modal fade" id="Sua" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" *ngIf="data_getone" ngDefaultControl>
                 <div class="modal-dialog" role="document" style="margin-top:260px;">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Sửa thông tin</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span >&times;</span>
                                 </button>
                         </div>
                         <div class="modal-body">
@@ -166,14 +196,14 @@
 
             <!-- Modal Xóa -->
 
-            <div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="data_getone" ngDefaultControl>
+            <div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" *ngIf="data_getone" ngDefaultControl>
                 <div class="modal-dialog" role="document" style="margin-top:200px;">
                     <div class="modal-content">
 
                         <div class="modal-header">
                             <h5 class="modal-title" ngDefaultControl>Xóa thông tin nhóm câu hỏi </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                            <span >&times;</span>
                                         </button>
                         </div>
                         <div class="modal-body">

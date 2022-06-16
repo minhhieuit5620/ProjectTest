@@ -1,15 +1,12 @@
 <div [@routerTransition]>
-    <!-- <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
+    <marquee>
+        <h2 class="text-muted">Chào mừng bạn đến với trang quản trị khảo sát Hưng Yên</h2>
+    </marquee>
     <div class="row">
         <div class="col-md-12">
             <ngb-carousel>
                 <ng-template *ngFor="let slider of sliders" ngbSlide>
-                    <img
-                        [src]="slider.imagePath"
-                        alt="Random first slide"
-                        class="img-fluid mx-auto d-block"
-                        width="100%"
-                    />
+                    <img [src]="slider.imagePath" alt="Random first slide" class="img-fluid mx-auto d-block" width="100%" />
                     <div class="carousel-caption">
                         <h3>{{ slider.label }}</h3>
                         <p>{{ slider.text }}</p>
@@ -18,6 +15,100 @@
             </ngb-carousel>
         </div>
     </div>
-    <hr /> -->
+    <hr />
+
+    <div>
+        <div class="col-xl-3 col-lg-6 ng-tns-c110-1">
+            <div class="card text-white bg-warning">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-5x fa-user"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{ totalUser }}</div>
+                            <div class="d-block">Người dùng</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" [routerLink]="['/admin/User']" style="cursor: pointer;">
+                    <span class="float-left">Chi tiết {{ data }}</span>
+                    <a class="float-right card-inverse">
+                        <span><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 ng-tns-c110-1">
+            <div class="card text-white bg-primary">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-5x fa-building"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{ totalDN }}</div>
+                            <div class="d-block">Doanh nghiệp đã đăng ký</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" [routerLink]="['/admin/DoanhNghiep_Mn']" style="cursor: pointer;">
+                    <span class="float-left">Chi tiết {{ data }}</span>
+                    <a class="float-right card-inverse">
+                        <span><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 ng-tns-c110-1">
+            <div class="card text-white bg-danger">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-5x fa-file-o"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{ totalKS }}</div>
+                            <div class="d-block">Khảo sát</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" [routerLink]="['/admin/KhaoSat']" style="cursor: pointer;">
+                    <span class="float-left">Chi tiết {{ data }}</span>
+                    <a class="float-right card-inverse">
+                        <span><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 ng-tns-c110-1">
+            <div class="card text-white bg-success">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-5x fa-table"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{ totalQ }}</div>
+                            <div class="d-block">Câu hỏi </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" [routerLink]="['/admin/QA']" style="cursor: pointer;">
+                    <span class="float-left">Chi tiết {{ data }}</span>
+                    <a class="float-right card-inverse">
+                        <span><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- ///////
+            <form _ngcontent-aet-c114="" class="form-inline my-2 my-lg-0 ng-tns-c114-0"><input _ngcontent-aet-c114="" aria-label="Search" placeholder="Search" type="text" class="form-control mr-sm-2 ng-tns-c114-0"><button _ngcontent-aet-c114="" type="submit" class="btn btn-outline-success my-2 my-sm-0 ng-tns-c114-0">Search</button></form> -->
+        </div>
+
+    </div>
+
+
 
 </div>

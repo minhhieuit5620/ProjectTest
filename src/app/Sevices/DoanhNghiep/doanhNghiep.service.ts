@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CauHoi_Data } from 'src/app/model/CauHoi/cau-hoi-data.model';
 import { CauHoi_DTO } from 'src/app/model/CauHoi/cau-hoi-DTO.model';
+import { doanhNghiep_Data } from 'src/app/model/DoanhNghiep/doanhNghiep-Data.model';
 import { DoanhNghiep_DTO } from 'src/app/model/DoanhNghiep/doanhNghiep.model';
 import { LuaChon_Data } from 'src/app/model/LuaChon/lua-chon-data.model';
 import { LuaChon_DTO } from 'src/app/model/LuaChon/lua-chon-DTO.model';
@@ -24,8 +25,14 @@ export class doanhNghiepService {
     return this.http.post<DoanhNghiep_DTO>(environment.apiUrl+'/api/DoanhNghiep/Add_Or_Update',data);
   }
 
+  searchDN(search:string,data:DoanhNghiep_DTO):Observable<DoanhNghiep_DTO>{
+    return this.http.post<DoanhNghiep_DTO>(environment.apiUrl+'/api/DoanhNghiep/SearchDN/'+search,data);
+  }
 
-
+  getByName(name:string) {
+    return this.http.get<doanhNghiep_Data[]>(environment.apiUrl+'/api/DoanhNghiep/GetDoanhNghiepByName/'+name);
+  }
+  
 
 
 

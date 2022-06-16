@@ -1,5 +1,5 @@
 <!-- <div [@routerTransition]> -->
-<app-page-header [heading]="'Quản lí nhóm câu hỏi'" [icon]="'fa-table'"></app-page-header>
+<app-page-header [heading]="'Quản lí người dùng'" [icon]="'fa-user'"></app-page-header>
 
 
 <div class="row">
@@ -7,8 +7,8 @@
     <div class="col col-xl-12 col-lg-12">
         <!-- Button trigger modal -->
         <button type="button" style="margin:10px;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add">
-            Thêm nhóm câu hỏi
-        </button>
+                Thêm người dùng
+            </button>
         <form class="search" (ngSubmit)=" f.form.valid && Search(1)" #f="ngForm" style="float: right;margin-right: 30px;">
             <input type="text" name="search" [(ngModel)]="form.tmp" style="height: 50px;" placeholder="Nhập để tìm kiếm ....." />
             <button type="submit" style="height: 50px;border:none">Tìm</button>
@@ -20,81 +20,91 @@
             <div class="modal-dialog " role="document" style="margin-top:200px;">
                 <div class="modal-content modal-xl">
                     <div class="modal-header">
-                        <h5 class="modal-title">Thêm nhóm câu hỏi</h5>
+                        <h5 class="modal-title">Thêm người dùng</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
+                                <span>&times;</span>
+                            </button>
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="tenNhomCauHoi" [(ngModel)]="dl.Data.tenNhomCauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Tên nhóm câu hỏi</small>
+                                <input type="text" name="taiKhoan" [(ngModel)]="dl.Data.taiKhoan" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Tài khoản</small>
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="maTieuChiCha" [(ngModel)]="dl.Data.maTieuChiCha" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Mã tiêu chí cha</small>
+                                <input type="text" name="matKhau" [(ngModel)]="dl.Data.matKhau" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Mật khẩu</small>
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="trangThai" [(ngModel)]="dl.Data.trangThai" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Trạng thái hoạt động</small>
+                                <input type="text" name="hoVaTen" [(ngModel)]="dl.Data.hoVaTen" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Họ tên</small>
                             </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" name="soDienThoai" [(ngModel)]="dl.Data.soDienThoai" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Điện thoại</small>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" name="email" [(ngModel)]="dl.Data.email" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Email</small>
+                            </div>
+
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Add()">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Add()">Thêm</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- <div style="margin:10px;">
-            <a href="">
-                <input type="button" class="btn btn-lg btn-primary" value="Thêm nhóm câu hỏi">
-            </a>
-        </div> -->
+                <a href="">
+                    <input type="button" class="btn btn-lg btn-primary" value="Thêm nhóm câu hỏi">
+                </a>
+            </div> -->
         <div class="card mb-12">
-            <div class="card-header">Thông tin nhóm câu hỏi</div>
+            <div class="card-header">Thông tin người dùng</div>
             <div class="card-body table-responsive">
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Tên Nhóm Câu Hỏi</th>
-                            <th>Mã Tiêu Chí Cha</th>
-                            <th>Trạng Thái</th>
-                            <th>Người Thêm</th>
-                            <!-- <th>Ngày Thêm</th> -->
-                            <th>Người Sửa</th>
-                            <!-- <th>Ngày Sửa</th> -->
+                            <th>Tài khoản</th>
+                            <th>Họ tên</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Trạng thái</th>
+                            <!-- <th>Người tạo</th>
+                            <th>Người sửa</th> -->
                             <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of data; let i=index">
                             <td> {{i+1}} </td>
-                            <td>{{item.tenNhomCauHoi}}</td>
-                            <td *ngIf="item.maTieuChiCha==null;"> 0 </td>
-                            <td *ngIf="item.maTieuChiCha!=null;"> {{item.maTieuChiCha}} </td>
+                            <td>{{item.taiKhoan}}</td>
+                            <td> {{item.hoVaTen}} </td>
+                            <td> {{item.soDienThoai}} </td>
+                            <td> {{item.email}} </td>
                             <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
                             <td *ngIf="item.trangThai==0"> Không hoạt động</td>
                             <td *ngIf="item.trangThai==-1"> Đã xóa</td>
-                            <td> {{item.nguoiThem}} </td>
-                            <!-- <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td> -->
-                            <td> {{item.nguoiSua}} </td>
-                            <!-- <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td> -->
+                            <!-- <td> {{item.nguoiTao}} </td>
+                            <td> {{item.nguoiSua}} </td> -->
                             <td>
-                                <button type="button" (click)="getOne(item.maNhomCauHoi)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
-                                    Sửa
-                                </button>
+                                <button type="button" (click)="getOne(item.id)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
+                                        Sửa
+                                    </button>
 
-                                <button type="button" (click)="getOne(item.maNhomCauHoi)" class="btn btn-danger " data-toggle="modal" data-target="#Xoa">
-                                    Xóa
-                                </button>
+                                <button type="button" (click)="getOne(item.id)" class="btn btn-danger " data-toggle="modal" data-target="#Xoa">
+                                        Xóa
+                                    </button>
 
                             </td>
                         </tr>
@@ -104,15 +114,15 @@
             </div>
             <!-- <div class="text-uppercase text-muted fs-12">maxSize = 5, rotate = false</div> -->
             <!-- <ngb-pagination [(page)]="pageIndex" [boundaryLinks]="true" [collectionSize]=" this.total.totalRecord" [maxSize]="20">
-            </ngb-pagination> -->
+                </ngb-pagination> -->
             <div _ngcontent-rjw-c115="" role="navigation" ng-reflect-page="3" ng-reflect-boundary-links="true" ng-reflect-collection-size="53" ng-reflect-max-size="20">
                 <ul class="pagination">
-                    <li class="page-item" *ngIf="currentPage+1>=total">
+                    <li class="page-item" *ngIf="currentPage+1>total">
                         <a (click)="GetAll(1)" class="page-link"><span>««</span></a>
                     </li>
 
-                    <li class="page-item"><a (click)="GetAll(currentPage-1)" class="page-link" *ngIf="currentPage+1>=total"><span>«</span>
-                        </a></li>
+                    <li class="page-item"><a (click)="GetAll(currentPage-1)" class="page-link" *ngIf="currentPage+1>total"><span>«</span>
+                            </a></li>
                     <div *ngFor="let item of counter(total); let i = index ">
                         <li class="page-item active" *ngIf="i+1==currentPage">
                             <a (click)="GetAll(i+1)" class="page-link">{{i+1}}</a>
@@ -124,10 +134,10 @@
 
 
                     <li class="page-item" *ngIf="currentPage+1<=total"><a (click)="GetAll(currentPage+1)" class="page-link"><span>»</span>
-                        </a></li>
+                            </a></li>
 
                     <li class="page-item" *ngIf="currentPage+1<=total"><a (click)="GetAll(total)" class="page-link"><span>»»</span>
-                        </a></li>
+                            </a></li>
 
 
 
@@ -140,35 +150,43 @@
                         <div class="modal-header">
                             <h5 class="modal-title">Sửa thông tin</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span>&times;</span>
-                            </button>
+                                    <span>&times;</span>
+                                </button>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
 
                                 <div class="form-group">
                                     <label for=""></label>
-                                    <input type="text" name="tenNhomCauHoi" ngDefaultControl [(ngModel)]="data_getone.tenNhomCauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                    <small id="helpId" class="text-muted">Tên nhóm câu hỏi</small>
+                                    <input type="text" name="tenNhomCauHoi" ngDefaultControl [(ngModel)]="data_getone.taiKhoan" id="" disabled class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Tài khoản</small>
                                 </div>
                                 <div class="form-group">
                                     <label for=""></label>
 
-                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.maTieuChiCha" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                    <small id="helpId" class="text-muted">Mã tiêu chí cha</small>
+                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.hoVaTen" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Họ và tên</small>
                                 </div>
                                 <div class="form-group">
                                     <label for=""></label>
-                                    <input type="text" name="trangThai" [(ngModel)]="data_getone.trangThai" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                    <small id="helpId" class="text-muted">Trạng thái hoạt động</small>
+
+                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.soDienThoai" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Điện thoại</small>
                                 </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+
+                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.email" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Email</small>
+                                </div>
+
 
 
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(data_getone.maNhomCauHoi,data_getone.tenNhomCauHoi,data_getone.maTieuChiCha,data_getone.trangThai)">Update</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(data_getone.id,data_getone.taiKhoan,data_getone.hoVaTen,data_getone.soDienThoai,data_getone.email)">Update</button>
                         </div>
                     </div>
                 </div>
@@ -181,11 +199,11 @@
                     <div class="modal-content">
                         <!-- <form method="post" (ngSubmit)="delete_NCH(item.maNhomCauHoi)" class="p-3" role="form"> -->
                         <div class="modal-header">
-                            <h5 class="modal-title" ngDefaultControl>Xóa thông tin nhóm câu hỏi {{data_getone.maNhomCauHoi}}
+                            <h5 class="modal-title" ngDefaultControl>Xóa thông tin người dùng {{data_getone.id}}
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span>&times;</span>
-                            </button>
+                                    <span>&times;</span>
+                                </button>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
@@ -194,7 +212,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete_NCH(data_getone.maNhomCauHoi)">Xóa</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete_NCH(data_getone.id)">Xóa</button>
                         </div>
                         <!-- </form> -->
                     </div>

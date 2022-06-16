@@ -1,18 +1,21 @@
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { CauHoi_Data } from 'src/app/model/CauHoi/cau-hoi-data.model';
 import { CauHoi_DTO } from 'src/app/model/CauHoi/cau-hoi-DTO.model';
 import { CauHoi_LuaChon_DTO } from 'src/app/model/CauHoi/CauHoi_LuaChon_DTO.model';
+import { doanhNghiep_Data } from 'src/app/model/DoanhNghiep/doanhNghiep-Data.model';
 import { KhaoSat_DTO } from 'src/app/model/KhaoSat/khaoSat-DTO.model';
 import { khaoSat } from 'src/app/model/KhaoSat/khaoSat.model';
 import { LuaChon_Data } from 'src/app/model/LuaChon/lua-chon-data.model';
 import { CauHoi_DTOService } from 'src/app/Sevices/CauHoi/cau-hoi-DTO.service';
 import { CauHoiService } from 'src/app/Sevices/CauHoi/cau-hoi.service';
+import { doanhNghiepService } from 'src/app/Sevices/DoanhNghiep/doanhNghiep.service';
 import { KhaoSatService } from 'src/app/Sevices/KhaoSat/khaoSat.service';
 
+declare var $: any;
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -20,8 +23,9 @@ import { KhaoSatService } from 'src/app/Sevices/KhaoSat/khaoSat.service';
 })
 export class SurveyComponent implements OnInit {
 
-  @Input() data_getone: CauHoi_Data;
-
+  @ViewChild('traloi',{static:true}) traloi:ElementRef<HTMLButtonElement>;
+  @Input() data_getone: CauHoi_Data;data_getDN:doanhNghiep_Data;
+  user=localStorage.getItem('auth-user');
   [x: string]: any;
 
   data: CauHoi_Data[];
@@ -31,11 +35,6 @@ export class SurveyComponent implements OnInit {
   data_53: CauHoi_Data[];
   id_cauHoi: number;
   arr_de: {[key: number] : any};
-
-  // arr_de: {
-  //   MaKhaoSat: number,
-  //   macauhoi: { id:number}
-  // };
 
   newarr: { 
     macauhoi: 0,
@@ -80,21 +79,13 @@ export class SurveyComponent implements OnInit {
   };
 
   form: FormGroup;
-  // form = new FormGroup({
-  //   answer: new FormControl(null),
-  //   // gioiTinh: new FormControl(true, [Validators.required]),
-  //   // namSinh: new FormControl(null, [Validators.required]),
-  //   // diaChi: new FormControl(null, [Validators.required]),
-  //   // soDt: new FormControl(null, [Validators.required]),
-  //   // ngheNghiep: new FormControl(null, [Validators.required]),
-  //   // ngayTao: new FormControl(this.ngayTao, [Validators.required]),
-  // });
-
+activeIndex: number;
 
   constructor(
     private CauHoiService: CauHoiService,
     private CauHoi_DTO_Service: CauHoi_DTOService,
    private KS_Service: KhaoSatService,
+   private dNghiepService:doanhNghiepService,
    private route: Router
   ) {
     // this.form = FB.group({
@@ -117,9 +108,9 @@ export class SurveyComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    this.getDN();
     this.arr_de = {};
     this.getAllCauHoi();
-
     this.getKS_50();
     this.getKS_51();
     this.getKS_52();
@@ -129,7 +120,14 @@ export class SurveyComponent implements OnInit {
 
   }
 
-
+  getDN(){
+    if(this.user){
+      this.dNghiepService.getByName(this.user).subscribe((res: any) => {
+           this.data_getDN = res;
+           console.log('maDN',this.data_getDN.maDoanhNghiep);
+          });    
+    }
+  }
 
   // getCauHoiDTO(){
   //   this.CauHoi_DTO_Service.getall(this.DL_CH_LC_DTO).subscribe((res:any)=>{
@@ -189,6 +187,11 @@ export class SurveyComponent implements OnInit {
   }
 
   chonDapAn(id_dapAn: number, loai: number) {
+
+    document.getElementById("d"+this.id_cauHoi)?.classList.add("inActiveQ");
+
+
+
     if (loai == 1) {
       this.arr_de[this.id_cauHoi as keyof typeof this.arr_de] = {};
     }
@@ -197,6 +200,16 @@ export class SurveyComponent implements OnInit {
     }
 
     this.arr_de[this.id_cauHoi as keyof typeof this.arr_de][id_dapAn] = true;
+
+  }
+
+  test(){
+    if(this.arr_de[this.id_cauHoi][0]){
+      document.getElementById("d"+this.id_cauHoi)?.classList.add("inActiveQ");
+    }
+    else{
+      document.getElementById("d"+this.id_cauHoi)?.classList.remove("inActiveQ");
+    }
   }
 
   getOne(id: number) {
@@ -208,13 +221,14 @@ export class SurveyComponent implements OnInit {
         this.arr_de[this.id_cauHoi] = {};
         if (this.data_getone.maLoaiCauHoi == 3) { this.arr_de[this.id_cauHoi][0] = '' };
       }
-     // console.log(this.arr_de[this.id_cauHoi]);
     })
 
   }
+//  var a= this.data_getDN.maDoanhNghiep
+//   ks:khaoSat={maKhaoSat: 0,maDoanhNghiep: ,ngayDanhGia:new Date,ngaySua: new Date,nguoiSua: ' ',maDotKhaoSat: 1,trangThai: 1}
+
   postRs() {
-    console.log(this.arr_de);    
-    
+   
     //  console.log('KhaoSat')
     for (let key in this.arr_de) {
       for (let k in this.arr_de[key]) {
@@ -235,7 +249,7 @@ export class SurveyComponent implements OnInit {
           ctKs.thoiGianTraLoi=new Date();
           ctKs.trangThai=1;
         }       
-        
+       
         //console.log('Mã câu hỏi :' + key + '- Mã đáp án : ' + (k == '0' ? this.arr_de[key][k] : k));
         console.log("Start")
         //console.log('Mã câu hỏi :' + key + '- Mã đáp án : ' + (k == '0' ? this.arr_de[key][k] : k));
@@ -243,21 +257,47 @@ export class SurveyComponent implements OnInit {
         console.log(this.ctks1);
       }
     }
+    this.khaoSat={maKhaoSat: 0,maDoanhNghiep: this.data_getDN.maDoanhNghiep,ngayDanhGia:new Date,ngaySua: new Date,nguoiSua: ' ',maDotKhaoSat: 1,trangThai: 1}
     this.KhaoSat_DTO.KhaoSat=this.khaoSat;
     this.KhaoSat_DTO.CTKS=this.ctks1;
     this.KS_Service.Post_Ks(this.KhaoSat_DTO)
   }
+
+
+  
+
+
   returnChecked(value: boolean) {
     return value;
   }
-  activateClass(subModule:any){
-    subModule.maCauHoi = !subModule.maCauHoi;    
+  status: any = false;
+
+  activateClass(){
+    this.status = !this.status;    
   }
 
-
+ 
   activeClass(){
-    
+   if(this.arr_de[this.id_cauHoi])
+
+
+
+    $(document).ready(function(){
+      $('.question').click(function(){
+        $().css('background-color', '#000');
+      })
+     
+    });
   }
+
+  // onSelect(traloi:HTMLButtonElement):void{
+  //   this.traloi.nativeElement.childNodes.forEach((c:HTMLButtonElement)=>{
+  //     if(c.classList && c.classList.contains('selected')){
+  //       c.classList.remove('selected');
+  //     }
+  //   });
+  //   traloi.classList.add('selected');
+  // }
 
 
 

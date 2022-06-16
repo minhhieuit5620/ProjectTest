@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 const TOKEN_USER_KEY = 'auth-user-token';
 const USER_KEY = 'auth-user';
 
-const TOKEN_ADMIN_KEY="auth-admin-token";
-const ADMIN_KEY="auth-admin";
+const TOKEN_ADMIN_KEY='auth-admin-token';
+const ADMIN_KEY='auth-admin';
 declare var alertify: any;
 
 @Injectable({
@@ -58,10 +58,10 @@ export class TokenStorageService {
 
   //Login Admin
   
-  public saveTokenAdmin(tokenAdmin: string): void {
+  public saveTokenAdmin(token: string): void {
     const second = 120 * 60 * 1000;
     localStorage.removeItem(TOKEN_ADMIN_KEY);
-    localStorage.setItem(TOKEN_ADMIN_KEY, tokenAdmin);
+    localStorage.setItem(TOKEN_ADMIN_KEY, token);
     setTimeout(() => {
       localStorage.removeItem(TOKEN_ADMIN_KEY);
       alertify
@@ -82,9 +82,9 @@ export class TokenStorageService {
     return localStorage.getItem(TOKEN_ADMIN_KEY);
   }
 
-  public saveAdmin(token: string): void {
+  public saveAdmin(admin: string): void {
     localStorage.removeItem(ADMIN_KEY);
-    localStorage.setItem(ADMIN_KEY, token);
+    localStorage.setItem(ADMIN_KEY, admin);
   }
 
 

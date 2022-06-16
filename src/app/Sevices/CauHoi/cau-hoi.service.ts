@@ -51,6 +51,9 @@ export class CauHoiService {
     return this.http.get<LuaChon_DTO>(environment.apiUrl+'/api/LuaChon/GetLuaChonByMaCH/'+id)
   }
 
+  searchCH(search:string,data:CauHoi_DTO):Observable<CauHoi_DTO>{
+    return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/SearchCauHoi/'+search,data);
+  }
   
   Post_CH_DA(a:any){
     console.log(a)

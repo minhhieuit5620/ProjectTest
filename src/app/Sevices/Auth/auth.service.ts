@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 //const AUTH_API = environment.apiUrl + '/api/Login';
 const AUTH_API ="http://localhost:56472/api/Login/LoginUser";
 const AUTH_API_Admin ="http://localhost:56472/api/Login/LoginAdmin";
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -23,6 +24,6 @@ export class AuthService {
   }
     
   loginAdmin(username: string, password: string): Observable<any> { 
-    return this.http.get(AUTH_API_Admin+"?UserName="+username+"&Password="+password)
+    return this.http.get(AUTH_API_Admin+"?username="+username+"&password="+password)
    }
 }
