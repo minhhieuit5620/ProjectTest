@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:56472'
+  // apiUrl: 'http://apikhaosat.khcnhungyen.top'
+  apiUrl:'http://localhost:56472'
 };
 
 /*

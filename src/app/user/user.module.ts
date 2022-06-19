@@ -15,6 +15,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HeaderUserComponent } from './layout-user/header-user/header-user.component';
 import { Layout_UserModule } from './layout-user/layout-user.module';
 import { LayoutUserComponent } from './layout-user/layout-user.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     imports: [
@@ -27,10 +28,16 @@ import { LayoutUserComponent } from './layout-user/layout-user.component';
         FormsModule,
         ReactiveFormsModule,
         PdfViewerModule,
+        ToastrModule.forRoot({
+          timeOut: 1000,
+          positionClass: 'toast-bottom-right',
+          preventDuplicates: true,
+        }),
+      
     ],
 
       declarations: [
-        LayoutUserComponent,
+       // LayoutUserComponent,
        
        
   

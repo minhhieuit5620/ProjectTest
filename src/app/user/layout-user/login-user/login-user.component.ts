@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { AuthService } from 'src/app/Sevices/Auth/auth.service';
 import { TokenStorageService } from 'src/app/Sevices/Auth/TokenStorage.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login-user',
   templateUrl: './login-user.component.html',
@@ -24,6 +25,7 @@ export class LoginUserComponent implements OnInit {
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private _location: Location,
+    private toastr:ToastrService,
     private route: Router
   ) { }
 
@@ -52,6 +54,7 @@ export class LoginUserComponent implements OnInit {
          
          this.tokenStorage.saveTokenUser(data.token);
          this.tokenStorage.saveUser(data.users);
+         this.toastr.success('Đăng nhập thành công', 'Thành công ');    
          this.route.navigate(['/']);
        },
        (err) => {

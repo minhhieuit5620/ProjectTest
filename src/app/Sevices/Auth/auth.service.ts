@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 //const AUTH_API = environment.apiUrl + '/api/Login';
-const AUTH_API ="http://localhost:56472/api/Login/LoginUser";
-const AUTH_API_Admin ="http://localhost:56472/api/Login/LoginAdmin";
+const AUTH_API =environment.apiUrl+"/api/Login/LoginUser";
+const AUTH_API_Admin =environment.apiUrl+"/api/Login/LoginAdmin";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

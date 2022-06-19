@@ -31,8 +31,7 @@ export class HeaderComponent implements OnInit {
     getAdmin(){
         if(this.admin){
           this.userService.getByName(this.admin).subscribe((res: any) => {
-               this.data_getDN = res;
-              // console.log(this.data_getDN.hoVaTen);
+               this.data_getDN = res;            
               });    
         }
       }
@@ -64,7 +63,10 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
+        localStorage.removeItem('auth-admin-token');
         localStorage.removeItem('auth-admin');
+        //localStorage.clear();
+        window.location.reload(); 
         this.router.navigate(['/admin/Login']);
     }
 

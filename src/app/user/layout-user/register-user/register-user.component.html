@@ -30,75 +30,108 @@
         <div class="box-wrapper">
             <div class="box box-border">
                 <div class="box-body">
-                    <h4>Register</h4>
+                    <h4>Đăng ký</h4>
                     <form (ngSubmit)="f.form.valid && Submit()" #f="ngForm" novalidate>
                         <div class="form-group">
                             <label>Tên doanh nghiệp</label>
-                            <input type="text" autofocus name="tenToChuc" [(ngModel)]="form.tenToChuc" class="form-control" required>
+                            <input type="text" autofocus name="tenToChuc" [(ngModel)]="form.tenToChuc" class="form-control" required #ten="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="ten.errors && f.submitted">
+                            <div *ngIf="ten.errors['required']">Tài khoản không được để trống</div>
                         </div>
                         <div class="form-group">
                             <label>Tài khoản</label>
-                            <input type="text" autofocus name="taiKhoan" [(ngModel)]="form.taiKhoan" class="form-control" required>
+                            <input type="text" autofocus name="taiKhoan" [(ngModel)]="form.taiKhoan" class="form-control" required minlength="6" #taiKhoan="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="taiKhoan.errors && f.submitted">
+                            <div *ngIf="taiKhoan.errors['required']">Tài khoản không được để trống</div>
+                            <div *ngIf="taiKhoan.errors['minlength'] ">
+                                Tài khoản của bạn phải có ít nhất 6 kí tự
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Mật khẩu</label>
-                            <input type="text" autofocus name="matKhau" [(ngModel)]="form.matKhau" class="form-control" required>
+                            <input type="text" autofocus name="matKhau" [(ngModel)]="form.matKhau" class="form-control" required minlength="6" #matKhau="ngModel">
                         </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="matKhau.errors && f.submitted">
+                            <div *ngIf="matKhau.errors['required']">Mật khẩu không được để trống</div>
+                            <div *ngIf="matKhau.errors['minlength'] ">
+                                Mật khẩu của bạn phải có ít nhất 6 kí tự
+                            </div>
+                        </div>
+                        <span class="focus-input100"></span>
                         <div class="form-group">
                             <label>Mã số thuế</label>
-                            <input type="number" name="maDinhDanhDN" [(ngModel)]="form.maDinhDanhDN" class="form-control" required>
+                            <input type="number" name="maDinhDanhDN" [(ngModel)]="form.maDinhDanhDN" class="form-control" required minlength="6" maxlength="6" #maDinhDanhDN="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="maDinhDanhDN.errors && f.submitted">
+                            <div *ngIf="maDinhDanhDN.errors['required']"> Mã số thuế không được để trống</div>
+                            <div *ngIf="maDinhDanhDN.errors['minlength']||maDinhDanhDN.errors['maxlength'] ">
+                                Mã số thuế phải có 6 kí tự
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <input type="text" name="Address" [(ngModel)]="form.diaChi" class="form-control">
+                            <input type="text" name="Address" [(ngModel)]="form.diaChi" class="form-control" required #diaChi="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="diaChi.errors && f.submitted">
+                            <div *ngIf="diaChi.errors['required']"> Địa chỉ không được để trống</div>
+
                         </div>
                         <div class="form-group">
                             <label class="fw">Tỉnh thành</label>
-                            <input type="text" name="tinh" [(ngModel)]="form.tinhThanh" class="form-control" required>
+                            <input type="text" name="tinh" [(ngModel)]="form.tinhThanh" class="form-control" required #tinhThanh="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="tinhThanh.errors && f.submitted">
+                            <div *ngIf="tinhThanh.errors['required']"> Tỉnh thành không được để trống</div>
                         </div>
                         <div class="form-group">
                             <label class="fw">Điện thoại</label>
-                            <input type="phone" name="phone" [(ngModel)]="form.dienThoai" class="form-control">
+                            <input type="phone" name="phone" [(ngModel)]="form.dienThoai" class="form-control" required minlength="10" maxlength="13" #dienThoai="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="dienThoai.errors && f.submitted">
+                            <div *ngIf="dienThoai.errors['required']"> Số điện thoại không được để trống</div>
+                            <div *ngIf="dienThoai.errors['minlength']||dienThoai.errors['maxlength'] ">
+                                Số điện thoại không đúng
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="fw">Email</label>
-                            <input type="email" name="email" [(ngModel)]="form.email" class="form-control" required>
+                            <input type="email" name="email" [(ngModel)]="form.email" email="true" class="form-control" required #email="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="email.errors && f.submitted">
+                            <div *ngIf="email.errors['required']"> Email không được để trống</div>
+                            <div *ngIf="email.errors?.['email']">
+                                Email không đúng
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="fw">Website</label>
                             <input type="text" name="website" [(ngModel)]="form.website" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class="fw">Người đứng đầu</label>
-                            <input type="text" name="leader" [(ngModel)]="form.nguoiDungDau" class="form-control">
+                            <label class="fw">Người khảo sát</label>
+                            <input type="text" name="leader" [(ngModel)]="form.nguoiKhaoSat" class="form-control" required #nguoiKhaoSat="ngModel">
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="nguoiKhaoSat.errors && f.submitted">
+                            <div *ngIf="nguoiKhaoSat.errors['required']"> Tên người khảo sát không được để trống</div>
                         </div>
                         <div class="form-group">
                             <label class="fw">Ngành</label>
-                            <select name="nganh" id="Nganh" [(ngModel)]="form.maNganh" class=" styled-select">
-                                
-                                <option *ngFor="let item of dataNganh_DTO"   value="item.maNganh" > {{item.tenNganh}} </option>
-                                <!-- <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
-                                <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
-                                <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option> -->
+                            <select name="nganh" id="Nganh" [(ngModel)]="form.maNganh" class=" styled-select">                                
+                                <option *ngFor="let item of dataNganh_DTO"   value="{{item.maNganh}}" > {{item.tenNganh}} </option>                              
                             </select>
                             <!-- <input type="text" name="nganh" [(ngModel)]="form.maNganh" class="form-control" required> -->
                         </div>
                         <div class="form-group">
                             <label class="fw">Loại hình doanh nghiệp</label>
-                            <select name="loaiHinh" id="loai" [(ngModel)]="form.maLoaiHinh" class=" styled-select">
-                                <!-- <option   value="Null" selected>Chọn loại hình</option> -->
-                                <option *ngFor="let item of dataLoaiHinh"   value="{{item.maLoaiHinh}}" > {{item.tenLoaiHinh}} </option>
-                                <!-- <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
-                                <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
-                                <option  style="padding: 20px 0px;" value="Siêu nhỏ">Siêu nhỏ</option> -->
+                            <select name="loaiHinh" id="loai" [(ngModel)]="form.maLoaiHinh" class=" styled-select">                            
+                                <option *ngFor="let item of dataLoaiHinh"   value="{{item.maLoaiHinh}}" > {{item.tenLoaiHinh}} </option>                               
                             </select>
-                            <!-- <input type="text" name="loaiHinh" [(ngModel)]="form.maLoaiHinh" class="form-control" required> -->
                         </div>
-
                         <div class="form-group">
                             <label class="fw">Quy mô</label>
-                            <select name="myselect" id="quyMo" [(ngModel)]="form.quyMo" class=" styled-select">
-                                <!-- <option  style="padding: 20px 0px;" value="Null" selected>Chọn quy mô</option> -->
+                            <select name="myselect" id="quyMo" [(ngModel)]="form.quyMo" class=" styled-select">                            
                                <option    style="padding: 20px 0px;"  value="Lớn" >Lớn</option>
                                <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
                                <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
@@ -106,7 +139,7 @@
                            </select>
                         </div>
                         <div class="form-group text-right" style="margin-top:50px;">
-                            <button type="submit" class="btn btn-primary btn-block ">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block ">Đăng ký</button>
                         </div>
                         <div class="form-group text-center">
                             <span class="text-muted">Bạn đã có tài khoản?</span> <a routerLink="/user/LoginUser">Đăng nhập</a>

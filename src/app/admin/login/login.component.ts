@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Sevices/Auth/auth.service';
 import { TokenStorageService } from 'src/app/Sevices/Auth/TokenStorage.service';
 import { routerTransition } from '../router.animations';
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private tokenStorage: TokenStorageService,       
-        private route: Router
+        private route: Router,
+        private toastr:ToastrService,
     ) { }
 
     ngOnInit() { }
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
             (data) => {
                 this.tokenStorage.saveTokenAdmin(data.token);
                 this.tokenStorage.saveAdmin(data.admin);
+                this.toastr.success("Đăng nhập thành công","Thành công");
                 this.route.navigate(['/admin/dashboard']);
             },
             (err) => {

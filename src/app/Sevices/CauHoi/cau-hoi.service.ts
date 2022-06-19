@@ -19,6 +19,10 @@ export class CauHoiService {
 
 
 // get dữ liệu
+getKS(data:CauHoi_DTO):Observable<CauHoi_DTO> {
+  return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/GetCauHoiKS',data);
+}
+
   getall(data:CauHoi_DTO):Observable<CauHoi_DTO> {
     return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/GetAllCauHoi',data);
   }

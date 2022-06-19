@@ -25,7 +25,11 @@ import { CompanyMnComponent } from './tables/company-mn/company-mn.component';
 import { QAndAComponent } from './tables/q-and-a/q-and-a.component';
 import { UserComponent } from './tables/user/user.component';
 import { LogoutAdminGuard } from 'src/app/Sevices/Auth/logout-admin.guard';
-
+import { ProfileComponent } from './tables/profile/profile.component';
+import { TintucComponent } from './tables/tintuc/tintuc.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { DotKhaoSatComponent } from './tables/dot-khao-sat/dot-khao-sat.component';
+import { ContactComponent } from './tables/contact/contact.component';
 export const Mainroutes: Routes = [
   {
     path: '', component: LayoutComponent,canActivate: [AuthGuardService],
@@ -55,8 +59,18 @@ export const Mainroutes: Routes = [
       {
         path: 'User', component: UserComponent,
       },
-  
-
+      {
+        path: 'Profile', component: ProfileComponent,
+      },
+      {
+        path:'TinTuc', component:TintucComponent,
+      },
+      {
+        path:'DotKhaoSat', component:DotKhaoSatComponent,
+      },
+      {
+        path:'Contact', component:ContactComponent,
+      }
       
 
     ]
@@ -64,7 +78,7 @@ export const Mainroutes: Routes = [
   },
   {
     path: 'Login',
-    component: LoginComponent, canActivate: [LogoutAdminGuard]
+    component: LoginComponent,
   },
   {
     path: '**', component: NotFoundComponent,
@@ -75,11 +89,12 @@ export const Mainroutes: Routes = [
   imports: [
     // BrowserModule,
     CommonModule,
-
+    CKEditorModule,
     // LayoutRoutingModule, 
     NgbDropdownModule,
     NgbModule,
     FormsModule,
+    
     // BrowserAnimationsModule,
     RouterModule.forChild(Mainroutes)
 
@@ -97,8 +112,11 @@ export const Mainroutes: Routes = [
     KhaoSatComponent,
     CompanyMnComponent,
     QAndAComponent,
-    UserComponent
-
+    UserComponent,
+    ProfileComponent,
+    TintucComponent,
+    DotKhaoSatComponent,
+    ContactComponent
   ],
   providers: [AuthGuardService,LogoutAdminGuard],
 })

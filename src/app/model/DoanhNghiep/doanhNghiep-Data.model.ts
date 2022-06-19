@@ -9,7 +9,7 @@ export class doanhNghiep_Data {
     dienThoai:string;
     email:string;
     website:string;
-    nguoiDungDau:string;
+    nguoiKhaoSat:string;
     maNganh:number;
     maLoaiHinh:number;
     quyMo:string;

@@ -3,15 +3,16 @@
 
 
 <div class="row">
+    <button type="button" style="margin:10px 65% 10px 30px;height:50px;" class="btn btn-primary " data-toggle="modal" data-target="#add">
+        Thêm câu hỏi
+    </button>
+    <form class="search" (ngSubmit)=" f.form.valid && Search(1)" #f="ngForm" style="float: right;margin-right: 30px;margin-top:10px;">
+        <input type="text" name="search" [(ngModel)]="form.tmp" style="height: 50px;" placeholder="Nhập để tìm kiếm ....." />
+        <!-- <button type="submit" style="height: 50px;border:none">Tìm</button> -->
+    </form>
     <div class="col col-xl-12 col-lg-12">
 
-        <button type="button" style="margin:10px;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add">
-            Thêm câu hỏi
-        </button>
-        <form class="search" (ngSubmit)=" f.form.valid && Search(1)" #f="ngForm" style="float: right;margin-right: 30px;">
-            <input type="text" name="search" [(ngModel)]="form.tmp" style="height: 50px;" placeholder="Nhập để tìm kiếm ....." />
-            <button type="submit" style="height: 50px;border:none">Tìm</button>
-        </form>
+
 
         <!-- Modal Thêm -->
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" ngDefaultControl>
@@ -93,17 +94,14 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" (click)="Add()">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" (click)="Add()" data-dismiss="modal">Lưu</button>
                         <!-- <button type="button" class="btn btn-primary" (click)="update(data_getone.maNhomCauHoi,data_getone.tenNhomCauHoi,data_getone.maTieuChiCha,data_getone.trangThai)">Update</button> -->
                     </div>
                 </div>
             </div>
         </div>
         <!-- Modal Thêm -->
-
-
-
 
         <div class="card mb-12">
             <div class="card-header">Thông tin câu hỏi</div>
@@ -196,7 +194,7 @@
                                 <span >&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body sua">
                             <div class="container-fluid">
                                 <div class="form-group">
                                     <label for="">Nội dung</label>
@@ -211,7 +209,7 @@
                                 <div class="form-group">
                                     <label for="">Loại câu hỏi</label>
                                     <input type="text" name="maDinhDanhDN" [(ngModel)]="data_getone.maLoaiCauHoi" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                    <small id="helpId" class="text-muted"></small>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="">Nhóm câu hỏi</label>
@@ -219,16 +217,16 @@
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Người thêm</label>
-                                    <input type="email" name="maDinhDanhDN" [(ngModel)]="data_getone.nguoiThem" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="maDinhDanhDN" [(ngModel)]="data_getone.nguoiThem" id="" class="form-control" placeholder="" aria-describedby="helpId">
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Người Sửa</label>
                                     <input type="text" name="website" [(ngModel)]="data_getone.nguoiSua" id="" class="form-control" placeholder="" aria-describedby="helpId">
                                     <small id="helpId" class="text-muted"></small>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="">Trạng thái</label>
@@ -253,7 +251,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                             <!-- <button type="button" class="btn btn-primary" (click)="update(data_getone.maNhomCauHoi,data_getone.tenNhomCauHoi,data_getone.maTieuChiCha,data_getone.trangThai)">Update</button> -->
                         </div>
                     </div>
@@ -269,7 +267,7 @@
                     <div class="modal-content">
                         <!-- <form method="post" (ngSubmit)="delete_NCH(item.maNhomCauHoi)" class="p-3" role="form"> -->
                         <div class="modal-header">
-                            <h5 class="modal-title" ngDefaultControl>Xóa thông tin nhóm câu hỏi {{data_getone.maCauHoi}}</h5>
+                            <h5 class="modal-title" ngDefaultControl>Xóa thông tin câu hỏi {{data_getone.maCauHoi}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span >&times;</span>
                                 </button>
@@ -280,8 +278,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" (click)="Delete(data_getone.maCauHoi)">Xóa</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-danger" (click)="Delete(data_getone.maCauHoi)" data-dismiss="modal">Xóa</button>
                         </div>
                         <!-- </form> -->
                     </div>

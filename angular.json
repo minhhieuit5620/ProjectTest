@@ -29,7 +29,7 @@
                             "src/favicon.ico",
                             "src/assets"
                         ],
-                        "styles": ["node_modules/font-awesome/css/font-awesome.css", "src/styles/app.scss"],
+                        "styles": ["node_modules/font-awesome/css/font-awesome.css", "src/styles/app.scss", "node_modules/ngx-toastr/toastr.css"],
                         "scripts": ["node_modules/chart.js/dist/Chart.js"],
                         "allowedCommonJsDependencies": ["chart.js"],
                         "aot": false,
@@ -44,8 +44,8 @@
                         "production": {
                             "budgets": [{
                                     "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
+                                    "maximumWarning": "4mb",
+                                    "maximumError": "6mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
@@ -102,7 +102,8 @@
                         "scripts": ["node_modules/chart.js/dist/Chart.js"],
                         "styles": [
                             "node_modules/font-awesome/css/font-awesome.css",
-                            "src/styles/app.scss"
+                            "src/styles/app.scss",
+                            "node_modules/ngx-toastr/toastr.css"
                         ]
                     }
                 }

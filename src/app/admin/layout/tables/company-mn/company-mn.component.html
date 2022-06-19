@@ -6,7 +6,6 @@
     <div style="margin-left: 1000px;">
         <form class="search" style="margin:10px;" (ngSubmit)=" f.form.valid && Search(1)" #f="ngForm" style="float: right;margin-right: 30px;">
             <input type="text" name="search" [(ngModel)]="form.tmp" style="height: 50px;" placeholder="Nhập để tìm kiếm ....." />
-            <button type="submit" style="height: 50px;border:none">Tìm</button>
         </form>
     </div>
 
@@ -39,7 +38,7 @@
                             <td> {{item.tenToChuc}} </td>
 
                             <td> {{item.maDinhDanhDn}} </td>
-                            <td> {{item.nguoiDungDau}} </td>
+                            <td> {{item.nguoiKhaoSat}} </td>
                             <td> {{item.diaChi}} </td>
 
                             <td> {{item.quyMo}} </td>
@@ -111,7 +110,7 @@
                                     <span >&times;</span>
                                 </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body sua">
                             <div class="container-fluid">
 
                                 <div class="form-group">
@@ -127,7 +126,7 @@
                                 <div class="form-group">
                                     <label for="">Người đứng đầu</label>
 
-                                    <input type="text" name="maDinhDanhDN" [(ngModel)]="data_getone.nguoiDungDau" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="maDinhDanhDN" [(ngModel)]="data_getone.nguoiKhaoSat" id="" class="form-control" placeholder="" aria-describedby="helpId">
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
                                 <div class="form-group">
@@ -178,7 +177,7 @@
                             <button type="button" class="btn btn-primary" (click)="update(data_getone.maDoanhNghiep,
                                                                                         data_getone.tenToChuc,
                                                                                         data_getone.maDinhDanhDn,
-                                                                                        data_getone.nguoiDungDau,
+                                                                                        data_getone.nguoiKhaoSat,
                                                                                         data_getone.diaChi,
                                                                                         data_getone.quyMo,
                                                                                         data_getone.dienThoai,
@@ -186,7 +185,7 @@
                                                                                         ,data_getone.website,
                                                                                         data_getone.maNganh,
                                                                                         data_getone.maLoaiHinh)">
-                                                                                        Update
+                                                                                       Cập nhật
                             </button>
                         </div>
                     </div>
@@ -212,8 +211,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" (click)="delete_DN(data_getone.maDoanhNghiep)">Xóa</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-danger" (click)="delete_DN(data_getone.maDoanhNghiep)" data-dismiss="modal">Xóa</button>
                         </div>
 
                     </div>

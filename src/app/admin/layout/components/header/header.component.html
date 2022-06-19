@@ -11,13 +11,15 @@
 
         <ul class="navbar-nav ml-auto">
 
-            <li class="nav-item dropdown" ngbDropdown>
-                <a class="nav-link" href="javascript:void(0)" *ngIf="tokenAdmin != null" ngbDropdownToggle>
+            <li class="nav-item dropdown" ngDefaultControl *ngIf="tokenAdmin != null" ngbDropdown>
+                <a class="nav-link" href="javascript:void(0)" *ngIf="data_getDN" ngbDropdownToggle>
+
                     <i class="fa fa-user"></i> Xin chào, {{data_getDN.hoVaTen}}
+
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu style="font-size: 14px !important;width:150px;">
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' }}
+                    <a class="dropdown-item" [routerLink]="['/admin/Profile']">
+                        <i class="fa fa-fw fa-user"></i> {{ 'Hồ sơ của tôi' }}
                     </a>
                     <!-- <a class="dropdown-item" href="javascript:void(0)">
                         <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' }}
@@ -25,8 +27,8 @@
                     <a class="dropdown-item" href="javascript:void(0)">
                         <i class="fa fa-fw fa-gear"></i> {{ 'Settings' }}
                     </a> -->
-                    <a (click)="onLoggedout()" [routerLink]="['/login']" class="dropdown-item">
-                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' }}
+                    <a (click)="onLoggedout()" style="color: red;cursor: pointer;" class="dropdown-item">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Đăng xuất' }}
                     </a>
                 </div>
             </li>

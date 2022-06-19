@@ -9,6 +9,7 @@ import { NganhKD_DTO } from 'src/app/model/NganhKD/nganhKD-DTO.model';
 import { loaiHinhDN_DTO } from 'src/app/model/LoaiHinhDN/loaiHinhDN-DTO.model';
 import { NganhKD_Data } from 'src/app/model/NganhKD/nganhKD-data.model';
 import { loaiHinhDN_Data } from 'src/app/model/LoaiHinhDN/loaiHinhDN-data.model';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
@@ -29,7 +30,7 @@ export class RegisterUserComponent implements OnInit {
   //   dienThoai:new FormControl('', [ Validators.required]),
   //   email:new FormControl('', [ Validators.required]),
   //   website:new FormControl(''),
-  //   nguoiDungDau:new FormControl(''),
+  //   nguoiKhaoSat:new FormControl(''),
   //   maNganh: new FormControl(1, [ Validators.required]),
   //   maLoaiHinh: new FormControl(1, [ Validators.required]),
   //   quyMo:new FormControl('', [ Validators.required]),
@@ -58,23 +59,23 @@ export class RegisterUserComponent implements OnInit {
   
   form: any = {   
     maDoanhNghiep:0,
-    maDinhDanhDN: 0,
-    taiKhoan:' ',
-    matKhau:' ',
-    tenToChuc:' ',
-    diaChi:' ',
-    tinhThanh:' ',
-    dienThoai:' ',
-    email:' ',
-    website:' ',
-    nguoiDungDau:' ',
+    maDinhDanhDN: null,
+    taiKhoan:null,
+    matKhau:null,
+    tenToChuc:null,
+    diaChi:null,
+    tinhThanh:null,
+    dienThoai:null,
+    email:null,
+    website:null,
+    nguoiKhaoSat:null,
     maNganh:1,
     maLoaiHinh:1,
-    quyMo:' ',
-    tieuDe:' ',
-    moTa:' ',
+    quyMo:null,
+    tieuDe:null,
+    moTa:null,
     trangThai:1,
-  rol:1,
+    rol:1,
     nguoiTao:' ',
     ngayTao:new Date,
     nguoiSua:' ',
@@ -82,7 +83,7 @@ export class RegisterUserComponent implements OnInit {
 
   };
 
-  dl:DoanhNghiep_DTO={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+  dl:DoanhNghiep_DTO={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiKhaoSat: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
   ,Page:{pageSize:10, pageIndex:1} };
   dlForm:DoanhNghiep_DTO={ Data:this.form
   ,Page:{pageSize:10, pageIndex:1} };
@@ -104,6 +105,7 @@ export class RegisterUserComponent implements OnInit {
     private loaiHinhDNService: loaiHinhDNService,
     private nganhKDService:NganhKDService,
     private formBuilder: FormBuilder ,
+    private toastr:ToastrService,
     private route: Router
   ) { }
 
@@ -128,13 +130,14 @@ export class RegisterUserComponent implements OnInit {
   Submit():void{
     this.DNService.Add_DN(this.dlForm).subscribe(
       (datas)=>{
-        this.data_DTO.push(datas)
-        this.route.navigate(['/']);
+        this.data_DTO.push(datas);
+        this.toastr.success('Đăng ký thành công', 'Thành công ');    
+        this.route.navigate(['/user/LoginUser']);
       },   
     (err) => {
       console.log("errorMessage");
             this.errorMessage = err.error.message;
-           // this.isLoginFailed = true;
+            this.toastr.warning('Đăng ký thất bại', 'Thất bại ');    
    
     
        

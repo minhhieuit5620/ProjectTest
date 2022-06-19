@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { doanhNghiep_Data } from 'src/app/model/DoanhNghiep/doanhNghiep-Data.model';
 import { DoanhNghiep_DTO } from 'src/app/model/DoanhNghiep/doanhNghiep.model';
 import { doanhNghiepService } from 'src/app/Sevices/DoanhNghiep/doanhNghiep.service';
@@ -24,13 +25,14 @@ export class CompanyMnComponent implements OnInit {
   advancedPagination: number;
   isDisabled: boolean;
   constructor(
-    private DoanhNghiepService:doanhNghiepService
+    private DoanhNghiepService:doanhNghiepService,
+    private toastr:ToastrService,
   ) { }
 
   total:any;
   currentPage:number=1;
 
-  dl:DoanhNghiep_DTO={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+  dl:DoanhNghiep_DTO={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiKhaoSat: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
   ,Page:{pageSize:10, pageIndex:1} };
 
   data_DN:doanhNghiep_Data[];
@@ -44,7 +46,7 @@ export class CompanyMnComponent implements OnInit {
 }
 
   getDN(a:number){
-    this.dl={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+    this.dl={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiKhaoSat: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
     ,Page:{pageSize:10, pageIndex:a} };
     this.DoanhNghiepService.getallDN(this.dl).subscribe((res:any)=>{
       this.data_DN=res.data;
@@ -54,7 +56,7 @@ export class CompanyMnComponent implements OnInit {
     })
   }
   Search(a:number){
-    this.dl={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+    this.dl={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiKhaoSat: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
     ,Page:{pageSize:10, pageIndex:a} };
     this.DoanhNghiepService.searchDN(this.form.tmp,this.dl).subscribe((res:any)=>{
       this.data_DN=res.data;
@@ -69,14 +71,15 @@ export class CompanyMnComponent implements OnInit {
     console.log(this.data_getone);
     })
   }
-  update(id:number,tenToChuc:string,maSoThue:number,nguoiDungDau:string,diaChi:string,quyMo:string,SDT:string,email:string,website:string,maNganh:number,maLoaiHinh:number):any {
-    var newdl={ Data:{maDoanhNghiep: id,maDinhDanhDn: maSoThue,taiKhoan:'',matKhau:'',tenToChuc: tenToChuc, diaChi:diaChi,tinhThanh:'', dienThoai: SDT ,email: email ,website: website ,nguoiDungDau: nguoiDungDau,maNganh: maNganh ,maLoaiHinh: maLoaiHinh,quyMo: quyMo ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+  update(id:number,tenToChuc:string,maSoThue:number,nguoiKhaoSat:string,diaChi:string,quyMo:string,SDT:string,email:string,website:string,maNganh:number,maLoaiHinh:number):any {
+    var newdl={ Data:{maDoanhNghiep: id,maDinhDanhDn: maSoThue,taiKhoan:'',matKhau:'',tenToChuc: tenToChuc, diaChi:diaChi,tinhThanh:'', dienThoai: SDT ,email: email ,website: website ,nguoiKhaoSat: nguoiKhaoSat,maNganh: maNganh ,maLoaiHinh: maLoaiHinh,quyMo: quyMo ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
     ,Page:{pageSize:60, pageIndex:1} };
     this.DoanhNghiepService.Put(newdl).subscribe   
       (data => {
         console.log(id);
+        this.toastr.success("Sửa thành công");
         //this.data_DTO.push(data)     
-        $('#Sua').modal('hide');
+      
         // this.getDN();
       })
   }
@@ -87,12 +90,13 @@ export class CompanyMnComponent implements OnInit {
     this.DoanhNghiepService.Delete(id,this.dl).subscribe(
       (data:any) => {
         console.log(id);
-        //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
-        $('#Xoa').modal('hide');
+        this.toastr.success("Xóa thành công");
+       
         // this.getDN();
       },
       (error) => {
-      //  this.showError('Xoá thông tin bệnh nhân không thành công!');
+        this.toastr.warning("Xóa thất bại");
+       
         console.log(error);
       }
     );

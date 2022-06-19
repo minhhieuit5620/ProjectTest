@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   constructor(private TinTucService: TinTucService) { }
 
   ngOnInit(): void {
-    this.getCauHoi();
+    this.getTinTuc();
 
     this.getTin_KHCN();
     this.getTin_ATBX();
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.getTin_TBCV();
     
   }
-  getCauHoi() {
+  getTinTuc() {
     this.TinTucService.getall(this.DL_CH).subscribe((res: any) => {
       this.data = res.data     
     })

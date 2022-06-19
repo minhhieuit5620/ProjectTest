@@ -3,6 +3,13 @@ import { User_Data } from 'src/app/model/User/user-data.model';
 import { User_DTO } from 'src/app/model/User/user-DTO.model';
 import { UserService } from 'src/app/Sevices/User/user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+
+
+declare const $: any;
+const datePipe = new DatePipe('en-US');
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -32,6 +39,7 @@ export class UserComponent implements OnInit {
   isDisabled: boolean;
   constructor(   
     private UserService: UserService,
+    private toastr:ToastrService,
   ) {
     this.advancedPagination = 1;
     this.isDisabled = true;
@@ -71,7 +79,9 @@ export class UserComponent implements OnInit {
 
   Add():any{
     this.UserService.Add_User(this.dl).subscribe(datas=>{this.data_DTO.push(datas)})
+    this.toastr.success("Thêm thành công")
      this.GetAll(1);
+    //  $('#add').modal('hide');
   }
 
   getOne(id:number){
@@ -79,7 +89,8 @@ export class UserComponent implements OnInit {
     this.UserService.getOne(id).subscribe((res:any)=>{
      
     this.data_getone=res;
-    console.log(this.data_getone);
+   
+    //console.log(this.data_getone);
     })
   }
   update(id:number,taiKhoan:string,hoTen:string,dienThoai:string,email:string):any {
@@ -87,7 +98,9 @@ export class UserComponent implements OnInit {
     ,Page:{pageSize:60, pageIndex:1} };
     this.UserService.Put_User(this.dl).subscribe   
       (data => {
-       window.location.reload();
+        this.toastr.success("Sửa thành công")
+        this.GetAll(1);
+      //  $('#Sua').modal('hide');
       })   
   }
 
@@ -101,11 +114,16 @@ export class UserComponent implements OnInit {
   delete_NCH(id:number){
     this.UserService.Delete_User(id,this.dl).subscribe(
       (data:any) => {
-        console.log(id);
+        //console.log(id);
         
+        this.toastr.success("Xóa thành công");
+        this.GetAll(1);
+      //  $('#Xoa').modal('hide');
       },
       (error) => {
       
+        this.toastr.warning("Xóa thất bại")
+       // $('#Xoa').modal('hide');
         console.log(error);
       }
     );

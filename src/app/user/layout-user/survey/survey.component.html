@@ -17,13 +17,16 @@
 </style>
 
 <script>
-    $(document).ready(function() {
-        $("button").click(function() {
-            alert("h");
-            $(this).addClass("activeQ");
-            // $("p").addClass("hint highlight");
-        });
-    });
+    // $(document).ready(function() {
+    //     $("button").click(function() {
+    //         alert("h");
+    //         $(this).addClass("activeQ");
+    //         // $("p").addClass("hint highlight");
+    //     });
+    // });
+    // window.onbeforeunload = function() {
+    //     return "Bạn có muốn tải lại trang khi chưa hoàn thành bài khảo sát ?";
+    // };
 </script>
 
 
@@ -35,6 +38,9 @@
                     <h3 class="aside-title">Phiếu Khảo Sát</h3>
                     <div class="aside-body">
                         <div>
+                            <b style="color: red;"><i>Chú ý:</i></b>
+                            <p> Bạn phải hoàn thành toàn bộ câu hỏi khảo sát trước khi gửi.</p>
+
                             <!-- <div class="item-in">
                                 <b>Mã Phiếu :</b>
                                 <span> 111111</span>
@@ -50,6 +56,11 @@
 
 
                         </div>
+                        <div *ngIf="data_getDotKS">
+                            <p> <b style="color: #000;"><i>Đợt khảo sát:</i></b> {{data_getDotKS.tenDotKhaoSat}}</p>
+                            <p><b style="color: #000;"><i>Tên doanh nghiệp:</i></b> {{data_getDN.tenToChuc}}</p>
+                            <p><b style="color: #000;"><i>Người khảo sát:</i></b> {{data_getDN.nguoiKhaoSat}}</p>
+                        </div>
                         <hr>
                     </div>
                 </aside>
@@ -57,25 +68,21 @@
                 <aside>
                     <!-- <h1 class="aside-title">Techno</h1> -->
                     <div class="aside-body">
-                        <h1 class="aside-title">Nhân lực</h1>
-                        <!-- <article class="article-fw" >
+                        <h1 class="aside-title">Danh sách câu hỏi</h1>
+                        <article class="article-fw">
                             <div class="inner">
-                                <button class="btn btn-sm btn-info question " *ngFor="let item of data; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
+                                <button id="d{{item.maCauHoi}}" type="button" class="btn btn-sm btn-info question" [class.activeQ]="item.maCauHoi === activeIndex" (click)="activeIndex = item.maCauHoi" (blur)="activeIndex = item.maCauHoi" *ngFor="let item of dataKS; let i=index;" style="color: #fff; border-radius: 5px;"
+                                    (click)="getOne(item.maCauHoi,i+1)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
                         </article>
-                        <h1 class="aside-title">Trang thiết bị</h1>
-                        <article class="article-fw" >
-                            <div class="inner">
-                                <button class="btn btn-sm btn-info question " style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
-                            </div>
-                        </article> -->
-
+                        <!-- 
+                        <h1 class="aside-title">Nhân lực</h1>
                         <article class="article-fw">
                             <div class="inner">
                                 <button id="d{{item.maCauHoi}}" type="button" class="btn btn-sm btn-info question" [class.activeQ]="item.maCauHoi === activeIndex" (click)="activeIndex = item.maCauHoi" *ngFor="let item of data_51; let i=index" style="color: #fff; border-radius: 5px;"
                                     (click)="getOne(item.maCauHoi)" (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
-                        </article>
+                        </article> 
                         <h1 class="aside-title">Trang thiết bị</h1>
                         <article class="article-fw">
                             <div class="inner" #traloi>
@@ -96,7 +103,7 @@
                                 <button id="d{{item.maCauHoi}}" class="btn btn-sm btn-info question " [class.activeQ]="item.maCauHoi === activeIndex" (click)="activeIndex = item.maCauHoi" *ngFor="let item of data_53; let i=index" style="color: #fff; border-radius: 5px;" (click)="getOne(item.maCauHoi)"
                                     (click)="getDapAn(item.maCauHoi)"> {{i+1}}</button>
                             </div>
-                        </article>
+                        </article>-->
                         <div class="line"></div>
 
                         <div>
@@ -142,7 +149,7 @@
                             <form class="checkbox-group">
                                 <div *ngIf="data_getone.maLoaiCauHoi===1">
                                     <div class="form-group" *ngFor="let answer of data_Answer; let i=index">
-                                        <label><input id="{{answer.maLuaChon}}"  class="chon" routerLinkActive="actived"  (click)="activeClass" (click)="chonDapAn(answer.maLuaChon,1)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="radio"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
+                                        <label><input id="{{answer.maLuaChon}}"  class="chon"   (click)="activeClass" (click)="chonDapAn(answer.maLuaChon,1)" checked="{{ returnChecked(arr_de[id_cauHoi][answer.maLuaChon])?'checked':'' }}"  type="radio"  value="answer.noiDung" name="answer"> {{answer.noiDung}} </label>
 
                                     </div>
                                 </div>
@@ -156,14 +163,13 @@
                                         <label for=""></label>
                                         <input type="text" name="answer" id="" [(ngModel)]="arr_de[id_cauHoi][0]" (blur)="test()" class="form-control chon" placeholder="Nhập đáp án trả lời phù hợp .... " aria-describedby="helpId ">
                                     </div>
-
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <!-- <div class="btn btn-info ">Trở lại</div>
-                    <div class="btn btn-info " style="float: right; margin-left: 5px; ">Tiếp tục</div> -->
-                    <div class="btn btn-info btn-lg " style="float: right;margin-top: 30px; " (click)="postRs()">Nộp bài</div>
+                    <div class="btn btn-info " style="float: left; margin-left: 5px;margin-top: 30px; padding: 10px; " (click)=" previous()">Trở lại</div>
+                    <div class="btn btn-info " style="float: left; margin-left: 5px;margin-top: 30px;padding: 10px;" (click)="next()">Tiếp tục</div>
+                    <div class="btn btn-danger  " style="float: right;margin-top: 30px;padding: 10px; " (click)="postRs()">Gửi</div>
                     <hr>
                 </article>
                 <!-- hịaahshshshshsshsh
@@ -174,17 +180,32 @@
 
             </div>
         </div>
-        <div class="row " style="min-height: 500px;text-align:center " *ngIf="data_getone==null ">
+        <div class="row  " id="chay" style="min-height: 500px;text-align:center " *ngIf="data_getone==null ">
+
             <div class="col-md-12 " style="text-align:center ">
-                <h2>
-                    Bạn có muốn bắt đầu khảo sát ngay bây giờ ?
-                </h2>
                 <div>
-                    <button class="btn btn-info " style="padding:15px; margin-right: 10px; " [class.activeQ]="data[0].maCauHoi === activeIndex" (click)="activeIndex = data[0].maCauHoi" (click)="getOne(data[0].maCauHoi) " (click)="getDapAn(data[0].maCauHoi) "> Bắt đầu</button>
+                    <h2>Vui lòng chọn đợt khảo sát trước khi khảo sát </h2>
+                    <select name="nganh" id="Nganh" style="height: 40px;font-size: 14px !important;display: initial !important;width: 30% !important;" class="form-control styled-select" (change)="onChange($event)">
+                        <option  style="padding: 20px 0px;font-size: 14px;"  value="Vừa" disabled selected>
+                          Chọn đợt khảo sát
+                        </option>                                        
+                        <option  style="padding: 20px 0px;font-size: 14px;" *ngFor="let item of data_dotKS;"  value="{{item.maDotKhaoSat}}">{{item.tenDotKhaoSat}}</option>
+                                                           
+                    </select>
+                    <button class="btn btn-warning " style="padding:15px; margin: 10px; "> <a routerLink="/user/Manual" style="color: #fff;text-decoration: none; ">Hướng dẫn </a>  </button>
+                </div>
+                <div id="hien" class="an">
+                    <h2>
+                        Bạn có muốn bắt đầu khảo sát ngay bây giờ ?
+                    </h2>
+                    <div>
+                        <button class="btn btn-info " style="padding:15px; margin-right: 10px; " [class.activeQ]="data[0].maCauHoi === activeIndex" (click)="activeIndex = data[0].maCauHoi" (click)="getOne(data[0].maCauHoi,1) " (click)="getDapAn(data[0].maCauHoi)" (click)="start()"> Bắt đầu</button>
+                        <button class="btn btn-warning " style="padding:15px; " routerLink="/"> Quay lại trang chủ</button>
 
-                    <button class="btn btn-warning " style="padding:15px; margin-right: 10px; "> <a routerLink="/user/Manual" style="color: #fff;text-decoration: none; ">Hướng dẫn thi </a>  </button>
+                    </div>
 
-                    <!-- <button class="btn btn-warning " style="padding:15px; "> Quay lại trang chủ</button> -->
+
+
                 </div>
             </div>
         </div>

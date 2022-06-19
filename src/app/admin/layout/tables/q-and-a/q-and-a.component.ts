@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CauHoi_Data } from 'src/app/model/CauHoi/cau-hoi-data.model';
 import { CauHoi_DTO } from 'src/app/model/CauHoi/cau-hoi-DTO.model';
 import { CauHoi } from 'src/app/model/CauHoi_DapAnDTO/cau-hoi.model';
@@ -29,6 +30,7 @@ export class QAndAComponent implements OnInit {
     private CauHoiService:CauHoiService,
     private NhomCauHoiService: NhomCauHoiService,
     private LChon:LuaChonService,
+    private toastr:ToastrService,
   ) {
   
    }
@@ -129,6 +131,8 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
     }
    this.dlAdd.LuaChon=this.lc2;
    this.CauHoiService.Post_CH_DA(this.dlAdd);
+   this.getQ(1);
+   this.toastr.success("Thêm thành công")
   // return this.getQ();
   }
 
@@ -155,11 +159,12 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
     this.LChon.DeleteByMCH(id,this.data_Lc).subscribe(
       (data:any) => {
         console.log(id);
-        //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
-        $('#Xoa').modal('hide');
+        this.toastr.success("Xóa thành công")
+        this.getQ(1);
       //  this.getQ();
       },
       (error) => {
+        this.toastr.warning("Xóa thấy bại")
       //  this.showError('Xoá thông tin bệnh nhân không thành công!');
         console.log(error);
       }

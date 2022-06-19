@@ -9,7 +9,7 @@ export class CTKS_DN_CH_LC {
     dienThoai: string;
     email: string;
     website: string;
-    nguoiDungDau: string;
+    nguoiKhaoSat: string;
     maNganh: number;
     maLoaiHinh: number;
     quyMo: string;
@@ -21,6 +21,22 @@ export class CTKS_DN_CH_LC {
     ngayTao:Date;
     ngaySua:Date;
     nguoiSua: string;
+
+    //DotKhaoSat
+    maDotKhaoSat_dks:number;
+    tenDotKhaoSat_dks:string;
+    moTa_dks:string;
+    ngayBatDau:Date;
+    ngayKetThuc:Date;
+    fileBaoCaoKetQua:string;
+    ngaytao_dks:Date;
+    maNguoitao:number;
+     ngaySua_dks:Date;
+     maNguoiSua:number;
+     fileQuyetDinh:string;
+     fileKeHoach:string
+     trangThai_dks:number;    
+   
    //KhaoSat
    maKhaoSat_ks:number;
    maDoanhNghiep_ks:number;

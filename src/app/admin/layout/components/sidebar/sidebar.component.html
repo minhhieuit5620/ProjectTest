@@ -28,12 +28,6 @@
                             <span>{{ 'Câu hỏi'  }}</span>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu'  }}</span>
-                        </a>
-                    </li> -->
                 </ul>
             </li>
         </div>
@@ -41,17 +35,41 @@
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Nhóm câu hỏi'  }}</span>
         </a> -->
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/KhaoSat']" class="list-group-item">
+        <div class="nested-menu">
+            <a (click)="addExpandClass('khaoSat')" class="list-group-item">
+                <i class="fa fa-fw fa-table"></i>&nbsp;
+                <span style="margin-right:100px;">{{ 'Khảo sát'  }}</span>
+                <i class="fa fa-caret-down"></i>
+            </a>
+            <li [class.expand]="showMenu === 'khaoSat'" class="nested">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/DotKhaoSat']" class="list-group-item">
+                            <i class="fa fa-file-o"></i> &nbsp;
+                            <span>{{ 'Đợt khảo sát'  }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/KhaoSat']" class="list-group-item">
+                            <i class="fa fa-file-o"></i> &nbsp;
+                            <span>{{ 'Khảo sát'  }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
 
-            <!-- <i class="fa fa-fw fa-edit"></i> -->
-            <i class="fa fa-file-o"></i> &nbsp;
-            <span>{{ 'Khảo sát'  }}</span>
-        </a>
         <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/DoanhNghiep_Mn']" class="list-group-item">
             <i class="fa fa-fw fa-building"></i>
             <!-- <i class="fa fa-fw fa-desktop"></i> -->
             &nbsp;
             <span>{{ 'Doanh nghiệp'  }}</span>
+        </a>
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/TinTuc']" class="list-group-item">
+            <i class="fa fa-fw fa-newspaper"></i>
+            <!-- <i class="fa fa-fw fa-desktop"></i> -->
+            &nbsp;
+            <span>{{ 'Tin Tức'  }}</span>
         </a>
         <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/User']" class="list-group-item">
             <i class="fa fa-fw fa-user"></i>
@@ -59,11 +77,11 @@
             &nbsp;
             <span>{{ 'Người dùng'  }}</span>
         </a>
-        <!-- <a [routerLinkActive]="['router-link-active']" [routerLink]="['/grid']" class="list-group-item">
+        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/Contact']" class="list-group-item">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;
-            <span>{{ 'Bootstrap Grid'  }}</span>
+            <span>{{ 'Liên hệ'  }}</span>
         </a>
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/components']" class="list-group-item">
+        <!-- <a [routerLinkActive]="['router-link-active']" [routerLink]="['/components']" class="list-group-item">
             <i class="fa fa-th-list"></i>&nbsp;
             <span>{{ 'Component'  }}</span>
         </a> -->

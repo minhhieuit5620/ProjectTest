@@ -147,26 +147,25 @@
                     </span>
                         </div>
                         <div class="wrap-input100 validate-input form-group " data-validate="Username is required">
-                            <input class="input100 form-control" autofocus type="text" name="EmailCus" [(ngModel)]="form.EmailCus" required #EmailCus="ngModel">
+                            <input class="input100 form-control" autofocus type="text" name="EmailCus" [(ngModel)]="form.EmailCus" required minlength="6" #EmailCus="ngModel">
                             <span class="focus-input100"></span>
                         </div>
                         <div class="alert alert-danger" role="alert" *ngIf="EmailCus.errors && f.submitted">
-                            Tên đăng nhập không được bỏ trống!
+                            <div *ngIf="EmailCus.errors['required']">Tên đăng nhập không được để trống</div>
+                            <div *ngIf="EmailCus.errors['minlength'] ">
+                                Tên đăng nhập của bạn chưa đúng
+                            </div>
                         </div>
                         <div class="p-t-13 p-b-9">
                             <span class="txt1">
                         Mật khẩu
-                    </span>
-
-                            <!-- <a href="#" class="txt2 bo1 m-l-5">
-                        Forgot?
-                    </a> -->
+                            </span>
                         </div>
                         <div class="wrap-input100 validate-input form-group" data-validate="Password is required">
                             <input class="input100 form-control" type="password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel">
                             <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
-                                <div *ngIf="password.errors">Mật khẩu không được để trống</div>
-                                <div *ngIf="password.errors ">
+                                <div *ngIf="password.errors['required']">Mật khẩu không được để trống</div>
+                                <div *ngIf="password.errors['minlength'] ">
                                     Mật khẩu của bạn phải có ít nhất 6 kí tự
                                 </div>
                             </div>

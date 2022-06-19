@@ -17,7 +17,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 // import { UserLoginComponent } from './user/user-login/user-login.component';
 import { HeaderUserComponent } from './user/layout-user/header-user/header-user.component';
 import { LoginComponent } from './admin/login/login.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
     imports: [
        // CommonModule,
@@ -30,6 +31,15 @@ import { LoginComponent } from './admin/login/login.component';
         FormsModule,
         ReactiveFormsModule,
         PdfViewerModule,
+        CKEditorModule,
+
+    // ToastrModule.forRoot({ positionClass: 'inline' }),
+    // ToastContainerModule,
+        ToastrModule.forRoot({
+            timeOut: 2000,
+            positionClass: 'toast-top-right',
+            preventDuplicates: true,
+          }),
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [AppComponent,AdminComponent, UserComponent ],

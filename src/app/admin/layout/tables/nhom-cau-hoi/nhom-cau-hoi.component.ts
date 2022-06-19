@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
  import { NhomCauHoiService } from 'src/app/Sevices/NhomCauHoi/nhom-cau-hoi.service';
 import { NhomCauHoi_Data } from 'src/app/model/NhomCauHoi/nhom-cau-hoi-data.model';
 import { NhomCauHoi_DTO } from 'src/app/model/NhomCauHoi/nhom-cau-hoi.model';
+import { ToastrService } from 'ngx-toastr';
 
 declare const $: any;
 const datePipe = new DatePipe('en-US');
@@ -39,6 +40,7 @@ currentPage:number=1;
   isDisabled: boolean;
   constructor(   
     private NhomCauHoiService: NhomCauHoiService,
+    private toastr:ToastrService,
   ) {
     this.advancedPagination = 1;
     this.isDisabled = true;
@@ -73,6 +75,8 @@ currentPage:number=1;
 
   Add():any{
     this.NhomCauHoiService.Add_NCH(this.dl).subscribe(datas=>{this.data_DTO.push(datas)})
+    this.toastr.success("Thêm thành công")
+    this.GetAll(1);
    // return this.GetAll();
   }
 //vẫn dùng được
@@ -90,19 +94,10 @@ currentPage:number=1;
     this.NhomCauHoiService.getOne(id).subscribe((res:any)=>{
      
     this.data_getone=res;
-    console.log(this.data_getone);
+    //console.log(this.data_getone);
     })
   }
 
-  // GetOne(id:number){
-  //   this.NhomCauHoiService.getOne(id,this.dl) .subscribe((res:any)=>{this.data_getone=res.data})
-  //   // .then((res) => <NhomCauHoi_DTO>res)
-  //   // .then((data) => {
-  //   //   this.data_getone = data;
-  //   //   //this.setValue(data);
-  //      console.log(this.data_getone);
-  //   // });
-  // }
 
   update(id:number,ten:string,tieuchicha:number,trangthai:number):any {
     this.dl={ Data:{maNhomCauHoi: id,tenNhomCauHoi:ten, maTieuChiCha:tieuchicha,trangThai:trangthai, nguoiThem: 'Hieu' ,ngayThem:new Date,nguoiSua:' ',ngaySua:new Date}
@@ -110,15 +105,10 @@ currentPage:number=1;
     this.NhomCauHoiService.Put_NCH(this.dl).subscribe   
       (data => {
         console.log(id);
-        //this.data_DTO.push(data)     
-        $('#Sua').modal('hide');
-        // this.GetAll();
+        this.toastr.success("Sửa thành công")  
+        this.GetAll(1);       
       })//,
-    //   (error) => {
-    //  
-    //     console.log(error);
-    //   }
-    // );
+    
   }
 
   counter(i: number) {
@@ -132,13 +122,11 @@ currentPage:number=1;
     this.NhomCauHoiService.Delete_NCH(id,this.dl).subscribe(
       (data:any) => {
         console.log(id);
-        //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
-        
-        $('#Xoa').modal('hide');
-        // this.GetAll();
+        this.toastr.success("Xóa thành công")
+        this.GetAll(1);
       },
       (error) => {
-      //  this.showError('Xoá thông tin bệnh nhân không thành công!');
+        this.toastr.success("Xóa thất bại")  
         console.log(error);
       }
     );

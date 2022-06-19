@@ -9,7 +9,7 @@ export class khaoSat_DN {
     dienThoai: string;
     email: string;
     website: string;
-    nguoiDungDau: string;
+    nguoiKhaoSat: string;
     maNganh: number;
     maLoaiHinh: number;
     quyMo: string;
@@ -27,6 +27,21 @@ export class khaoSat_DN {
     ngayDanhGia:Date;
     ngaySua_ks:Date;
     maDotKhaoSat: number;
-    trangThai_ks:number;      
+    trangThai_ks:number;   
+      
+    //DotKhaoSat
+    maDotKhaoSat_dks:number;
+    tenDotKhaoSat_dks:string;
+    moTa_dks:string;
+    ngayBatDau:Date;
+    ngayKetThuc:Date;
+    fileBaoCaoKetQua:string;
+    ngaytao_dks:Date;
+    maNguoitao:number;
+     ngaySua_dks:Date;
+     maNguoiSua:number;
+     fileQuyetDinh:string;
+     fileKeHoach:string
+     trangThai_dks:number; 
 }
 

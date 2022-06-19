@@ -18,8 +18,8 @@ export class TinTucService {
   // getall():Observable<NhomCauHoi[]>{
   //   return this.http.post<NhomCauHoi[]>(environment.apiUrl+'/api/Nhom/GetAllNhomCauHoi');
   // }
-  Add_NCH(data:TinTuc_DTO):Observable<TinTuc_DTO>{
-    return this.http.post<TinTuc_DTO>(environment.apiUrl+'/api/CauHoi/Add_Or_Update',data);
+  Add_TT(data:TinTuc_DTO):Observable<TinTuc_DTO>{
+    return this.http.post<TinTuc_DTO>(environment.apiUrl+'/api/TinTuc/Add_Or_Update',data);
   }
 
   getOne(id:Number) {

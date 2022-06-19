@@ -22,6 +22,8 @@ import { CompanyComponent } from './company/company.component';
 import { AuthGuardService } from 'src/app/Sevices/Auth/auth-guard.service';
 import { AuthGuardUser } from 'src/app/Sevices/Auth/auth-guard-user.service';
 import { LogoutUserGuard } from 'src/app/Sevices/Auth/logout-user.guard';
+import { ToastrModule } from 'ngx-toastr';
+import { ContactComponent } from './contact/contact.component';
 
 // import { LayoutComponent } from './layout.component';
 
@@ -39,6 +41,9 @@ export const Mainroutes: Routes = [
       {
         path:"Survey",component:SurveyComponent,canActivate: [AuthGuardUser]
       },
+      {
+        path:"Contact",component:ContactComponent,canActivate: [AuthGuardUser]
+      },
       {path:"LoginUser",component:LoginUserComponent,canActivate: [LogoutUserGuard]
       }, 
       {path:"RegisterUser",component:RegisterUserComponent,canActivate: [LogoutUserGuard]},
@@ -46,6 +51,7 @@ export const Mainroutes: Routes = [
       {path:"Introduce",component:IntroduceComponent},
       {path:"Manual",component:ManualComponent},
       {path:"Company",component:CompanyComponent},
+     
       {path:"Detail/:id",component:DetailNewComponent}
 
       // { path: 'products', component: ProductComponent }, 
@@ -73,7 +79,8 @@ export const Mainroutes: Routes = [
       NgbModule,
       FormsModule,
       ReactiveFormsModule,
-     RouterModule.forChild(Mainroutes)
+     RouterModule.forChild(Mainroutes),
+  
     
     ],
     declarations: [
@@ -88,6 +95,7 @@ export const Mainroutes: Routes = [
        IntroduceComponent,
        FooterUserComponent,
        CompanyComponent,
+       ContactComponent,
      
        
   ]

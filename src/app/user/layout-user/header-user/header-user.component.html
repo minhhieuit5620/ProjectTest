@@ -77,8 +77,8 @@
                             <li><a routerLink="/user/Manual" style="cursor:pointer;">Hướng Dẫn</a></li>
                         </ul>
                         <ul class="dropdown-menu" *ngIf="token == null">
-                            <li><a routerLink="/user/LoginUser">Đăng nhập để tiến hành khảo sát</a></li>
-
+                            <li><a routerLink="/user/LoginUser">Đăng nhập để tiếp tục</a></li>
+                            <li><a routerLink="/user/Manual" style="cursor:pointer;">Hướng Dẫn</a></li>
                         </ul>
                     </li>
                     <li class="dropdown magz-dropdown">
@@ -88,6 +88,20 @@
                             <!-- <li><a href="index.html">Kết Quả T-H-I-O chung</a></li> -->
                         </ul>
                     </li>
+
+                    <li class="dropdown magz-dropdown">
+                        <a routerLink="/user/Contact">Liên hệ <i class="ion-ios-arrow-right"></i></a>
+                        <!-- <ul class="dropdown-menu" *ngIf="token != null">
+                            <li><a routerLink="/user/Survey">Tiến Hành Khảo Sát</a></li>
+                            <li><a routerLink="/user/Manual" style="cursor:pointer;">Hướng Dẫn</a></li>
+                        </ul> -->
+                        <ul class="dropdown-menu" *ngIf="token == null">
+                            <li><a routerLink="/user/LoginUser">Đăng nhập để tiếp tục</a></li>
+
+                        </ul>
+                    </li>
+
+
                     <!-- <li class="dropdown magz-dropdown"><a href="#">Nhiệm Vụ Thống Kê <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
 

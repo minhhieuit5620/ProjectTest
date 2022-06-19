@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CTKS_DN_CH_LC } from 'src/app/model/KhaoSat_DN/CTKS_DN_CH_LC.model';
 import { khaoSat_DN } from 'src/app/model/KhaoSat_DN/khaoSat_DN.model';
 import { CT_KhaoSatMn } from 'src/app/model/KhaoSat_Mn/chiTietKhaoSat_MN.model';
@@ -18,6 +19,7 @@ const datePipe = new DatePipe('en-US');
 })
 export class KhaoSatComponent implements OnInit {
 
+  
   data:khaoSat_Data[];
 
   data_CT:CT_KhaoSatMn[];
@@ -27,11 +29,14 @@ export class KhaoSatComponent implements OnInit {
   ctks:CT_KhaoSatMn={maChiTietKhaoSat:0,maKhaoSat:0,maCauHoi:0,maLuaChon:0,thoiGianTraLoi:new Date(),giaTriNhap:' ',trangThai:1}
  
   //data khaosat
-  data_KS:khaoSat_DN={maDoanhNghiep:0,maDinhDanhDn:0,taiKhoan:' ',matKhau:' ',tenToChuc:' ',diaChi:' ',tinhThanh:' ',dienThoai:' ',email:' ',website:' ',nguoiDungDau:' ',maNganh:1,maLoaiHinh:1,quyMo:' ',tieuDe:' ',moTa:' ',trangThai:0,rol:1,nguoiTao:' ',ngayTao:new Date(),ngaySua:new Date(),nguoiSua:' ',maKhaoSat:0,maDoanhNghiep_ks:0,ngayDanhGia:new Date(),ngaySua_ks:new Date(),maDotKhaoSat:1,trangThai_ks:1}
+  data_KS:khaoSat_DN={maDoanhNghiep:0,maDinhDanhDn:0,taiKhoan:' ',matKhau:' ',tenToChuc:' ',diaChi:' ',tinhThanh:' ',dienThoai:' ',email:' ',website:' ',nguoiKhaoSat:' ',maNganh:1,maLoaiHinh:1,quyMo:' ',tieuDe:' ',moTa:' ',trangThai:0,rol:1,nguoiTao:' ',ngayTao:new Date(),ngaySua:new Date(),nguoiSua:' ',
+  maKhaoSat:0,maDoanhNghiep_ks:0,ngayDanhGia:new Date(),ngaySua_ks:new Date(),maDotKhaoSat:1,trangThai_ks:1
+  ,maDotKhaoSat_dks:0,tenDotKhaoSat_dks:' ',moTa_dks:' ',ngayBatDau:new Date(),ngayKetThuc:new Date,fileBaoCaoKetQua:' ',ngaytao_dks:new Date,maNguoitao:1,maNguoiSua:1,ngaySua_dks:new Date,fileKeHoach:' ',fileQuyetDinh:' ',trangThai_dks:1
+}
   KS_DN:khaoSat_DN[];
 
   //data CTKS_CH_LC
-  CTKS_CH_LC:CTKS_DN_CH_LC[];
+  @Input() CTKS_CH_LC:CTKS_DN_CH_LC[];
   
   
 
@@ -39,6 +44,7 @@ export class KhaoSatComponent implements OnInit {
   isDisabled: boolean;
   constructor(
     private KhaoSatServices: KhaoSatService,
+    private toastr:ToastrService,
   ) {
     this.advancedPagination = 1;
     this.isDisabled = true;
@@ -62,7 +68,7 @@ export class KhaoSatComponent implements OnInit {
   getKhaoSat_DN(){
     this.KhaoSatServices.getKhaoSat_DN(this.data_KS).subscribe((res:any)=>{
       this.KS_DN=res.data;
-      //console.log("khao sat",this.KS_DN);
+      console.log("khao sat",this.KS_DN);
     })
   }
 
@@ -77,7 +83,7 @@ export class KhaoSatComponent implements OnInit {
   delete_KS(id:number){
     this.KhaoSatServices.deleteCTKS(id,this.ctks).subscribe(
       (data:any) => {
-     
+       
         //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
       //  $('#Xoa').modal('hide');
      
@@ -91,10 +97,13 @@ export class KhaoSatComponent implements OnInit {
       (data:any) => {     
         //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
       //  $('#Xoa').nativeElement.click();
+      this.toastr.success("Xóa thành công")
+     // $('#Xoa').modal('hide');
         this.GetAll();
       },
       (error) => {
-      //  this.showError('Xoá thông tin bệnh nhân không thành công!');
+        this.toastr.warning("Xóa thất bại")
+       // $('#Xoa').modal('hide');
         console.log(error);
       }
     );
@@ -105,7 +114,7 @@ export class KhaoSatComponent implements OnInit {
   
 
 
-   fileName = 'ExcelFile.xlsx';
+   fileName = 'KhaoSatKHCN.xlsx';
   exportExcel():void{
    /* pass here the table id */
    let element = document.getElementById('excel-table');
@@ -116,7 +125,8 @@ export class KhaoSatComponent implements OnInit {
    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
    /* save to file */  
-   XLSX.writeFile(wb, this.fileName);
+   XLSX.writeFile(wb, this.KS_DN[0].tenToChuc+this.fileName);
+   this.toastr.success("Xuất file thành công")
 
   }
 }

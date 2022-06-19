@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     ,Page:{pageSize:60, pageIndex:1} };
     totalUser:any;
 
-    doanhNghiep:DoanhNghiep_DTO={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiDungDau: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
+    doanhNghiep:DoanhNghiep_DTO={ Data:{maDoanhNghiep: 0,maDinhDanhDn: 0,taiKhoan:' ',matKhau:' ',tenToChuc: ' ', diaChi:' ',tinhThanh:' ', dienThoai: ' ' ,email: ' ' ,website: ' ' ,nguoiKhaoSat: ' ' ,maNganh: 0 ,maLoaiHinh: 0,quyMo: ' ' ,tieuDe: ' ' ,moTa: ' ' ,trangThai:1, rol: 1 ,nguoiTao:' ',ngayTao:new Date,nguoiSua:' ',ngaySua:new Date}
     ,Page:{pageSize:10, pageIndex:1} };
     totalDN:any;
 
@@ -52,19 +52,19 @@ export class DashboardComponent implements OnInit {
     ) {
         this.sliders.push(
             {
-                imagePath: './././assets/Admin/images/slider1.jpg',
-                label: 'First slide label',
-                text: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+                imagePath: './././assets/Both/khcn1.png',
+                // label: 'First slide label',
+                // text: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
             },
             {
-                imagePath: './././assets/Admin/images/slider2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                imagePath: './././assets/Both/khcn2.png',
+                // label: 'Second slide label',
+                // text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
             },
             {
-                imagePath: './././assets/Admin/images/slider3.jpg',
-                label: 'Third slide label',
-                text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+                imagePath: './././assets/Both/covid.png',
+                // label: 'Third slide label',
+                // text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
             }
         );
 
@@ -114,16 +114,10 @@ export class DashboardComponent implements OnInit {
     })
   }
  getUser(){    
-
     this.UserService.getall(this.user).subscribe((res:any)=>{
         this.totalUser=res.totalRecord
     })
   }
-
-
-
-
-
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);
         this.alerts.splice(index, 1);
