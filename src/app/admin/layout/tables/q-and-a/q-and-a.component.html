@@ -41,6 +41,7 @@
                             <div class="form-group">
                                 <label class="fw">Loại câu hỏi</label>
                                 <select (change)="selectChangeHandler($event)" style="height: 40px !important;" name="loaiCauHoi" id="lch" [(ngModel)]="dlAdd.CauHoi.maLoaiCauHoi" class="form-control styled-select">                                 
+                                    <option  style="padding: 20px 0px;"  value="Vừa" disabled selected>Chọn nhóm câu hỏi</option>
                                     <option  value="1" >Câu hỏi một lựa chọn</option>
                                     <option  value="2" >Câu hỏi nhiều lựa chọn</option>
                                     <option  value="3" >Câu hỏi trả lời bằng văn bản</option>                                   
@@ -51,6 +52,7 @@
                             <div class="form-group">
                                 <label class="fw">Nhóm câu hỏi</label>
                                 <select style="height: 40px !important;" name="nhomCauHoi" id="nch" [(ngModel)]="dlAdd.CauHoi.maNhomCauHoi" class="form-control styled-select">                                    
+                                    <option  style="padding: 20px 0px;"  value="Vừa" disabled selected>Chọn nhóm câu hỏi</option>
                                     <option   *ngFor="let item of dataNCH"   value="{{item.maNhomCauHoi}}" > {{item.tenNhomCauHoi}} </option>
                                     <!-- <option  style="padding: 20px 0px;"  value="Vừa">Vừa</option>
                                     <option  style="padding: 20px 0px;" value="Nhỏ">Nhỏ</option>
