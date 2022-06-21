@@ -46,5 +46,8 @@ export class DotKhaoSatService {
   }
   Deleteks(id:Number,data:dotKhaoSat_DTO):Observable<dotKhaoSat_DTO>{
     return this.http.post<dotKhaoSat_DTO>(environment.apiUrl+'/api/DotKhaoSat/Delete_DotKhaoSat/'+id,data);
-  }  
+  } 
+  UploadPhoto(val:any){
+    return this.http.post(environment.apiUrl+'/api/DotKhaoSats/SaveFile',val);
+  } 
 }

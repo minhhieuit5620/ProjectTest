@@ -36,9 +36,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Hình ảnh</label>
-
-                                <input type="text" name="maTieuChiCha" [(ngModel)]="dl.Data.hinhAnh" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <input class=" filestyle" name="fileQuyetDinh" [(ngModel)]="dl.Data.hinhAnh" (change)="uploadIMG($event)" type="file" value="" />
+                                <!-- <input type="text" name="maTieuChiCha" [(ngModel)]="dl.Data.hinhAnh" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
                                 <small id="helpId" class="text-muted"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Loại tin</label>
+                                <select name="nganh" id="Nganh" (change)="selectChangeHandler($event)" [(ngModel)]="dl.Data.maLoaiTin" style="height: 40px;font-size: 14px !important;" class="form-control styled-select">
+                                    <option style="padding: 20px 0px;font-size: 14px;" value="null" disabled selected>Chọn loại tin</option>
+                                    <option style="padding: 20px 0px;font-size: 14px;" value="1">Tin Khoa học và Công nghệ</option>
+                                    <option style="padding: 20px 0px;font-size: 14px;" value="2">Tin an toàn và bức xạ hạt nhân</option>
+                                    <option style="padding: 20px 0px;font-size: 14px;" value="3">Tin Sở hữu trí tuệ</option>
+                                    <option style="padding: 20px 0px;font-size: 14px;" value="4">Tin Tiêu chuẩn - Đo lường - Chất lượng</option>
+                                    <option style="padding: 20px 0px;font-size: 14px;" value="6">Thông báo, công văn, kế hoạch</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
@@ -50,7 +61,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Mô tả</label>
-                                <ckeditor [editor]="editor" [(ngModel)]="dl.Data.mota"></ckeditor>
+                                <input class=" filestyle" name="fileQuyetDinh" *ngIf="selectedLoai=='6'" [(ngModel)]="dl.Data.mota" (change)="uploadMT($event)" type="file" value="" />
+                                <ckeditor *ngIf="selectedLoai!='6'" [editor]="editor" [(ngModel)]="dl.Data.mota"></ckeditor>
                                 <!-- <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.mota" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
                                 <small id="helpId" class="text-muted"></small>
                             </div>
@@ -166,9 +178,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Hình ảnh</label>
-
-                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.hinhAnh" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <input class=" filestyle" name="fileHinhAnh" [(ngModel)]="dl.Data.hinhAnh" (change)="uploadIMG($event)" type="file" value="" />
+                                    <!-- <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.hinhAnh" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
                                     <small id="helpId" class="text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Loại tin</label>
+                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.maLoaiTin" id="" class="form-control" placeholder="" aria-describedby="helpId">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Trạng thái</label>
@@ -176,28 +192,35 @@
                                         <option style="padding: 20px 0px;font-size: 14px;" value="Vừa" disabled>
                                             <p *ngIf="data_getone.trangThai==1"> Hiện</p>
                                             <p *ngIf="data_getone.trangThai==0"> Ẩn</p>
-
                                         </option>
                                         <option style="padding: 20px 0px;font-size: 14px;" value="1">Hiện</option>
                                         <option style="padding: 20px 0px;font-size: 14px;" value="0">Ẩn</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Mô tả</label>
+
                                     <ckeditor [editor]="editor" [(ngModel)]="data_getone.mota"></ckeditor>
+                                    
+                                    <small id="helpId" class="text-muted"></small>
+                                </div> -->
+                                <div class="form-group" *ngIf="dl.Data.maLoaiTin==6">
+                                    <label for="">Mô tả</label>
+                                    <input class=" filestyle" name="fileQuyetDinh" [(ngModel)]="dl.Data.mota" (change)="uploadMT($event)" type="file" value="" />
                                     <!-- <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.mota" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
-
-
-
-
-
+                                <div class="form-group" *ngIf="dl.Data.maLoaiTin!=6">
+                                    <label for="">Mô tả</label>
+                                    <ckeditor [editor]="editor" [(ngModel)]="dl.Data.mota"></ckeditor>
+                                    <!-- <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.mota" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
+                                    <small id="helpId" class="text-muted"></small>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(data_getone.id,data_getone.taiKhoan,data_getone.hoVaTen,data_getone.soDienThoai,data_getone.email)">Cập nhật</button> -->
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(data_getone.maTinTuc,data_getone.maLoaiTin,data_getone.tieuDe,data_getone.mota,data_getone.trangThai,data_getone.hinhAnh)">Cập nhật</button>
                         </div>
                     </div>
                 </div>
@@ -223,7 +246,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete_NCH(data_getone.id)">Xóa</button> -->
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete_TT(data_getone.maTinTuc)">Xóa</button>
                         </div>
                         <!-- </form> -->
                     </div>

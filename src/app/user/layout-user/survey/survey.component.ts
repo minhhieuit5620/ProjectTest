@@ -230,7 +230,7 @@ activeIndex: number;
     document.getElementById("d"+this.id_cauHoi)?.classList.add("inActiveQ");
 
 
-   
+   console.log( this.arr_de);
     if (loai == 1) {
       this.arr_de[this.id_cauHoi as keyof typeof this.arr_de] = {};
     }
@@ -266,32 +266,65 @@ activeIndex: number;
     console.log(this.index,this.id_cauHoi);
   }
   next(){
-    this.CauHoiService.getOne(this.id_cauHoi+1).subscribe((res: any) => {        
-      this.data_getone = res;
-      if (!(this.id_cauHoi in this.arr_de)) {
-        this.arr_de[this.id_cauHoi] = {};
-        if (this.data_getone.maLoaiCauHoi == 3) { this.arr_de[this.id_cauHoi][0] = '' };
-      }
-    })
-    this.CauHoiService.getAnswers(this.id_cauHoi+1).subscribe((res: any) => {
-      this.data_Answer = res.data;
-    })
-    this.id_cauHoi=this.id_cauHoi+1
-    this.activeIndex=this.id_cauHoi;
+    if(this.id_cauHoi<59){
+      this.CauHoiService.getOne(this.id_cauHoi+1).subscribe((res: any) => {        
+        this.data_getone = res;
+        if (!(this.id_cauHoi in this.arr_de)) {
+          this.arr_de[this.id_cauHoi] = {};
+          if (this.data_getone.maLoaiCauHoi == 3) { this.arr_de[this.id_cauHoi][0] = '' };
+        }
+      })
+      this.CauHoiService.getAnswers(this.id_cauHoi+1).subscribe((res: any) => {
+        this.data_Answer = res.data;
+      })
+      this.id_cauHoi=this.id_cauHoi+1
+      this.activeIndex=this.id_cauHoi;
+    }
+    if(this.id_cauHoi==59){
+      this.CauHoiService.getOne(this.id_cauHoi).subscribe((res: any) => {        
+        this.data_getone = res;
+        if (!(this.id_cauHoi in this.arr_de)) {
+          this.arr_de[this.id_cauHoi] = {};
+          if (this.data_getone.maLoaiCauHoi == 3) { this.arr_de[this.id_cauHoi][0] = '' };
+        }
+      })
+      this.CauHoiService.getAnswers(this.id_cauHoi).subscribe((res: any) => {
+        this.data_Answer = res.data;
+      })
+      this.id_cauHoi=this.id_cauHoi
+      this.activeIndex=this.id_cauHoi;
+    }
+   
   }
   previous(){
-    this.CauHoiService.getOne(this.id_cauHoi-1).subscribe((res: any) => {        
-      this.data_getone = res;
-      if (!(this.id_cauHoi in this.arr_de)) {
-        this.arr_de[this.id_cauHoi] = {};
-        if (this.data_getone.maLoaiCauHoi == 3) { this.arr_de[this.id_cauHoi][0] = '' };
-      }
-    })
-    this.CauHoiService.getAnswers(this.id_cauHoi-1).subscribe((res: any) => {
-      this.data_Answer = res.data;
-    })
-    this.id_cauHoi=this.id_cauHoi-1
-    this.activeIndex=this.id_cauHoi;
+    if(this.id_cauHoi==10){
+      this.CauHoiService.getOne(this.id_cauHoi).subscribe((res: any) => {        
+        this.data_getone = res;
+        if (!(this.id_cauHoi in this.arr_de)) {
+          this.arr_de[this.id_cauHoi] = {};
+          if (this.data_getone.maLoaiCauHoi == 3) { this.arr_de[this.id_cauHoi][0] = '' };
+        }
+      })
+      this.CauHoiService.getAnswers(this.id_cauHoi).subscribe((res: any) => {
+        this.data_Answer = res.data;
+      })
+      this.activeIndex=this.id_cauHoi;
+    }
+    if(this.id_cauHoi>10){
+      this.CauHoiService.getOne(this.id_cauHoi-1).subscribe((res: any) => {        
+        this.data_getone = res;
+        if (!(this.id_cauHoi in this.arr_de)) {
+          this.arr_de[this.id_cauHoi] = {};
+          if (this.data_getone.maLoaiCauHoi == 3) { this.arr_de[this.id_cauHoi][0] = '' };
+        }
+      })
+      this.CauHoiService.getAnswers(this.id_cauHoi-1).subscribe((res: any) => {
+        this.data_Answer = res.data;
+      })
+      this.id_cauHoi=this.id_cauHoi-1
+      this.activeIndex=this.id_cauHoi;
+    }
+   
   }
 //  var a= this.data_getDN.maDoanhNghiep
 //   ks:khaoSat={maKhaoSat: 0,maDoanhNghiep: ,ngayDanhGia:new Date,ngaySua: new Date,nguoiSua: ' ',maDotKhaoSat: 1,trangThai: 1}

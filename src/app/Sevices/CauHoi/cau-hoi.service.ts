@@ -66,9 +66,16 @@ getKS(data:CauHoi_DTO):Observable<CauHoi_DTO> {
       error:function(){console.log("Lỗi rồi, code lại")}
    });
   }
+  Put_CH_DA(id:number,a:any):Observable<any>{
+  //   this.http.post<CauHoi_DapAnDTO>(environment.apiUrl+'/api/QandA/PutQandA/'+id,a).subscribe({
+  //     next: function(){console.log("successful!")},
+  //     error:function(){console.log("Lỗi rồi, code lại")}
+  //  });
+   return this.http.post<any>(environment.apiUrl+'/api/QandA/PutQandA?id='+id,a);
+  }
 
 
-  Put_NCH(data:CauHoi_DTO):Observable<CauHoi_DTO>{
+  Put_NCH(id:Number,data:CauHoi_DTO):Observable<CauHoi_DTO>{
     return this.http.post<CauHoi_DTO>(environment.apiUrl+'/api/CauHoi/Add_Or_Update',data);
   }
 

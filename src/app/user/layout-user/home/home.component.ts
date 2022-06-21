@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TinTuc_Data } from 'src/app/model/TinTuc/tin-tuc-data.model';
 import { TinTuc_DTO } from 'src/app/model/TinTuc/tin-tuc-DTO.model';
 import { TinTucService } from 'src/app/Sevices/TinTuc/tin-tuc.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,8 @@ import { TinTucService } from 'src/app/Sevices/TinTuc/tin-tuc.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  link=environment.apiUrl;
 
   @Input() data_getone: TinTuc_Data;
   data: TinTuc_Data[];
@@ -67,9 +70,6 @@ export class HomeComponent implements OnInit {
       this.data_TBCV=res.data;
     })
   }
-
-
-
 
   // getDapAn(id:number){
   //   this.CauHoiService.getAnswers(id).subscribe((res:any)=>{

@@ -254,7 +254,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <!-- <button type="button" class="btn btn-primary" (click)="update(data_getone.maNhomCauHoi,data_getone.tenNhomCauHoi,data_getone.maTieuChiCha,data_getone.trangThai)">Update</button> -->
+                            <button type="button" class="btn btn-primary" (click)="put(data_getone.maCauHoi,data_getone.noiDung,data_getone.goiYcauHoi,data_getone.maLoaiCauHoi,data_getone.maNhomCauHoi,data_getone.trangThai,data_Answer)" data-dismiss="modal">update</button>
+
                         </div>
                     </div>
                 </div>
@@ -269,7 +270,7 @@
                     <div class="modal-content">
                         <!-- <form method="post" (ngSubmit)="delete_NCH(item.maNhomCauHoi)" class="p-3" role="form"> -->
                         <div class="modal-header">
-                            <h5 class="modal-title" ngDefaultControl>Xóa thông tin câu hỏi {{data_getone.maCauHoi}}</h5>
+                            <h5 class="modal-title" ngDefaultControl>Xóa thông tin câu hỏi </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span >&times;</span>
                                 </button>

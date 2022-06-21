@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { dotKhaoSat_Data } from 'src/app/model/DotKhaoSat/dotKhaoSat-Data.model';
 import { dotKhaoSat_DTO } from 'src/app/model/DotKhaoSat/dotKhaoSat.model';
 import { DotKhaoSatService } from 'src/app/Sevices/DotKhaoSat/dotKhaoSat.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-dot-khao-sat',
   templateUrl: './dot-khao-sat.component.html',
@@ -21,7 +21,7 @@ export class DotKhaoSatComponent implements OnInit {
   myForm:any={
 
   }
-
+  link=environment.apiUrl;
   total:any;
   currentPage:number=1;
   
@@ -53,7 +53,6 @@ export class DotKhaoSatComponent implements OnInit {
       this.data=res.data;
       this.currentPage = a;
       this.total=res.pages;
-     // console.log('DTO', this.total);
     })
   }
   Search(a:number){
@@ -68,7 +67,6 @@ export class DotKhaoSatComponent implements OnInit {
       this.GetAll(a);
     }
    
-      //console.log('DTO', this.total);
   
   }
   Add():any{    
@@ -82,24 +80,18 @@ export class DotKhaoSatComponent implements OnInit {
   }
   getOne(id:number){    
     this.dotKhaoSatServices.getOne(id).subscribe((res:any)=>{     
-    this.data_getone=res;
-    console.log(this.data_getone);
+    this.data_getone=res;  
     })
   }
-  // getOne(id:number){
-  //   this.dotKhaoSatServices.getOne(id).subscribe((res:any)=>{     
-  //   this.data_getone=res;   
-  //   console.log(this.data_getone);
-  //   })
-  // }
-  update(id:number,taiKhoan:string,hoTen:string,dienThoai:string,email:string):any {
-    // this.dl=this.dl={ Data:{id:id,taiKhoan: taiKhoan, matKhau:' ',trangThai:1, hoVaTen: hoTen,soDienThoai:dienThoai,email:email,rol:2,ngayTao:new Date,nguoiTao:' ',nguoiSua:' ',ngaySua:new Date}
-    // ,Page:{pageSize:60, pageIndex:1} };
+
+  update(id:number,tenDotKS:string,mota:string,trangThai:number,ngayBatDau:Date,ngayKetThuc:Date,fileBaoCaoKetQua:string,fileQuyetDinh:string,fileKeHoach:string):any {
+    this.dl={ Data: { maDotKhaoSat: id,  tenDotKhaoSat: tenDotKS, moTa: mota, ngayBatDau:ngayBatDau,ngayKetThuc:ngayKetThuc, trangThai:trangThai,fileBaoCaoKetQua:fileBaoCaoKetQua, maNguoitao: 0, ngaytao: new Date, maNguoiSua: 0, ngaySua: new Date ,fileQuyetDinh:fileQuyetDinh,fileKeHoach:fileKeHoach}
+    ,Page:{ pageIndex:1} };
     this.dotKhaoSatServices.Put(this.dl).subscribe   
       (data => {
         this.toastr.success("Sửa thành công")
         this.GetAll(1);
-      //  $('#Sua').modal('hide');
+
       })   
   }
 
@@ -107,9 +99,6 @@ export class DotKhaoSatComponent implements OnInit {
     return new Array(i);
 }
 
-//   Put(){
-
-//   }
 delete_DKS(id:number){
     this.dotKhaoSatServices.Deleteks(id,this.dl).subscribe(
       (data:any) => {
@@ -123,7 +112,33 @@ delete_DKS(id:number){
     );
   }
 
+  uploadBaoCao(event: any){
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
 
+    this.dotKhaoSatServices.UploadPhoto(formData).subscribe((data:any)=>{      
+     this.dl.Data.fileBaoCaoKetQua=data.toString(); 
+    })
+  }
+  uploadQD(event: any){
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
+
+    this.dotKhaoSatServices.UploadPhoto(formData).subscribe((data:any)=>{      
+     this.dl.Data.fileQuyetDinh=data.toString(); 
+    })
+  }
+  uploadKH(event: any){
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
+
+    this.dotKhaoSatServices.UploadPhoto(formData).subscribe((data:any)=>{      
+     this.dl.Data.fileKeHoach=data.toString(); 
+    })
+  }
 
 
 }

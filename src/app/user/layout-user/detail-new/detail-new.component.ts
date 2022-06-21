@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TinTucService } from 'src/app/Sevices/TinTuc/tin-tuc.service';
 import { Location } from '@angular/common';
 import { TinTuc_Data } from 'src/app/model/TinTuc/tin-tuc-data.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-detail-new',
@@ -11,7 +12,7 @@ import { TinTuc_Data } from 'src/app/model/TinTuc/tin-tuc-data.model';
 })
 export class DetailNewComponent implements OnInit {
   // pdfSource =  "../../../../assets/User/image/{{tintuc.mota}}";
-  
+  link=environment.apiUrl;
   @Input() tintuc: TinTuc_Data;
   datas:TinTuc_Data[]=[];
   constructor(

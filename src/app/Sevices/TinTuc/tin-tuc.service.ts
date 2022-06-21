@@ -53,10 +53,15 @@ export class TinTucService {
     return this.http.get<TinTuc_DTO>(environment.apiUrl+'/api/TinTuc/GetTinTucByMaLoai/7');
   }
 
-  Put_NCH(data:TinTuc_DTO):Observable<TinTuc_DTO>{
-    return this.http.post<TinTuc_DTO>(environment.apiUrl+'/api/CauHoi/Add_Or_Update',data);
+  Put_TT(data:TinTuc_DTO):Observable<TinTuc_DTO>{
+    return this.http.post<TinTuc_DTO>(environment.apiUrl+'/api/TinTuc/Add_Or_Update',data);
   }
-  Delete_NCH(id:Number,data:TinTuc_DTO):Observable<TinTuc_DTO>{
-    return this.http.post<TinTuc_DTO>(environment.apiUrl+'/api/CauHoi/Delete_CauHoi/'+id,data);
+  Delete_TT(id:Number,data:TinTuc_DTO):Observable<TinTuc_DTO>{
+    return this.http.post<TinTuc_DTO>(environment.apiUrl+'/api/TinTuc/Delete_TinTuc/'+id,data);
   }
+  UploadPhoto(val:any){
+    return this.http.post(environment.apiUrl+'/api/TinTuc/SaveFile',val);
+  } 
+  
+
 }

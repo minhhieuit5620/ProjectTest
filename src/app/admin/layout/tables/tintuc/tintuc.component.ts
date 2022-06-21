@@ -71,8 +71,7 @@ export class TintucComponent implements OnInit {
   Add():any{
     this.tinTucService.Add_TT(this.dl).subscribe(datas=>{this.data_DTO.push(datas)})
     this.toastr.success("Thêm thành công")
-     this.GetAll(1);
-    
+     this.GetAll(1);    
   }
 
   getOne(id:number){
@@ -84,16 +83,17 @@ export class TintucComponent implements OnInit {
     //console.log(this.data_getone);
     })
   }
-//   update(id:number,taiKhoan:string,hoTen:string,dienThoai:string,email:string):any {
-//     this.dl=this.dl={ Data:{id:id,taiKhoan: taiKhoan, matKhau:' ',trangThai:1, hoVaTen: hoTen,soDienThoai:dienThoai,email:email,rol:2,ngayTao:new Date,nguoiTao:' ',nguoiSua:' ',ngaySua:new Date}
-//     ,Page:{pageSize:60, pageIndex:1} };
-//     this.UserService.Put_User(this.dl).subscribe   
-//       (data => {
-//         this.toastr.success("Sửa thành công")
-//         this.GetAll(1);
-//       //  $('#Sua').modal('hide');
-//       })   
-//   }
+  update(id:number,maLoaiTin:number,tieuDe:string,mota:string,trangThai:number,hinhAnh:string):any {
+    this.dl={ Data:{maTinTuc: id, maLoaiTin: maLoaiTin, tieuDe: tieuDe, mota: mota, hinhAnh: hinhAnh, trangThai: trangThai, nguoiThem: ' ', ngayThem: new Date, nguoiSua: ' ', ngaySua: new Date }
+    ,Page:{pageSize:60, pageIndex:1} };
+    
+    this.tinTucService.Put_TT(this.dl).subscribe   
+      (data => {
+        this.toastr.success("Sửa thành công")
+        this.GetAll(1);
+      //  $('#Sua').modal('hide');
+      })   
+  }
 
   counter(i: number) {
     return new Array(i);
@@ -102,25 +102,47 @@ export class TintucComponent implements OnInit {
 //   Put(){
 
 //   }
-//   delete_NCH(id:number){
-//     this.UserService.Delete_User(id,this.dl).subscribe(
-//       (data:any) => {
-//         //console.log(id);
+  delete_TT(id:number){
+    this.tinTucService.Delete_TT(id,this.dl).subscribe(
+      (data:any) => {
+        //console.log(id);
         
-//         this.toastr.success("Xóa thành công");
-//         this.GetAll(1);
-//       //  $('#Xoa').modal('hide');
-//       },
-//       (error) => {
+        this.toastr.success("Xóa thành công");
+        this.GetAll(1);
+      //  $('#Xoa').modal('hide');
+      },
+      (error) => {
       
-//         this.toastr.warning("Xóa thất bại")
-//        // $('#Xoa').modal('hide');
-//         console.log(error);
-//       }
-//     );
-//   }
+        this.toastr.warning("Xóa thất bại")
+       // $('#Xoa').modal('hide');
+        console.log(error);
+      }
+    );
+  }
 
 
+  selectedLoai: string = '';  
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selectedLoai = event.target.value;
+  }
+  uploadMT(event: any){
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
 
+    this.tinTucService.UploadPhoto(formData).subscribe((data:any)=>{      
+     this.dl.Data.mota=data.toString(); 
+    })
+  }
+  uploadIMG(event: any){
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
+
+    this.tinTucService.UploadPhoto(formData).subscribe((data:any)=>{      
+     this.dl.Data.hinhAnh=data.toString(); 
+    })
+  }
 
 }

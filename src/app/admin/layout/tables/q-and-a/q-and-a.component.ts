@@ -142,6 +142,24 @@ dlNCH:NhomCauHoi_DTO={ Data:{maNhomCauHoi: 0,tenNhomCauHoi: ' ', maTieuChiCha:0,
     this.selectedLoai = event.target.value;
   }
 
+  put(id:number,noiDung:string,goiYcauHoi:string,maLoaiCauHoi:number,maNhomCauHoi:number,trangThai:number,LuaChon:any[]){
+    this.dlAdd={
+      CauHoi:{maCauHoi:id,noiDung:noiDung,goiYcauHoi:goiYcauHoi,maLoaiCauHoi:maLoaiCauHoi,maNhomCauHoi:maNhomCauHoi,trangThai:trangThai,nguoiThem:"Hiếu",nguoiSua:" ",ngayThem:new Date,ngaySua:new Date},
+      LuaChon:LuaChon
+    }
+    this.CauHoiService.Put_CH_DA(id,this.dlAdd).subscribe(
+      (data:any) => {
+        console.log(id);
+        this.toastr.success("Sửa thành công")
+        this.getQ(1);
+      //  this.getQ();
+      }
+    )   
+
+  }
+  put_DA(){
+    
+  }
 
   Delete(id:number){
     this.CauHoiService.Delete_CH(id,this.dl).subscribe(

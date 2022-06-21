@@ -19,7 +19,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a routerLink="/Detail/{{news.maTinTuc}}">
-                                            <img src="../../../../assets/User/image/{{news.hinhAnh}}" alt="Sample Article">
+                                            <img src="{{link}}/Photos/{{news.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="padding tieude">
@@ -49,7 +49,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a routerLink="/Detail/{{item.maTinTuc}}">
-                                            <img src="../../../../assets/User/image/{{item.hinhAnh}}" alt="Sample Article">
+                                            <img src="{{link}}/Photos/{{item.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="padding">
@@ -70,7 +70,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a routerLink="/Detail/{{item_ATBX.maTinTuc}}">
-                                            <img src="../../../../assets/User/image/{{item_ATBX.hinhAnh}}" alt="Sample Article">
+                                            <img src="{{link}}/Photos/{{item_ATBX.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="padding">
@@ -90,7 +90,7 @@
                         <div class="inner">
                             <figure>
                                 <a routerLink="/Detail/{{item_SHTT.maTinTuc}}">
-                                    <img src="../../../../assets/User/image/{{item_SHTT.hinhAnh}}" alt="Sample Article">
+                                    <img src="{{link}}/Photos/{{item_SHTT.hinhAnh}}" alt="Sample Article">
                                 </a>
                             </figure>
                             <div class="details">
@@ -102,16 +102,6 @@
                                 </div>
                                 <h1><a routerLink="/Detail/{{item_SHTT.maTinTuc}}"> {{item_SHTT.tieuDe}} </a></h1>
                                 <div class="time">{{item_SHTT.ngayThem |date: 'dd/MM/yyyy'}}</div>
-                                <!-- <p>                                    
-                                    Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.
-                                </p>
-                                <footer>
-                                     <a href="#" class="love"></a>
-                                    <a class="btn btn-primary more" href="single.html">
-                                        <div>More</div>
-                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                    </a> 
-                                </footer>-->
                             </div>
                         </div>
                     </article>
@@ -154,7 +144,7 @@
                             <div class="inner">
                                 <figure>
                                     <a routerLink="/Detail/{{item_TBCV.maTinTuc}}">
-                                        <img src="../../../../assets/User/image/{{item_TBCV.hinhAnh}}" alt="Sample Article">
+                                        <img src="{{link}}/Photos/{{item_TBCV.hinhAnh}}" alt="Sample Article">
                                     </a>
                                 </figure>
                                 <div class="padding">
@@ -173,7 +163,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a routerLink="/Detail/{{data_TC_DL_CL[0].maTinTuc}} |async ">
-                                            <img src="../../../../assets/User/image/{{data_TC_DL_CL[0].hinhAnh}}" alt="Sample Article">
+                                            <img src="{{link}}/Photos/{{data_TC_DL_CL[0].hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="details">
@@ -186,7 +176,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a routerLink="/Detail/{{itemTC_DL_CL.maTinTuc}}">
-                                            <img src="../../../../assets/User/image/{{itemTC_DL_CL.hinhAnh}}" alt="Sample Article">
+                                            <img src="{{link}}/Photos/{{itemTC_DL_CL.hinhAnh}}" alt="Sample Article">
                                         </a>
                                     </figure>
                                     <div class="padding">

@@ -51,15 +51,18 @@
                             <!-- <input type="file" formControlName='fileSource' (change)="onFileSelected($event)" />-->
                             <div class="form-group">
                                 <label for="">File báo cáo kết quả</label>
-                                <input type="text" name="fileBaoCaoKetQua" [(ngModel)]="dl.Data.fileBaoCaoKetQua" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <input class=" filestyle" name="fileBaoCaoKetQua" [(ngModel)]="dl.Data.fileBaoCaoKetQua" (change)="uploadBaoCao($event)" type="file" value="" />
+                                <!-- <input type="text"  [(ngModel)]="dl.Data.fileBaoCaoKetQua" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
                             </div>
                             <div class="form-group">
                                 <label for="">File quyết định</label>
-                                <input type="text" name="fileQuyetDinh" [(ngModel)]="dl.Data.fileQuyetDinh" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <input class=" filestyle" name="fileQuyetDinh" [(ngModel)]="dl.Data.fileQuyetDinh" (change)="uploadQD($event)" type="file" value="" />
+
                             </div>
                             <div class="form-group">
                                 <label for="">File kế hoạch</label>
-                                <input type="text" name="fileKeHoach" [(ngModel)]="dl.Data.fileKeHoach" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                <input class=" filestyle" name="fileKeHoach" [(ngModel)]="dl.Data.fileKeHoach" (change)="uploadKH($event)" type="file" value="" />
+
                             </div>
                         </div>
                     </div>
@@ -70,6 +73,7 @@
                 </div>
             </div>
         </div>
+
         <!-- <div style="margin:10px;">
                         <a href="">
                             <input type="button" class="btn btn-lg btn-primary" value="Thêm nhóm câu hỏi">
@@ -100,7 +104,7 @@
                             <td>{{item.ngayBatDau | date: 'dd/MM/yyyy'}}</td>
                             <td>{{item.ngayKetThuc | date: 'dd/MM/yyyy'}}</td>
                             <td>
-                                <a href="../../../../assets/User/image/{{item.fileBaoCaoKetQua}}" target="_blank">{{item.fileBaoCaoKetQua}}</a>
+                                <a href="{{link}}/Photos/{{item.fileBaoCaoKetQua}}" target="_blank">Báo cáo</a>
                                 <!-- <object data="../../../../assets/User/image/document-58.pdf" width="100%" height="100%" type='application/pdf'>
                                     <p>Sorry, the PDF couldn't be displayed :(</p>
                                     <a href="../../../../assets/User/image/document-58.pdf" target="_blank">Click Here</a>
@@ -108,9 +112,9 @@
                             </td>
                             <td>
 
-                                <a href="../../../../assets/User/image/{{item.fileQuyetDinh}}" target="_blank">{{item.fileQuyetDinh}}</a>
+                                <a href="{{link}}/Photos/{{item.fileQuyetDinh}}" target="_blank">Quyết định</a>
                             </td>
-                            <td><a href="../../../../assets/User/image/{{item.fileKeHoach}}" target="_blank">{{item.fileKeHoach}}</a> </td>
+                            <td><a href="{{link}}/Photos/{{item.fileKeHoach}}" target="_blank">Kế hoạch</a> </td>
                             <td>
                                 <button type="button" (click)="getOne(item.maDotKhaoSat)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
                                                 Sửa
@@ -195,27 +199,31 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Ngày bắt đầu</label>
-                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.ngayBatDau" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <input type="date" name="ngaybatdau" [(ngModel)]="data_getone.ngayBatDau" id="" class="form-control" placeholder="" aria-describedby="helpId">
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Ngày kết thúc</label>
-                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.ngayKetThuc" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <input type="date" name="ngayketthuc" [(ngModel)]="data_getone.ngayKetThuc" id="" class="form-control" placeholder="" aria-describedby="helpId">
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="">File kết quả</label>
-                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.fileBaoCaoKetQua" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <input class=" filestyle" name="fileBaoCaoKetQua" [(ngModel)]="dl.Data.fileBaoCaoKetQua" (change)="uploadBaoCao($event)" type="file" value="" />
+                                    <label for="">{{data_getone.fileBaoCaoKetQua}}</label>
+
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="">File quyết định</label>
-                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.fileQuyetDinh" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                                    <small id="helpId" class="text-muted"></small>
+                                    <input class=" filestyle" name="fileQuyetDinh" [(ngModel)]="dl.Data.fileQuyetDinh" (change)="uploadQD($event)" type="file" value="" />
+                                    <label for="">{{data_getone.fileQuyetDinh}}</label>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="">File kế hoạch</label>
-                                    <input type="text" name="maTieuChiCha" [(ngModel)]="data_getone.fileKeHoach" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                                    <input class=" filestyle" name="fileKeHoach" [(ngModel)]="dl.Data.fileKeHoach" (change)="uploadKH($event)" type="file" value="" />
+                                    <label for="">{{data_getone.fileKeHoach}}</label>
                                     <small id="helpId" class="text-muted"></small>
                                 </div>
 
@@ -226,7 +234,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(data_getone.id,data_getone.taiKhoan,data_getone.hoVaTen,data_getone.soDienThoai,data_getone.email)">Cập nhật</button> -->
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(data_getone.maDotKhaoSat,data_getone.tenDotKhaoSat,data_getone.moTa,data_getone.trangThai,data_getone.ngayBatDau,data_getone.ngayKetThuc,data_getone.fileBaoCaoKetQua,data_getone.fileQuyetDinh,data_getone.fileKeHoach)">Cập nhật</button>
                         </div>
                     </div>
                 </div>
