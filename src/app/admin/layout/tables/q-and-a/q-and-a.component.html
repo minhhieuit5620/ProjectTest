@@ -131,7 +131,12 @@
                             <td *ngIf="item.maLoaiCauHoi==2"> Câu hỏi nhiều lựa chọn</td>
                             <td *ngIf="item.maLoaiCauHoi==3">Câu hỏi trả lời</td>
                             <!-- <td>{{item.maLoaiCauHoi}}</td> -->
-                            <td>{{item.maNhomCauHoi}}</td>
+
+                            <td *ngIf="item.maNhomCauHoi==50">Trang thiết bị</td>
+                            <td *ngIf="item.maNhomCauHoi==51"> Nhân lực</td>
+                            <td *ngIf="item.maNhomCauHoi==52">Thông tin</td>
+                            <td *ngIf="item.maNhomCauHoi==53">Tổ chức</td>
+                            <!-- <td>{{item.maNhomCauHoi}}</td> -->
                             <!-- <td *ngIf="item.maTieuChiCha==null;"> 0 </td>
                                 <td *ngIf="item.maTieuChiCha!=null;"> {{item.maTieuChiCha}} </td> -->
                             <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
@@ -139,7 +144,7 @@
                             <td *ngIf="item.trangThai==-1"> Đã xóa</td>
                             <td> {{item.nguoiThem}} </td>
                             <!-- <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td> -->
-                            <td> {{item.nguoiSua}} </td>
+                            <!-- <td> {{item.nguoiSua}} </td> -->
                             <!-- <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td> -->
                             <td>
                                 <button type="button" (click)="getOne(item.maCauHoi)" class="btn btn-info " data-toggle="modal" data-target="#Sua">

@@ -3,12 +3,22 @@
 
 
 <div class="row">
+
+
+
     <!-- <form class="search" (ngSubmit)=" f.form.valid && Search(1)" #f="ngForm" style="float: right;margin-right: 30px;margin-top:10px;">
         <input type="text" name="search" [(ngModel)]="form.tmp" style="height: 50px;" placeholder="Nhập để tìm kiếm ....." />
        
     </form> -->
     <div class="col col-xl-12 col-lg-12" ngDefaultControl>
-
+        <!-- <div class="form-group">
+            <label class="fw">Đợt khảo sát</label>
+            <select (change)="selectChangeHandler($event)" style="height: 40px !important;width: 200px;" name="loaiCauHoi" id="lch" class="form-control styled-select">                                 
+                <option  style="padding: 20px 0px;"  value="Vừa" disabled selected>Đợt khảo sát</option>
+                <option  value="{{item.maDotKhaoSat}}"  *ngFor="let item of data_DKS">{{item.tenDotKhaoSat}}</option>
+                                               
+            </select>
+        </div> -->
 
         <div class="card mb-12">
             <div class="card-header">Thông tin khảo sát</div>
@@ -20,13 +30,8 @@
                             <th>Tên doanh nghiệp</th>
                             <th>Mã số thuế</th>
                             <th>Tên đợt khảo sát</th>
-                            <!-- <th>Tên đợt khảo sát</th> -->
                             <th>Địa chỉ</th>
                             <th>Điện thoại</th>
-                            <!-- <th>Mã đợt khảo sát</th> -->
-                            <!-- <th>Ngày Thêm</th> -->
-                            <!-- <th>Người Sửa</th> -->
-                            <!-- <th>Ngày Sửa</th> -->
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -39,21 +44,7 @@
                             <td> {{item.tenDotKhaoSat_dks}} </td>
                             <td> {{item.diaChi}} </td>
                             <td> {{item.dienThoai}} </td>
-
-                            <!-- <td *ngIf="item.maTieuChiCha==null;"> 0 </td>
-                            <td *ngIf="item.maTieuChiCha!=null;"> {{item.maTieuChiCha}} </td> -->
-                            <!-- <td *ngIf="item.trangThai==1"> Đang hoạt động</td>
-                            <td *ngIf="item.trangThai==0"> Không hoạt động</td>
-                            <td *ngIf="item.trangThai==-1"> Đã xóa</td> -->
-
-                            <!-- <td> {{item.ngayThem | date: 'dd/MM/yyyy hh:mm a'}} </td> -->
-                            <!-- <td> {{item.nguoiSua}} </td> -->
-                            <!-- <td> {{item.ngaySua | date: 'dd/MM/yyyy hh:mm a' }} </td> -->
                             <td>
-                                <!-- <button type="button" (click)="getOne(item.maNhomCauHoi)" class="btn btn-primary " data-toggle="modal" data-target="#Sua">
-                                        Sửa
-                                    </button> -->
-
                                 <button type="button" class="btn btn-info " (click)="getCTKS(item.maKhaoSat)" data-toggle="modal" data-target="#Details">
                                         Chi tiết 
                                       </button>
@@ -118,6 +109,7 @@
                                             <!-- <td>{{item.tenToChuc}}</td>
                                             <td>{{item.maDinhDanhDn}}</td> -->
                                             <td> {{item.noiDung_ch}} </td>
+
                                             <td>
                                                 <p *ngIf="item.maLuaChon_lc!=null"> {{item.noiDung_lc}}</p>
                                                 <p *ngIf="item.maLuaChon_lc==0"> {{item.giaTriNhap_ct}}</p>

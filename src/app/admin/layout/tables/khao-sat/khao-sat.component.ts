@@ -1,11 +1,14 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { dotKhaoSat_Data } from 'src/app/model/DotKhaoSat/dotKhaoSat-Data.model';
+import { dotKhaoSat_DTO } from 'src/app/model/DotKhaoSat/dotKhaoSat.model';
 import { CTKS_DN_CH_LC } from 'src/app/model/KhaoSat_DN/CTKS_DN_CH_LC.model';
 import { khaoSat_DN } from 'src/app/model/KhaoSat_DN/khaoSat_DN.model';
 import { CT_KhaoSatMn } from 'src/app/model/KhaoSat_Mn/chiTietKhaoSat_MN.model';
 import { khaoSatMn_DTO } from 'src/app/model/KhaoSat_Mn/khaoSatMN-DTO.model';
 import { khaoSat_Data } from 'src/app/model/KhaoSat_Mn/khaoSat_Data.model';
+import { DotKhaoSatService } from 'src/app/Sevices/DotKhaoSat/dotKhaoSat.service';
 import { KhaoSatService } from 'src/app/Sevices/KhaoSat/khaoSat.service';
 import * as XLSX from 'xlsx';
 
@@ -38,11 +41,15 @@ export class KhaoSatComponent implements OnInit {
   //data CTKS_CH_LC
   @Input() CTKS_CH_LC:CTKS_DN_CH_LC[];
   
-  
+  //dotKhaoSat
+  dks: dotKhaoSat_DTO = {Data: { maDotKhaoSat: 0,  tenDotKhaoSat: ' ', moTa: ' ', ngayBatDau:new Date,ngayKetThuc:new Date, trangThai: 1,fileBaoCaoKetQua:' ', maNguoitao: 0, ngaytao: new Date, maNguoiSua: 0, ngaySua: new Date ,fileQuyetDinh:' ',fileKeHoach:' '}
+  , Page: {  pageIndex: 1 }};
+  data_DKS:dotKhaoSat_Data[];
 
   advancedPagination: number;
   isDisabled: boolean;
   constructor(
+    private dotKhaoSatServices: DotKhaoSatService,
     private KhaoSatServices: KhaoSatService,
     private toastr:ToastrService,
   ) {
@@ -53,22 +60,32 @@ export class KhaoSatComponent implements OnInit {
   ngOnInit(): void {
     this. GetAll();
     this.getKhaoSat_DN();
+    this.GetAllDot();
   }
 
+  GetAllDot(){    
+   
+    this.dotKhaoSatServices.getall(this.dks).subscribe((res:any)=>{
+      this.data_DKS=res.data;    
+    })
+  }
+
+  selectedLoai: string = '';  
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selectedLoai = event.target.value;
+  }
+
+
   GetAll(){
-    
-    // return this.httpClient.get<Product[]>(baseURL + '/Getproducts').toPromise().then(res => <Product[]>res).then(data => {return data;});
-    //return this.NhomCauHoiService.getall().toPromise().then(res => <NhomCauHoi[]>res).then(data => {return data;})
     this.KhaoSatServices.getAllKS(this.dl).subscribe((res:any)=>{
       this.data=res.data;
-     // console.log(this.data);
     })
   }
 
   getKhaoSat_DN(){
     this.KhaoSatServices.getKhaoSat_DN(this.data_KS).subscribe((res:any)=>{
-      this.KS_DN=res.data;
-      console.log("khao sat",this.KS_DN);
+      this.KS_DN=res.data;     
     })
   }
 
@@ -77,7 +94,7 @@ export class KhaoSatComponent implements OnInit {
     this.KhaoSatServices.getCTKS_CH_LC(id).subscribe((res:any)=>{
       this.CTKS_CH_LC=res.data;
       this.sl=this.CTKS_CH_LC.length;
-      console.log(this.CTKS_CH_LC);
+      
     })
   }
   delete_KS(id:number){
@@ -116,14 +133,19 @@ export class KhaoSatComponent implements OnInit {
 
    fileName = 'KhaoSatKHCN.xlsx';
   exportExcel():void{
+    const title = 'Kết quả khảo sát doanh nghiệp'+this.KS_DN[0].tenToChuc;
    /* pass here the table id */
    let element = document.getElementById('excel-table');
    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
+
+   const titleRow : XLSX.WorkSheet=([title]);
+   
    /* generate workbook and add the worksheet */
+  
    const wb: XLSX.WorkBook = XLSX.utils.book_new();
    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
+ 
    /* save to file */  
    XLSX.writeFile(wb, this.KS_DN[0].tenToChuc+this.fileName);
    this.toastr.success("Xuất file thành công")

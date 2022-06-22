@@ -57,7 +57,7 @@ private toastr:ToastrService,
     this.ContactService.getOne(id).subscribe((res:any)=>{
      
     this.data_get=res;
-    console.log(this.data_get);
+  
     })
   }
 
@@ -85,7 +85,7 @@ private toastr:ToastrService,
   delete_NCH(id:number){
     this.ContactService.Delete_LH(id,this.dl).subscribe(
       (data:any) => {
-        console.log(id);
+       
         //this.showSuccess('Xoá thông tin bệnh nhân thành công!');
         this.toastr.success("Xóa thành công")
     

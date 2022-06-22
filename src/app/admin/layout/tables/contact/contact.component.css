@@ -6,6 +6,14 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
+select {
+    font-family: 'Arial' !important;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 input {
     font-family: 'Arial' !important;
     font-size: 16px;
@@ -27,4 +35,9 @@ h5,
 h6,
 textarea {
     font-size: 16px;
+}
+
+.sua {
+    height: calc(100vh - 5em);
+    overflow-x: auto;
 }

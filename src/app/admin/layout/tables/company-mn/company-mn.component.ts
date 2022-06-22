@@ -68,7 +68,7 @@ export class CompanyMnComponent implements OnInit {
   getOne(id:number){    
     this.DoanhNghiepService.getOne(id).subscribe((res:any)=>{    
     this.data_getone=res;
-    console.log(this.data_getone);
+   
     })
   }
   update(id:number,tenToChuc:string,maSoThue:number,nguoiKhaoSat:string,diaChi:string,quyMo:string,SDT:string,email:string,website:string,maNganh:number,maLoaiHinh:number):any {
@@ -76,7 +76,7 @@ export class CompanyMnComponent implements OnInit {
     ,Page:{pageSize:60, pageIndex:1} };
     this.DoanhNghiepService.Put(newdl).subscribe   
       (data => {
-        console.log(id);
+     
         this.toastr.success("Sửa thành công");
         //this.data_DTO.push(data)     
       
@@ -89,7 +89,7 @@ export class CompanyMnComponent implements OnInit {
   delete_DN(id:number){
     this.DoanhNghiepService.Delete(id,this.dl).subscribe(
       (data:any) => {
-        console.log(id);
+     
         this.toastr.success("Xóa thành công");
        
         // this.getDN();

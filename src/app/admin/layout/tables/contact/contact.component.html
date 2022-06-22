@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of data; let i=index">
+                <tr *ngFor="let item of data; let i=index" (click)="getOne(item.maLienHe)" style="cursor:pointer">
                     <td> {{i+1}} </td>
                     <td>{{item.tenNguoiLienHe}}</td>
                     <td> {{item.noiDungLH}} </td>
@@ -109,6 +109,7 @@
             </div>
         </div>
     </div>
+
     <!-- End Modal Sửa  -->
     <!-- Modal Xóa -->
 

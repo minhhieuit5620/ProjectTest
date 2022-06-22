@@ -104,7 +104,7 @@ currentPage:number=1;
     ,Page:{pageSize:60, pageIndex:1} };
     this.NhomCauHoiService.Put_NCH(this.dl).subscribe   
       (data => {
-        console.log(id);
+        //console.log(id);
         this.toastr.success("Sửa thành công")  
         this.GetAll(1);       
       })//,
